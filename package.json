@@ -4,7 +4,10 @@
   "description": "aplikasi untuk mengelolah data panen, pengolahan, dan jual beli komoditas panen",
   "main": "acc_server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "strat": "node app_clove_comodity/server/acc_server.js",
+    "strat-dev": " nodemon app_clove_comodity/server/acc_server.js"
+
   },
   "keywords": [
     "clove",

@@ -1,10 +1,14 @@
 const hapi = require('@hapi/hapi');
 const jwt = require('@hapi/jwt');
 
+const test = require('../api/test');
+//const albumsService = require('./services/postgres/albumsService');
+//const albumsValidator = require('./validator/albums');
+
 const init = async  () => {
     const server = hapi.server({
         port: 3555,
-        host: localhost,
+        host: 'localhost',
         debug: {
             request: ['error'],
         },
@@ -38,7 +42,9 @@ const init = async  () => {
     });
 
     await server.register([
-        {},
+        {
+            plugin:test,
+        },
 
     ])
 
