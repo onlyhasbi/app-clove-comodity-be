@@ -1,7 +1,7 @@
 const hapi = require('@hapi/hapi');
 const jwt = require('@hapi/jwt');
 
-const test = require('../api/test');
+const test = require('../ACCapi/test');
 //const albumsService = require('./services/postgres/albumsService');
 //const albumsValidator = require('./validator/albums');
 

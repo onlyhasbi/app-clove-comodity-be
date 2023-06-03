@@ -5,8 +5,8 @@
   "main": "acc_server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "strat": "node app_clove_comodity/server/acc_server.js",
-    "strat-dev": " nodemon app_clove_comodity/server/acc_server.js"
+    "strat": "node app_clove_comodity/ACCserver/acc_server.js",
+    "strat-dev": " nodemon app_clove_comodity/ACCserver/acc_server.js"
 
   },
   "keywords": [
