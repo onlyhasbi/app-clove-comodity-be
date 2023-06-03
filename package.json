@@ -1,0 +1,20 @@
+{
+  "name": "clove-comodity-app",
+  "version": "1.0.0",
+  "description": "aplikasi untuk mengelolah data panen, pengolahan, dan jual beli komoditas panen",
+  "main": "acc_server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "clove",
+    "komodity"
+  ],
+  "author": "tim challenge idCampXKadin makassar",
+  "license": "ISC",
+  "dependencies": {
+    "@hapi/hapi": "^21.3.2",
+    "@hapi/jwt": "^3.2.0",
+    "nodemon": "^2.0.22"
+  }
+}
