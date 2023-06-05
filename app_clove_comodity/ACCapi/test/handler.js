@@ -20,7 +20,6 @@ class testHandler {
     } 
     catch (error ) { 
       const response = await responseCatch(error, h); 
-      console.log('jan')
       return response;
      }
   }

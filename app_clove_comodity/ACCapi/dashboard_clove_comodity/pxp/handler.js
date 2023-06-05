@@ -1,6 +1,7 @@
-const responseCatch = require('../../exception/responHandlerCatch')
-const InvariantError = require('../../exception/invariantErr')
-const notFoundError = require('../../exception/notFoundErr')
+const responseCatch = require('../../../exception/responHandlerCatch')
+const InvariantError = require('../../../exception/invariantErr')
+const notFoundError = require('../../../exception/notFoundErr')
+
 
 class Handler {
 
@@ -12,7 +13,7 @@ class Handler {
       const response = h.response({
         status: 'success',
         message : 'uji koneksi pluginji ini di server',
-        data: 'auth' ,
+        data: 345 ,
         pemilik: siapa,
       });
       response.code(201);

@@ -4,10 +4,9 @@ const routes = (handler) => [
     */
     {
       method: 'GET',
-      path: '/auth',
+      path: '/pbt',
       handler: handler.test,
     },
-
   ];
    
   module.exports = routes;

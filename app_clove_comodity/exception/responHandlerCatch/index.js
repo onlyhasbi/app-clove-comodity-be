@@ -3,7 +3,6 @@ const ClientError = require('../clientErr');
 const responseCatch = async (error, h) => {
     console.log(error);
     if (error instanceof ClientError) {
-        console.log('eror extends');
         const response = h.response({
         status: 'fail',
         message: error.message,

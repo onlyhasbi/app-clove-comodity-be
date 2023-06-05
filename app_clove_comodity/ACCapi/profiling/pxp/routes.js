@@ -4,9 +4,10 @@ const routes = (handler) => [
     */
     {
       method: 'GET',
-      path: '/auth',
+      path: '/ppt',
       handler: handler.test,
     },
+
 
   ];
    
