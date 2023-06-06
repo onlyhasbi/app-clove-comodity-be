@@ -1,13 +1,9 @@
 const routes = (handler) => [
-    /* 
-    //contoh, hapus saja
-    */
-    {
-      method: 'GET',
-      path: '/ubt',
-      handler: handler.test,
-    },
-
+  {
+    method: 'POST',
+    path : `/B-User`,      
+    handler: handler.postUserBuruh,
+  },
   ];
    
   module.exports = routes;

@@ -1,13 +1,19 @@
 const routes = (handler) => [
-    /* 
-    //contoh, hapus saja
-    */
     {
-      method: 'GET',
-      path: '/auth',
+      method: 'POST',
+      path: '/postAuth',
       handler: handler.test,
     },
-
+    {
+      method: 'PUT',
+      path: `/putAuth`,
+      handler: async()=>{},
+    },
+    {
+    method: 'DELETE', 
+    path : `/deleteAuth`,
+    handler: ()=>{},
+    }
   ];
    
   module.exports = routes;

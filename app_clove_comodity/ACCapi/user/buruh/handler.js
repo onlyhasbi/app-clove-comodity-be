@@ -1,21 +1,21 @@
 const responseCatch = require('../../../exception/responHandlerCatch')
-const InvariantError = require('../../../exception/invariantErr')
-const notFoundError = require('../../../exception/notFoundErr')
 
 class Handler {
 
-  async test(request, h) {
+  async postUserBuruh(request, h) {
     try {
-      let siapa;   
-      if (!siapa) {throw new notFoundError(`tarada`);}
-      if (siapa) {throw new InvariantError(`errorki`);}
+      this._validator.buruh(request.payload);
+      const userId = await this._service.addUserB(request.payload);
+ 
       const response = h.response({
         status: 'success',
-        message : 'uji koneksi pluginji ini di server',
-        data: 345 
+        message: `User berhasil ditambahkan dengan id '${userId}'.`,
+        data: {
+          userId,
+        },
       });
       response.code(201);
-      return response; 
+      return response;
     } 
     catch (error ) { 
       const response = await responseCatch(error, h); 
