@@ -1,2 +1,5 @@
-# app-clove-comodity-be
-# vhvhg
+instal dbnya dengan urutan perintah
+
+>npm run set db //tunggu selesai
+
+bjbh
