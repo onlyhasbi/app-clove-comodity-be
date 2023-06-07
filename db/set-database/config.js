@@ -1,8 +1,8 @@
 const con = {
-    user: 'postgres',  
+    user: 'postgres',  //?sesuaikan username postgres anda
     host: 'localhost', //?sesuaikan host postgres anda
     database: 'postgres', 
-    password: 'Pgher1',  //?sesuaikan host postgres anda
+    password: 'set sendiri',  //?sesuaikan host postgres anda
     port: 5432, //?sesuaikan host postgres anda
 };
 module.exports = con;
