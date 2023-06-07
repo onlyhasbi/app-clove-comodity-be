@@ -10,12 +10,10 @@ const pool = new Pool({
   port: 5432, //?sesuaikan host postgres anda
 });
 const query = fs.readFileSync('./db/set-structure/pg/acc_pg_db.sql' , 'utf-8')
-async function createTables(query) {
+const createTables = (query) => {
   try {
-
-    console.log('create structure...');
-    await pool.query(query);
-    console.log('Tables created successfully');
+    console.log('create table structure...');
+    pool.query(query);
   } catch (error) {
     console.error('Error creating tables:', error);
   }
