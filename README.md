@@ -1,5 +1,9 @@
-instal dbnya dengan urutan perintah
+instal dbnya dengan urutan perintah scripts yang ada di package.json
 
->npm run set db //tunggu selesai
+1. npm run set-db 
 
-bjbh
+> tunggu sampai selesai sebelum lanjut
+
+2. npm run set-tabel-db 
+
+> tunggu sampai selesai sebelum lanjut
