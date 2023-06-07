@@ -1,8 +1,8 @@
 const Joi = require('joi');
  
 const PostAuthPayloadSchema = Joi.object({
-  username: Joi.string().required(),
-  password: Joi.string().required(),
+  nama: Joi.string().required(),
+  sandi: Joi.string().required(),
 });
  
 const PutAuthPayloadSchema = Joi.object({

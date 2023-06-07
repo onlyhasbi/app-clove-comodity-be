@@ -5,7 +5,7 @@ const B_UserPayloadSchema = Joi.object({
   sandi: Joi.string().required(),
   tanggal_lahir: Joi.date().required(),
   jenis_kelamin: Joi.string().valid('Laki-laki','perempuan').required(),
-  domisili: Joi.string(),
+  alamat: Joi.string(),
 });
 
 const PxP_UserPayloadSchema = Joi.object({
