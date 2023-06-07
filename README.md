@@ -4,7 +4,7 @@ pasang dbnya di postgress dengan cara berikut:
 
 3. jalankan perintah scripts yang ada di package.json di terminal
    a. npm run set-db 
->  tunggu sampai selesai sebelum lanjut
+  tunggu sampai selesai sebelum lanjut
    b. npm run set-tabel-db 
    tunggu sampai selesai sebelum lanjut
 4. database sudah siap digunakan di project back-end 
