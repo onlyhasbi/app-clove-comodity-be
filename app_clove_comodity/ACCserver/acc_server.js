@@ -1,5 +1,6 @@
 const hapi = require('@hapi/hapi');
 const jwt = require('@hapi/jwt');
+require('dotenv').config();
 
 const test = require('../ACCapi/test');
 //const albumsService = require('./services/postgres/albumsService');
@@ -9,10 +10,11 @@ const auth = require('../ACCapi/auth');
 
 const user_pxp = require('../ACCapi/user/pxp');
 const user_buruh = require('../ACCapi/user/buruh');
+const UsersValidator = require('../ACCvalidator/users')
+const usersService = require('../ACCservice/Postgres/usersService');
 
 const profiling_pxp = require('../ACCapi/profiling/pxp');
 const profiling_buruh = require('../ACCapi/profiling/buruh');
-
 const dashboard_pxp = require('../ACCapi/dashboard_clove_comodity/pxp');
 const dashboard_buruh = require('../ACCapi/dashboard_clove_comodity/buruh');
 
@@ -21,6 +23,8 @@ const information_buruh = require('../ACCapi/information/buruh');
 
 
 async function init() {
+    const UsersService = new usersService();
+
     const server = hapi.server({
         port: 3555,
         host: 'localhost',
@@ -40,8 +44,8 @@ async function init() {
         },
     ]);
 
-    server.auth.strategy('musicApp_jwt', 'jwt', {
-        keys: 'key/ pelajari nanti',
+    server.auth.strategy('ACC_jwt', 'jwt', {
+        keys: process.env.ACCESS_TOKEN_KEY,
         verify: {
             aud: false,
             iss: false,
@@ -62,9 +66,17 @@ async function init() {
         },
         {
             plugin: user_pxp,
+            options: {
+                service : UsersService,
+                validator : UsersValidator,
+            }
         },
         {
             plugin: user_buruh,
+            options: {
+                service : UsersService,
+                validator : UsersValidator,
+            }
         },
         {
             plugin: auth,

@@ -10,9 +10,10 @@ CREATE TYPE stala AS ENUM('milik_sendiri','milik_tergadai','milik_dengan_pajak',
 CREATE TYPE komoditas AS ENUM('kering', 'basah');
 
 create table buruh (
-    id varchar(10) primary key,
+    id varchar(30) primary key,
+    nama_pengguna varchar(50) unique,
     nama varchar(50) not null,
-    sandi varchar(10) not null,
+    sandi varchar(60) not null,
     tanggal_lahir date not null,
     jenis_kelamin gender not null,  
     alamat varchar(100) null
@@ -20,10 +21,11 @@ create table buruh (
 
 
 create table pxp (
-    id varchar(10) primary key,
+    id varchar(30) primary key,
     jenis_pengguna pengguna not null,
-    sandi varchar(10) not null,
+    nama_pengguna varchar(50) unique,
     nama varchar(50) not null,
+    sandi varchar(60) not null,
     alamat varchar(100) null
 );
 
