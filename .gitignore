@@ -1,0 +1,5 @@
+# File Lingkungan
+.env
+
+#semua file config
+*config.js
