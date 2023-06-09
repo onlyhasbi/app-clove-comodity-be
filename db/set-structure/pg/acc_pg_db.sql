@@ -84,6 +84,7 @@ create table penawaran_komoditi (
     id varchar(30) primary key,
     id_pxp varchar(30) not null,
     jenis_penawaran penawaran not null,
+    jenis_komditas_cengkeh komoditas not null,
     max_nilai_ukur integer not null,
     min_nilai_ukur integer not null,
     indikator_ukur i_ukur not null,
