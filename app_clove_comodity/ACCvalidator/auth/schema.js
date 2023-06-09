@@ -1,7 +1,7 @@
 const Joi = require('joi');
  
 const PostAuthPayloadSchema = Joi.object({
-  nama: Joi.string().required(),
+  nomor_telpon: Joi.string().pattern(/^[0-9]{10,12}$/).required(),
   sandi: Joi.string().required(),
 });
  
