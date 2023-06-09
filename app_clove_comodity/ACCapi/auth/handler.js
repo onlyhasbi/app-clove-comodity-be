@@ -2,25 +2,45 @@ const responseCatch = require('../../exception/responHandlerCatch')
 const autoBind = require('auto-bind');
 
 class Handler {
-  constructor(authenticationsService, verify, tokenManager, validator) {
-    this._authenticationsService = authenticationsService;
-    this._verify = verify;
+  constructor(authService, tokenManager, validator) {
+    this._authService = authService;
     this._tokenManager = tokenManager;
     this._validator = validator;
 
     autoBind(this);
   }
  
-  async postAuth(request, h) {
+  async postAuthB(request, h) {
     try {
       await this._validator.PostAuthPayload(request.payload);
-      const { username, password } = request.payload;
-      const id = await this._verify.UserCredential(username, password);
+      const id = await this._authService .verifyUserCredential("buruh", request.payload);
       const accessToken = await this._tokenManager.generateAccessToken({ id });
       const refreshToken = await this._tokenManager.generateRefreshToken({ id });
- 
-      await this._authenticationsService.addRefreshToken(refreshToken);
- 
+      await this._authService.addRefreshToken(refreshToken);
+      const response = h.response({
+        status: 'success',
+        message: 'Authentication berhasil ditambahkan',
+        data: {
+          accessToken,
+          refreshToken,
+        },
+      });
+      response.code(201);
+      return response; 
+    } 
+    catch (error) {
+      const response = await responseCatch(error, h); 
+      return response;
+    }
+  }
+
+  async postAuthPxP(request, h) {
+    try {
+      await this._validator.PostAuthPayload(request.payload);
+      const id = await this._authService .verifyUserCredential("pxp", request.payload);
+      const accessToken = await this._tokenManager.generateAccessToken({ id });
+      const refreshToken = await this._tokenManager.generateRefreshToken({ id });
+      await this._authService.addRefreshToken(refreshToken);
       const response = h.response({
         status: 'success',
         message: 'Authentication berhasil ditambahkan',
@@ -42,7 +62,7 @@ class Handler {
     try {
       this._validator.PutAuthPayload(request.payload);
       const { refreshToken } = request.payload;
-      await this._authenticationsService.verifyRefreshToken(refreshToken);
+      await this._authService.verifyRefreshToken(refreshToken);
       const { id } = this._tokenManager.verifyRefreshToken(refreshToken); 
       const accessToken = this._tokenManager.generateAccessToken({ id });
       return {
@@ -63,8 +83,8 @@ class Handler {
     try {
       this._validator.validateDeleteAuthenticationPayload(request.payload);
       const { refreshToken } = request.payload;
-      await this._authenticationsService.verifyRefreshToken(refreshToken);
-      await this._authenticationsService.deleteRefreshToken(refreshToken);
+      await this._authService.verifyRefreshToken(refreshToken);
+      await this._authService.deleteRefreshToken(refreshToken);
  
       return {
         status: 'success',
