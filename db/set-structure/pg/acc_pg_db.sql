@@ -48,17 +48,10 @@ create table lamaran_terbuka (
     id_buruh varchar(30) not null,
     jenis_pekerjaan job not null,
     upah_harapan integer not null,
-    satuan_upah varchar(30) not null,
+    indikator_ukur i_ukur not null,
+    catatan varchar(60) null,
     foreign key (id_buruh) references buruh(id)
 );
-
-create table harapan_benefit_lamaran (
-    id_pekerjaan varchar(30) primary key,
-    item varchar(20) not null,
-    catatan varchar(60) null,
-    foreign key (id_pekerjaan) references lamaran_terbuka(id)
-);
-
 
 /*tabel sistem profiling user petani dan pedagang*/
 
