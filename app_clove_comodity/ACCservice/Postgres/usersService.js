@@ -8,7 +8,7 @@ class usersService {
   }
 
   async addUserB({nomor_telpon, nama, sandi, tanggal_lahir, jenis_kelamin, alamat}) {
-    await this.verifyNewUsername('buruh', nama_pengguna);
+    await this.verifyNewUsername('buruh', nomor_telpon);
     const id = `b_user-${nanoid(5)}`;
     const hashedPassword = await bcrypt.hash(sandi, 10);
     const query = {
@@ -40,7 +40,7 @@ class usersService {
   }
 
   async verifyNewUsername(tabel, nomor_telpon) {
-    const result = await this._pool.query(`SELECT id FROM ${tabel} WHERE nomor_telpon = '${nama}';`);
+    const result = await this._pool.query(`SELECT id FROM ${tabel} WHERE nomor_telpon = '${nomor_telpon}';`);
     if (result.rows.length > 0) {  throw new InvariantError('nomor_telpon sudah digunakan oleh user lain, gunakan nama lain untuk nama pengguna.'); }
   }
 }

@@ -1,8 +1,9 @@
 const InvariantError = require('../../exception/invariantErr');
 const AuthenticationError = require('../../exception/authErr');
+const bcrypt = require('bcrypt');
 const { Pool } = require('pg');
  
-class AuthenticationsService {
+class AuthService {
   constructor() {
     this._pool = new Pool();
   }
@@ -34,4 +35,4 @@ class AuthenticationsService {
 
 
 
-module.exports = AuthenticationsService;
+module.exports = AuthService;

@@ -2,8 +2,8 @@ const responseCatch = require('../../exception/responHandlerCatch')
 const autoBind = require('auto-bind');
 
 class Handler {
-  constructor(authService, tokenManager, validator) {
-    this._authService = authService;
+  constructor(Service, tokenManager, validator) {
+    this._authService = Service;
     this._tokenManager = tokenManager;
     this._validator = validator;
 
@@ -12,6 +12,7 @@ class Handler {
  
   async postAuthB(request, h) {
     try {
+      console.log(this._authService , this._validator, this._tokenManager)
       await this._validator.PostAuthPayload(request.payload);
       const id = await this._authService .verifyUserCredential("buruh", request.payload);
       const accessToken = await this._tokenManager.generateAccessToken({ id });
@@ -81,7 +82,7 @@ class Handler {
 
   async deleteAuth(request, h) {
     try {
-      this._validator.validateDeleteAuthenticationPayload(request.payload);
+      this._validator.DeleteAuthPayload(request.payload);
       const { refreshToken } = request.payload;
       await this._authService.verifyRefreshToken(refreshToken);
       await this._authService.deleteRefreshToken(refreshToken);
