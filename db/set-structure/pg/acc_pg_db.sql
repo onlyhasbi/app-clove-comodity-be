@@ -11,7 +11,7 @@ CREATE TYPE komoditas AS ENUM('kering', 'basah');
 
 create table buruh (
     id varchar(30) primary key,
-    nama_pengguna varchar(50) unique,
+    nomor_telpon varchar(50) unique,
     nama varchar(50) not null,
     sandi varchar(60) not null,
     tanggal_lahir date not null,
@@ -23,7 +23,7 @@ create table buruh (
 create table pxp (
     id varchar(30) primary key,
     jenis_pengguna pengguna not null,
-    nama_pengguna varchar(50) unique,
+    nomor_telpon varchar(50) unique,
     nama varchar(50) not null,
     sandi varchar(60) not null,
     alamat varchar(100) null
