@@ -4,7 +4,12 @@ const notFoundError = require('../../../exception/notFoundErr')
 
 class Handler {
 
-  async test(request, h) {
+  constructor (service,validator){
+    this._service = service 
+    this._validator = validator
+  }
+
+  async getUserBuruh(request, h) {
     try {
       let siapa;   
       if (!siapa) {throw new notFoundError(`tarada`);}
