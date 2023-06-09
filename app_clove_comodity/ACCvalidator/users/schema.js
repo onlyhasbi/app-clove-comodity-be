@@ -1,7 +1,7 @@
 const Joi = require('joi');
  
 const B_UserPayloadSchema = Joi.object({
-  nama_pengguna: Joi.string().required(),
+  nomor_telpon: Joi.string().required(),
   nama: Joi.string().required(),
   sandi: Joi.string().required(),
   tanggal_lahir: Joi.date().required(),
@@ -10,7 +10,7 @@ const B_UserPayloadSchema = Joi.object({
 });
 
 const PxP_UserPayloadSchema = Joi.object({
-  nama_pengguna: Joi.string().required(),
+  nomor_telpon: Joi.string().required(),
   jenis_pengguna: Joi.string().valid('perorangan','UMKM/KLP.Tani','CV', 'PT').required(),
   nama: Joi.string().required(),
   sandi: Joi.string().required(),
