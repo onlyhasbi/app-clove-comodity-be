@@ -31,7 +31,7 @@ class Handler {
 
       const response = h.response({
         status: 'success',
-        message:`users berhasil ditambahkan dengan id ${userId}`,
+        message:`user berhasil ditambahkan dengan id ${userId}`,
         data:{
           id_buruh,
           Id_kontak,
