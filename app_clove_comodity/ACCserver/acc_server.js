@@ -7,6 +7,9 @@ const test = require('../ACCapi/test');
 //const albumsValidator = require('./validator/albums');
 
 const auth = require('../ACCapi/auth');
+const AuthValidator = require('../ACCvalidator/auth');
+const authService = require('../ACCservice/Postgres/AuthService');
+const TokenManager = require('../tokenize/TokenManager')
 
 const user_pxp = require('../ACCapi/user/pxp');
 const user_buruh = require('../ACCapi/user/buruh');
@@ -15,15 +18,16 @@ const usersService = require('../ACCservice/Postgres/usersService');
 
 const profiling_pxp = require('../ACCapi/profiling/pxp');
 const profiling_buruh = require('../ACCapi/profiling/buruh');
-const dashboard_pxp = require('../ACCapi/dashboard_clove_comodity/pxp');
-const dashboard_buruh = require('../ACCapi/dashboard_clove_comodity/buruh');
+const dashboard_pxp = require('../ACCapi/dashboard/pxp');
+const dashboard_buruh = require('../ACCapi/dashboard/buruh');
 
 const information_pxp = require('../ACCapi/information/pxp');
 const information_buruh = require('../ACCapi/information/buruh');
 
-
+console.log(authService)
 async function init() {
     const UsersService = new usersService();
+    const AuthService = new authService();
 
     const server = hapi.server({
         port: 3555,
@@ -80,6 +84,11 @@ async function init() {
         },
         {
             plugin: auth,
+            options: {
+                service : AuthService,
+                tokenManager : TokenManager,
+                validator : AuthValidator,
+            }
         },
         {
             plugin: profiling_pxp,

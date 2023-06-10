@@ -30,7 +30,7 @@ create table pxp (
 );
 
 create table auth (
-    token varchar(50) primary key
+    token varchar(200) primary key
 );
 
 
