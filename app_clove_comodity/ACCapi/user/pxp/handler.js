@@ -10,7 +10,7 @@ class Handler {
     autoBind(this);
   }
 
-  async postUserPxP(request, h) {
+  async addUserPxP(request, h) {
     try {
       this._validator.pxp(request.payload);
       const userId = await this._service.addUserPxP(request.payload);
@@ -30,6 +30,12 @@ class Handler {
       return response;
      }
   }
+
+  async getUserPXP( h) {}
+  async updateUserPXP(request, h) {}
+  async updateSandiUserPXP(request, h) {}
+  async updateLupaSandiUserPXP(request, h) {}
+  async deleteUserPXP(request, h) {}
 }
 
   module.exports = Handler;

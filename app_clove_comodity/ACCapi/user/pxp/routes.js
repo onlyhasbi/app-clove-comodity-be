@@ -2,12 +2,12 @@ const routes = (handler) => [
     {
       method: 'POST',
       path : `/PxP-User`,      
-      handler: handler.postUserPxP,
+      handler: handler.addUserPxP,
     },
 
   // {
   //   method: 'GET',
-  //   path : `/B-User/{id}`,      
+  //   path : `/PXP-User/{id}`,      
   //   handler: handler.getUserPXPdenganid,
   //   Option: {
   //     options: {
@@ -18,8 +18,8 @@ const routes = (handler) => [
 
   // {
   //   method: 'PUT',
-  //   path : `/B-User/{id}`,      
-  //   handler: handler.putUserPXP,
+  //   path : `/PXP-User/{id}`,      
+  //   handler: handler.updateUserPXP,
   //   Option: {
   //     options: {
   //       auth: 'ACC_jwt',
@@ -30,8 +30,8 @@ const routes = (handler) => [
 
   // {
   //   method: 'PUT',
-  //   path : `/B-User/sandi/{id}`,      
-  //   handler: handler.putSandiUserPXP,
+  //   path : `/PXP-User/sandi/{id}`,      
+  //   handler: handler.updateSandiUserPXP,
   //   Option: {
   //     options: {
   //       auth: 'ACC_jwt',
@@ -39,7 +39,17 @@ const routes = (handler) => [
   //   }
   // },
 
-    
+  // {
+  //   method: 'PUT',
+  //   path : `/PXP-User/lupasandi/{id}`,      
+  //   handler: handler.updateLupaSandiUserPXP,
+  //   Option: {
+  //     options: {
+  //       auth: 'ACC_jwt',
+  //     },
+  //   }
+  // },
+
 
   // {
   //   method: 'DELETE',
@@ -51,6 +61,7 @@ const routes = (handler) => [
   //     },
   //   }
   // },
+  
   ];
    
   module.exports = routes;
