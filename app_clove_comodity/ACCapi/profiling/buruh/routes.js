@@ -1,12 +1,44 @@
-const routes = (handler) => [
-    /* 
-    //contoh, hapus saja
-    */
-    {
-      method: 'GET',
-      path: '/pbt',
-      handler: handler.test,
-    },
-  ];
-   
-  module.exports = routes;
+const routes =(handler)=> [
+  {
+    method:'POST',
+    path:'/user/{ID_user}/kontak',
+    handler:handler.addBuruhKontakHandler,
+  },
+  {
+    method:'POST',
+    path:'/user/{ID_user}/lamaran',
+    handler:handler.addLamaranTerbukaHandler,
+  },
+  {
+    method:'GET',
+    path:'/user/{ID_user}/kontak',
+    handler:handler.getBuruhKontakHandler,
+  },
+  {
+    method:'GET',
+    path:'/user/{ID_user}/lamaran',
+    handler:handler.getBuruhKontakHandler,
+  },
+  {
+    method:'PUT',
+    path:'/user/{ID}/kontak',
+    handler:handler.editBuruhKontakHandler,
+  },
+  {
+    method:'PUT',
+    path:'/user/{ID}/lamaran',
+    handler:handler.editBuruhKontakHandler,
+  },
+  {
+    method:'PUT',
+    path:'/user/{ID}/kontak',
+    handler:handler.deleteBuruhKontakHandler,
+  },
+  {
+    method:'PUT',
+    path:'/user/{ID}/lamaran',
+    handler:handler.deleteBuruhKontakHandler,
+  },
+];
+
+module.exports=routes;
