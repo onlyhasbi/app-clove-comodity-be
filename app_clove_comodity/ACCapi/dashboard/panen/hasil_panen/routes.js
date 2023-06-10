@@ -4,10 +4,9 @@ const routes = (handler) => [
     */
     {
       method: 'GET',
-      path: '/dbt',
+      path: '/dpt',
       handler: handler.test,
     },
-
 
   ];
    

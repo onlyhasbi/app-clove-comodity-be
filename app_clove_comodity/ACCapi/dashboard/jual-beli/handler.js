@@ -2,6 +2,7 @@ const responseCatch = require('../../../exception/responHandlerCatch')
 const InvariantError = require('../../../exception/invariantErr')
 const notFoundError = require('../../../exception/notFoundErr')
 
+
 class Handler {
 
   async test(request, h) {
