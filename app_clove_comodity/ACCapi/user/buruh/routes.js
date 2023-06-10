@@ -1,29 +1,44 @@
-const routes = (handler) => [
+const routes =(handler)=> [
   {
-    method: 'POST',
-    path : `/B-User`,      
-    handler: handler.postUserBuruh,
+    method:'POST',
+    path:'/user/{ID_user}/kontak',
+    handler:handler.addBuruhKontakHandler,
   },
-  // {
-  //   method: 'GET',
-  //   path : `/B-User`,      
-  //   handler: handler.getUserBuruh,
-  //   Option: {
-  //     options: {
-  //       auth: 'ACC_jwt',
-  //     },
-  //   }
-  // },
-  // {
-  //   method: 'DELETE',
-  //   path : `/B-User`,      
-  //   handler: handler.deleteUserBuruh,
-  //   Option: {
-  //     options: {
-  //       auth: 'ACC_jwt',
-  //     },
-  //   }
-  // },
-  ];
-   
-  module.exports = routes;
+  {
+    method:'POST',
+    path:'/user/{ID_user}/lamaran',
+    handler:handler.addLamaranTerbukaHandler,
+  },
+  {
+    method:'GET',
+    path:'/user/{ID_user}/kontak',
+    handler:handler.getBuruhKontakHandler,
+  },
+  {
+    method:'GET',
+    path:'/user/{ID_user}/lamaran',
+    handler:handler.getBuruhKontakHandler,
+  },
+  {
+    method:'PUT',
+    path:'/user/{ID}/kontak',
+    handler:handler.editBuruhKontakHandler,
+  },
+  {
+    method:'PUT',
+    path:'/user/{ID}/lamaran',
+    handler:handler.editBuruhKontakHandler,
+  },
+  {
+    method:'PUT',
+    path:'/user/{ID}/kontak',
+    handler:handler.deleteBuruhKontakHandler,
+  },
+  {
+    method:'PUT',
+    path:'/user/{ID}/lamaran',
+    handler:handler.deleteBuruhKontakHandler,
+  },
+];
+
+module.exports=routes;
