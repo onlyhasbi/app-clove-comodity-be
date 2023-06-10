@@ -36,7 +36,7 @@ const routes =(handler)=> [
   },
   {
     method:'PUT',
-    path:'/user/{ID}/lamarann',
+    path:'/user/{ID}/lamaran',
     handler:handler.deleteBuruhKontakHandler,
   },
 ];
