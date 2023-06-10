@@ -65,7 +65,7 @@ class Handler {
 
       const response=h.response({
         status:'success',
-        massage:'lamaran berhasil ditambahkan',
+        massage:'lamarann berhasil ditambahkan',
         data:{
           id_permintaan,
         },
