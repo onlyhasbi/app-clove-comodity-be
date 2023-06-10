@@ -1,6 +1,6 @@
-const responseCatch = require('../../../exception/responHandlerCatch')
-const InvariantError = require('../../../exception/invariantErr')
-const notFoundError = require('../../../exception/notFoundErr')
+const responseCatch = require('../../../../exception/responHandlerCatch')
+const InvariantError = require('../../../../exception/invariantErr')
+const notFoundError = require('../../../../exception/notFoundErr')
 
 
 class Handler {
