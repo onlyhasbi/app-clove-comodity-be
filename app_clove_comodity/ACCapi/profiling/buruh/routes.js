@@ -9,36 +9,6 @@ const routes =(handler)=> [
     path:'/profiling/{ID_user}/lamaran',
     handler:handler.addLamaranTerbukaHandler,
   },
-  {
-    method:'GET',
-    path:'/profiling/{ID_user}/kontak',
-    handler:handler.getBuruhKontakHandler,
-  },
-  {
-    method:'GET',
-    path:'/profiling/{ID_user}/lamaran',
-    handler:handler.getBuruhKontakHandler,
-  },
-  {
-    method:'PUT',
-    path:'/profiling/{ID}/kontak',
-    handler:handler.editBuruhKontakHandler,
-  },
-  {
-    method:'PUT',
-    path:'/profiling/{ID}/lamaran',
-    handler:handler.editBuruhKontakHandler,
-  },
-  {
-    method:'PUT',
-    path:'/profiling/{ID}/kontak',
-    handler:handler.deleteBuruhKontakHandler,
-  },
-  {
-    method:'PUT',
-    path:'/profiling/{ID}/lamaran',
-    handler:handler.deleteBuruhKontakHandler,
-  },
 ];
 
 module.exports=routes;

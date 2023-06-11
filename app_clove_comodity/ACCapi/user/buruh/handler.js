@@ -11,7 +11,7 @@ class Handler {
     autoBind(this);
   }
 
-  async postUserB(request, h) {
+  async postUserBuruh(request, h) {
     try {
       this._validator.buruh(request.payload);
       const userId = await this._service.addUserB(request.payload);
@@ -31,11 +31,11 @@ class Handler {
      }
   }
 
-  async getUserB(h) {}
-  async putUserB(request, h) {}
-  async putSandiUserB(request, h) {}
-  async putLupaSandiUserB(request, h) {}
-  async deleteUserB(request, h) {}
+  async getUserBuruh(h) {}
+  async putUserBuruh(request, h) {}
+  async putSandiUserBuruh(request, h) {}
+  async putLupaSandiUserBuruh(request, h) {}
+  async deleteUserBuruh(request, h) {}
 
 }
 

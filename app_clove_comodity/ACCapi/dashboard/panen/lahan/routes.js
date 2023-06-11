@@ -4,7 +4,7 @@ const routes = (handler) => [
     */
     {
       method: 'GET',
-      path: '/dpt',
+      path: '/lahan',
       handler: handler.test,
     },
 
