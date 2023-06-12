@@ -30,12 +30,12 @@ const routes =(handler)=> [
     handler:handler.editBuruhKontakHandler,
   },
   {
-    method:'PUT',
+    method:'DELETE',
     path:'/buruh/{ID}/kontak',
     handler:handler.deleteBuruhKontakHandler,
   },
   {
-    method:'PUT',
+    method:'DELETE',
     path:'/buruh/{ID}/lamaran',
     handler:handler.deleteBuruhKontakHandler,
   },

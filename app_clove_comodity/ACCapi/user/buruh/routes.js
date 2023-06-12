@@ -1,13 +1,13 @@
 const routes =(handler)=> [
   {
     method: 'POST',
-    path : `/B-User`,      
-    handler: handler.postUserB,
+    path : `/userBuruh`,      
+    handler: handler.postUserBuruh,
   },
   // {
   //   method: 'GET',
-  //   path : `/B-User/{id}`,      
-  //   handler: handler.getUserB,
+  //   path : `/userBuruh/{id}`,      
+  //   handler: handler.getUserBuruh,
   //   options: {
   //       auth: 'ACC_jwt',
   //     },
@@ -15,8 +15,8 @@ const routes =(handler)=> [
 
   // {
   //   method: 'PUT',
-  //   path : `/B-User/{id}`,      
-  //   handler: handler.putUserB,
+  //   path : `/userBuruh/{id}`,      
+  //   handler: handler.putUserBuruh,
   //   options: {
   //       auth: 'ACC_jwt',
   //     },
@@ -24,8 +24,8 @@ const routes =(handler)=> [
 
   // {
   //   method: 'PUT',
-  //   path : `/B-User/lupasandi/{id}`,      
-  //   handler: handler.updateLupaSandiUserB,
+  //   path : `/userBuruh/lupasandi/{id}`,      
+  //   handler: handler.updateLupaSandiUserBuruh,
   //   Option: {
   //     options: {
   //       auth: 'ACC_jwt',
@@ -35,8 +35,8 @@ const routes =(handler)=> [
 
   // {
   //   method: 'PUT',
-  //   path : `/B-User/sandi/{id}`,      
-  //   handler: handler.putSandiUserB,
+  //   path : `/userBuruh/sandi/{id}`,      
+  //   handler: handler.putSandiUserBuruh,
   //   options: {
   //       auth: 'ACC_jwt',
   //     },
@@ -44,8 +44,8 @@ const routes =(handler)=> [
 
   // {
   //   method: 'DELETE',
-  //   path : `/B-User`,      
-  //   handler: handler.deleteUserB,
+  //   path : `/userBuruh`,      
+  //   handler: handler.deleteUserBuruh,
   //   options: {
   //       auth: 'ACC_jwt',
   //     },

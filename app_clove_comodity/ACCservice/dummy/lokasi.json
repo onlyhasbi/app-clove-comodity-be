@@ -1,0 +1,87 @@
+[
+    {
+        "id_lokasi" : "ID-0000000",
+        "id_kategori" : "ID",
+        "kategori_lokasi" : "Negara",
+        "nama_lokasi" : "INDONESIA" 
+    },
+    {
+        "id_lokasi" : "ID-0100000",
+        "id_kategori" : "ID-01",
+        "kategori_lokasi" : "Provinsi",
+        "nama_lokasi" : "SULAWESI SELATAN" 
+    },
+    {
+        "id_lokasi" : "ID-0200000",
+        "id_kategori" : "ID-02",
+        "kategori_lokasi" : "Provinsi",
+        "nama_lokasi" : "SULAWESI TENGGARA" 
+    },
+    {
+        "id_lokasi" : "ID-0100000",
+        "id_kategori" : "ID-03",
+        "kategori_lokasi" : "Provinsi",
+        "nama_lokasi" : "SULAWESI BARAT" 
+    },
+    {
+        "id_lokasi" : "ID-0100000",
+        "id_kategori" : "ID-01",
+        "kategori_lokasi" : "Provinsi",
+        "nama_lokasi" : "SULAWESI TENGAH" 
+    },
+    {
+        "id_lokasi" : "ID-0100000",
+        "id_kategori" : "ID-03",
+        "kategori_lokasi" : "Provinsi",
+        "nama_lokasi" : "GORONTALO" 
+    },
+    {
+        "id_lokasi" : "ID-0100000",
+        "id_kategori" : "ID-01",
+        "kategori_lokasi" : "Provinsi",
+        "nama_lokasi" : "SULAWESI UTARA" 
+    },
+    {
+        "id_lokasi" : "ID-0200000",
+        "id_kategori" : "ID-02",
+        "kategori_lokasi" : "Provinsi",
+        "nama_lokasi" : "SULAWESI TENGGARA" 
+    },
+    {
+        "id_lokasi" : "ID-0100000",
+        "id_kategori" : "ID-0101",
+        "kategori_lokasi" : "Kota",
+        "nama_lokasi" : "MAKASSAR" 
+    },
+    {
+        "id_lokasi" : "ID-0100000",
+        "id_kategori" : "ID-0102",
+        "kategori_lokasi" : "Kota",
+        "nama_lokasi" : "PARE PARE" 
+    },
+    {
+        "id_lokasi" : "ID-0100000",
+        "id_kategori" : "ID-0103",
+        "kategori_lokasi" : "Kota",
+        "nama_lokasi" : "PALOPO" 
+    },
+    {
+        "id_lokasi" : "ID-0100000",
+        "id_kategori" : "ID-0104",
+        "kategori_lokasi" : "Kabupaten",
+        "nama_lokasi" : "GOWA" 
+    },
+    {
+        "id_lokasi" : "",
+        "id_kategori" : "",
+        "kategori_lokasi" : "Desa",
+        "nama_lokasi" : "Buk" 
+    } ,
+    {
+        "id_lokasi" : "",
+        "id_kategori" : "",
+        "kategori_lokasi" : "nation",
+        "nama_lokasi" : "INDONESIA" 
+    }
+
+]

@@ -6,7 +6,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "strat": "node app_clove_comodity/ACCserver/acc_server.js",
-    "strat-dev": " nodemon app_clove_comodity/ACCserver/acc_server.js",
+    "strat-dev": " nodemon app_clove_comodity",
     "set-db": "node db/set-database/SetDB.js",
     "unset-db": "node db/set-database/UnsetDB.js",
     "set-tabel-db": "node db/set-structure/pg/acc_pg_db.js"
