@@ -1,15 +1,16 @@
 const responseCatch = require('../../../exception/responHandlerCatch')
-const InvariantError = require('../../../exception/invariantErr')
-const notFoundError = require('../../../exception/notFoundErr');
 const NotFoundError = require('../../../exception/notFoundErr');
+const autoBind = require ('auto-bind')
 
 class Handler {
     constructor(service, validator) {
         this._service = service;
         this._validator =validator;
+
+        autoBind(this);
     }
 
-    autoBind(this);
+   
 
     async addKontakPxpHandler(request,h) {
         try{
