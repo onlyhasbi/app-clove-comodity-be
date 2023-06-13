@@ -69,6 +69,7 @@ create table lowongan_kerja (
     jenis_pekerjaan job not null,
     upah integer not null,
     indikator_upah i_ukur not null,
+    status_kerja staker not null,
     catatan varchar(30) null,
     foreign key (id_pxp) references pxp(id)
 );

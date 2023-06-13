@@ -70,18 +70,5 @@
         "id_kategori" : "ID-0104",
         "kategori_lokasi" : "Kabupaten",
         "nama_lokasi" : "GOWA" 
-    },
-    {
-        "id_lokasi" : "",
-        "id_kategori" : "",
-        "kategori_lokasi" : "Desa",
-        "nama_lokasi" : "Buk" 
-    } ,
-    {
-        "id_lokasi" : "",
-        "id_kategori" : "",
-        "kategori_lokasi" : "nation",
-        "nama_lokasi" : "INDONESIA" 
     }
-
 ]
