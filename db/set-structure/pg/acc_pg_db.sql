@@ -16,7 +16,7 @@ create table buruh (
     sandi varchar(60) not null,
     tanggal_lahir date not null,
     jenis_kelamin gender not null,  
-    alamat varchar(100) null
+    alamat varchar(100) null,
 );
 
 

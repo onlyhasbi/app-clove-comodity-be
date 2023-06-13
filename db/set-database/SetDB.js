@@ -1,7 +1,7 @@
 const  { SET } = require('./funcQuery');
-const  con = require('./config');
+const  config = require('./config');
 const { Pool } = require('pg');
 
-const koneksi= new Pool(con);
+const koneksi= new Pool(config);
 
 SET(koneksi);

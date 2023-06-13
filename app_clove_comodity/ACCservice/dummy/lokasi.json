@@ -18,35 +18,294 @@
         "nama_lokasi" : "SULAWESI TENGGARA" 
     },
     {
-        "id_lokasi" : "ID-0100000",
-        "id_kategori" : "ID-03",
+        "id_lokasi" : "ID-0300000",
+        "id_kategori" : "ID-01",
         "kategori_lokasi" : "Provinsi",
         "nama_lokasi" : "SULAWESI BARAT" 
     },
     {
-        "id_lokasi" : "ID-0100000",
+        "id_lokasi" : "ID-0400000",
         "id_kategori" : "ID-01",
         "kategori_lokasi" : "Provinsi",
         "nama_lokasi" : "SULAWESI TENGAH" 
     },
     {
-        "id_lokasi" : "ID-0100000",
-        "id_kategori" : "ID-03",
+        "id_lokasi" : "ID-0400000",
+        "id_kategori" : "ID-01",
         "kategori_lokasi" : "Provinsi",
         "nama_lokasi" : "GORONTALO" 
     },
     {
-        "id_lokasi" : "ID-0100000",
+        "id_lokasi" : "ID-0500000",
         "id_kategori" : "ID-01",
         "kategori_lokasi" : "Provinsi",
         "nama_lokasi" : "SULAWESI UTARA" 
     },
     {
-        "id_lokasi" : "ID-0200000",
+        "id_lokasi" : "ID-0600000",
         "id_kategori" : "ID-02",
         "kategori_lokasi" : "Provinsi",
         "nama_lokasi" : "SULAWESI TENGGARA" 
     },
+
+    {
+        "id_lokasi": "ID-07",
+        "id_kategori": "ID-01",
+        "kategori_lokasi": "Provinsi",
+        "nama_lokasi": "BENGKULU"
+    },
+    {
+        "id_lokasi": "ID-08",
+        "id_kategori": "ID-01",
+        "kategori_lokasi": "Provinsi",
+        "nama_lokasi": "LAMPUNG"
+    },
+    {
+        "id_lokasi": "ID-09",
+        "id_kategori": "ID-01",
+        "kategori_lokasi": "Provinsi",
+        "nama_lokasi": "KEPULAUAN BANGKA BELITUNG"
+    },
+    {
+        "id_lokasi": "ID-10",
+        "id_kategori": "ID-01",
+        "kategori_lokasi": "Provinsi",
+        "nama_lokasi": "KEPULAUAN RIAU"
+    },
+    {
+        "id_lokasi": "ID-11",
+        "id_kategori": "ID-01",
+        "kategori_lokasi": "Provinsi",
+        "nama_lokasi": "DKI JAKARTA"
+    },
+    {
+        "id_lokasi": "ID-12",
+        "id_kategori": "ID-01",
+        "kategori_lokasi": "Provinsi",
+        "nama_lokasi": "JAWA BARAT"
+    },
+    {
+        "id_lokasi": "ID-13",
+        "id_kategori": "ID-01",
+        "kategori_lokasi": "Provinsi",
+        "nama_lokasi": "JAWA TENGAH"
+    },
+    {
+        "id_lokasi": "ID-14",
+        "id_kategori": "ID-01",
+        "kategori_lokasi": "Provinsi",
+        "nama_lokasi": "DAERAH ISTIMEWA YOGYAKARTA"
+    },
+    {
+        "id_lokasi": "ID-15",
+        "id_kategori": "ID-01",
+        "kategori_lokasi": "Provinsi",
+        "nama_lokasi": "JAWA TIMUR"
+    },
+    {
+        "id_lokasi": "ID-16",
+        "id_kategori": "ID-01",
+        "kategori_lokasi": "Provinsi",
+        "nama_lokasi": "BANTEN"
+    },
+    {
+        "id_lokasi": "ID-17",
+        "id_kategori": "ID-01",
+        "kategori_lokasi": "Provinsi",
+        "nama_lokasi": "BALI"
+    },
+    {
+        "id_lokasi": "ID-18",
+        "id_kategori": "ID-01",
+        "kategori_lokasi": "Provinsi",
+        "nama_lokasi": "NUSA TENGGARA BARAT"
+    },
+    {
+        "id_lokasi": "ID-19",
+        "id_kategori": "ID-01",
+        "kategori_lokasi": "Provinsi",
+        "nama_lokasi": "NUSA TENGGARA TIMUR"
+    },
+    {
+        "id_lokasi": "ID-20",
+        "id_kategori": "ID-01",
+        "kategori_lokasi": "Provinsi",
+        "nama_lokasi": "KALIMANTAN BARAT"
+    },
+    {
+        "id_lokasi": "ID-07",
+        "id_kategori": "ID-01",
+        "kategori_lokasi": "Provinsi",
+        "nama_lokasi": "BENGKULU"
+    },
+    {
+        "id_lokasi": "ID-08",
+        "id_kategori": "ID-01",
+        "kategori_lokasi": "Provinsi",
+        "nama_lokasi": "LAMPUNG"
+    },
+    {
+        "id_lokasi": "ID-09",
+        "id_kategori": "ID-01",
+        "kategori_lokasi": "Provinsi",
+        "nama_lokasi": "KEPULAUAN BANGKA BELITUNG"
+    },
+    {
+        "id_lokasi": "ID-10",
+        "id_kategori": "ID-01",
+        "kategori_lokasi": "Provinsi",
+        "nama_lokasi": "KEPULAUAN RIAU"
+    },
+    {
+        "id_lokasi": "ID-11",
+        "id_kategori": "ID-01",
+        "kategori_lokasi": "Provinsi",
+        "nama_lokasi": "DKI JAKARTA"
+    },
+    {
+        "id_lokasi": "ID-12",
+        "id_kategori": "ID-01",
+        "kategori_lokasi": "Provinsi",
+        "nama_lokasi": "JAWA BARAT"
+    },
+    {
+        "id_lokasi": "ID-13",
+        "id_kategori": "ID-01",
+        "kategori_lokasi": "Provinsi",
+        "nama_lokasi": "JAWA TENGAH"
+    },
+    {
+        "id_lokasi": "ID-14",
+        "id_kategori": "ID-01",
+        "kategori_lokasi": "Provinsi",
+        "nama_lokasi": "DAERAH ISTIMEWA YOGYAKARTA"
+    },
+    {
+        "id_lokasi": "ID-15",
+        "id_kategori": "ID-01",
+        "kategori_lokasi": "Provinsi",
+        "nama_lokasi": "JAWA TIMUR"
+    },
+    {
+        "id_lokasi": "ID-16",
+        "id_kategori": "ID-01",
+        "kategori_lokasi": "Provinsi",
+        "nama_lokasi": "BANTEN"
+    },
+    {
+        "id_lokasi": "ID-17",
+        "id_kategori": "ID-01",
+        "kategori_lokasi": "Provinsi",
+        "nama_lokasi": "BALI"
+    },
+    {
+        "id_lokasi": "ID-18",
+        "id_kategori": "ID-01",
+        "kategori_lokasi": "Provinsi",
+        "nama_lokasi": "NUSA TENGGARA BARAT"
+    },
+    {
+        "id_lokasi": "ID-19",
+        "id_kategori": "ID-01",
+        "kategori_lokasi": "Provinsi",
+        "nama_lokasi": "NUSA TENGGARA TIMUR"
+    },
+    {
+        "id_lokasi": "ID-20",
+        "id_kategori": "ID-01",
+        "kategori_lokasi": "Provinsi",
+        "nama_lokasi": "KALIMANTAN BARAT"
+    },
+    {
+        "id_lokasi": "ID-21",
+        "id_kategori": "ID-01",
+        "kategori_lokasi": "Provinsi",
+        "nama_lokasi": "KALIMANTAN TENGAH"
+    },
+    {
+        "id_lokasi": "ID-22",
+        "id_kategori": "ID-01",
+        "kategori_lokasi": "Provinsi",
+        "nama_lokasi": "KALIMANTAN SELATAN"
+    },
+    {
+        "id_lokasi": "ID-23",
+        "id_kategori": "ID-01",
+        "kategori_lokasi": "Provinsi",
+        "nama_lokasi": "KALIMANTAN TIMUR"
+    },
+    {
+        "id_lokasi": "ID-24",
+        "id_kategori": "ID-01",
+        "kategori_lokasi": "Provinsi",
+        "nama_lokasi": "KALIMANTAN UTARA"
+    },
+    {
+        "id_lokasi": "ID-25",
+        "id_kategori": "ID-01",
+        "kategori_lokasi": "Provinsi",
+        "nama_lokasi": "SULAWESI UTARA"
+    },
+    {
+        "id_lokasi": "ID-26",
+        "id_kategori": "ID-01",
+        "kategori_lokasi": "Provinsi",
+        "nama_lokasi": "SULAWESI TENGAH"
+    },
+    {
+        "id_lokasi": "ID-27",
+        "id_kategori": "ID-01",
+        "kategori_lokasi": "Provinsi",
+        "nama_lokasi": "SULAWESI SELATAN"
+    },
+    {
+        "id_lokasi": "ID-28",
+        "id_kategori": "ID-01",
+        "kategori_lokasi": "Provinsi",
+        "nama_lokasi": "SULAWESI TENGGARA"
+    },
+    {
+        "id_lokasi": "ID-29",
+        "id_kategori": "ID-01",
+        "kategori_lokasi": "Provinsi",
+        "nama_lokasi": "GORONTALO"
+    },
+    {
+        "id_lokasi": "ID-30",
+        "id_kategori": "ID-01",
+        "kategori_lokasi": "Provinsi",
+        "nama_lokasi": "SULAWESI BARAT"
+    },
+    {
+        "id_lokasi": "ID-31",
+        "id_kategori": "ID-01",
+        "kategori_lokasi": "Provinsi",
+        "nama_lokasi": "MALUKU"
+    },
+    {
+        "id_lokasi": "ID-32",
+        "id_kategori": "ID-01",
+        "kategori_lokasi": "Provinsi",
+        "nama_lokasi": "MALUKU UTARA"
+    },
+    {
+        "id_lokasi": "ID-33",
+        "id_kategori": "ID-01",
+        "kategori_lokasi": "Provinsi",
+        "nama_lokasi": "PAPUA BARAT"
+    },
+    {
+        "id_lokasi": "ID-34",
+        "id_kategori": "ID-01",
+        "kategori_lokasi": "Provinsi",
+        "nama_lokasi": "PAPUA"
+    },
+
+
+
+
+
+
     {
         "id_lokasi" : "ID-0100000",
         "id_kategori" : "ID-0101",
@@ -70,18 +329,5 @@
         "id_kategori" : "ID-0104",
         "kategori_lokasi" : "Kabupaten",
         "nama_lokasi" : "GOWA" 
-    },
-    {
-        "id_lokasi" : "",
-        "id_kategori" : "",
-        "kategori_lokasi" : "Desa",
-        "nama_lokasi" : "Buk" 
-    } ,
-    {
-        "id_lokasi" : "",
-        "id_kategori" : "",
-        "kategori_lokasi" : "nation",
-        "nama_lokasi" : "INDONESIA" 
     }
-
 ]
