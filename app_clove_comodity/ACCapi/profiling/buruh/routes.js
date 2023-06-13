@@ -1,13 +1,43 @@
 const routes =(handler)=> [
   {
     method:'POST',
-    path:'/profiling/{ID_user}/kontak',
+    path:'/buruh/{ID_user}/kontak',
     handler:handler.addBuruhKontakHandler,
   },
   {
     method:'POST',
-    path:'/profiling/{ID_user}/lamaran',
+    path:'/buruh/{ID_user}/lamaran',
     handler:handler.addLamaranTerbukaHandler,
+  },
+  {
+    method:'GET',
+    path:'/buruh/{ID_user}/kontak',
+    handler:handler.getBuruhKontakHandler,
+  },
+  {
+    method:'GET',
+    path:'/buruh/{ID_user}/lamaran',
+    handler:handler.getBuruhKontakHandler,
+  },
+  {
+    method:'PUT',
+    path:'/buruh/{ID}/kontak',
+    handler:handler.editBuruhKontakHandler,
+  },
+  {
+    method:'PUT',
+    path:'/buruh/{ID}/lamaran',
+    handler:handler.editBuruhKontakHandler,
+  },
+  {
+    method:'DELETE',
+    path:'/buruh/{ID}/kontak',
+    handler:handler.deleteBuruhKontakHandler,
+  },
+  {
+    method:'DELETE',
+    path:'/buruh/{ID}/lamaran',
+    handler:handler.deleteBuruhKontakHandler,
   },
 ];
 
