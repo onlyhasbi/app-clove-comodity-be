@@ -103,7 +103,7 @@ create table status_kerja_buruh (
 create table lahan (
     id varchar(30) primary key,
     id_pxp varchar(30) not null,
-    lokasi varchar(60) not null,
+    lokasi varchar(15) not null,
     luas_m2 integer null,
     status_hak_panen stala null,
     foreign key (id_pxp) references pxp(id)

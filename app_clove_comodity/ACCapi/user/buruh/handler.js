@@ -1,4 +1,3 @@
-const NotFoundError = require('../../../exception/notFoundErr');
 const responseCatch = require('../../../exception/responHandlerCatch')
 const autoBind = require('auto-bind');
 

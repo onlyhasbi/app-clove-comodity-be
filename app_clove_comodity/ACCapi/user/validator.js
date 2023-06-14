@@ -1,7 +1,7 @@
 const { 
   PxP_UserPayloadSchema,
   B_UserPayloadSchema,
- } = require('./schema');
+ } = require('../../ACCvalidatorSchema');
 const InvariantError = require('../../exception/invariantErr');
  
 const UsersValidator = {
