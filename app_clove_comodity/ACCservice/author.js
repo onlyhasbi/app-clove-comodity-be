@@ -9,7 +9,7 @@ class authorizationService {
     
 
     async verifyUser( idU , idD, Table) {
-      const result1 = await this._pool.query(`SELECT id FROM ${Table} playlists WHERE id='${idD}' AND id_pxp='${idU}'`);
+      const result1 = await this._pool.query(`SELECT id FROM ${Table} WHERE id='${idD}' AND id_pxp='${idU}'`);
       if (!result1.rows.length){ throw new NotFoundError(`tidak ada akses update data ='${idD} pada ${Table} untuk user ${idU}`)}
       return ;
     }

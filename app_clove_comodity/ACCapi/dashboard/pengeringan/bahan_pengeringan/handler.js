@@ -5,25 +5,58 @@ const notFoundError = require('../../../../exception/notFoundErr')
 
 class Handler {
 
-  async test(request, h) {
+  async postBahanbyUser(request, h) {
     try {
-      let siapa;   
-      if (!siapa) {throw new notFoundError(`tarada`);}
-      if (siapa) {throw new InvariantError(`errorki`);}
-      const response = h.response({
-        status: 'success',
-        message : 'uji koneksi pluginji ini di server',
-        data: 345 ,
-        pemilik: siapa,
-      });
-      response.code(201);
-      return response; 
     } 
     catch (error ) { 
       const response = await responseCatch(error, h); 
       return response;
      }
   }
+
+  async getBahanbyUser(request, h) {
+    try {
+    } 
+    catch (error ) { 
+      const response = await responseCatch(error, h); 
+      return response;
+     }
+  }
+
+  async getBahanbyId(request, h) {
+    try {
+    } 
+    catch (error ) { 
+      const response = await responseCatch(error, h); 
+      return response;
+     }
+  }
+
+  async getBahan(request, h) {
+    try {
+    } 
+    catch (error ) { 
+      const response = await responseCatch(error, h); 
+      return response;
+     }
+  }
+  async putBahanbyId(request, h) {
+    try {
+    } 
+    catch (error ) { 
+      const response = await responseCatch(error, h); 
+      return response;
+     }
+  }
+  async deleteBahanbyId(request, h) {
+    try {
+    } 
+    catch (error ) { 
+      const response = await responseCatch(error, h); 
+      return response;
+     }
+  }
+
 }
 
   module.exports = Handler;

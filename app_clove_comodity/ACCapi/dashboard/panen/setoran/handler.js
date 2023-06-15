@@ -1,29 +1,17 @@
 const responseCatch = require('../../../../exception/responHandlerCatch')
-const InvariantError = require('../../../../exception/invariantErr')
-const notFoundError = require('../../../../exception/notFoundErr')
+
 
 
 class Handler {
-
-  async test(request, h) {
-    try {
-      let siapa;   
-      if (!siapa) {throw new notFoundError(`tarada`);}
-      if (siapa) {throw new InvariantError(`errorki`);}
-      const response = h.response({
-        status: 'success',
-        message : 'uji koneksi pluginji ini di server',
-        data: 345 ,
-        pemilik: siapa,
-      });
-      response.code(201);
-      return response; 
-    } 
-    catch (error ) { 
-      const response = await responseCatch(error, h); 
-      return response;
-     }
-  }
+   async postSetoranbyUser() {}
+   async getSetoranbyUser(){}
+   async getSetoranbyId(){}
+   async putLahanbyId() {}
+   async deleteSetoranbyId(){}
+   async buruhSetorbyUser() {}
+   async getBuruhSetorbyUser() {}
+   async getBuruhSetorbySetoranId() {}
+   async deleteBuruhSetorbyId(){}
 }
 
   module.exports = Handler;

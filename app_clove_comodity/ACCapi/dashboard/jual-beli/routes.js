@@ -2,7 +2,7 @@ const routes = (handler) => [
     {
       method: 'POST',
       path: '/penjualan',
-      handler: handler.test,
+      handler: handler.postPenjualanByUser,
       options: {
          auth: 'ACC_jwt',
       },
@@ -10,7 +10,7 @@ const routes = (handler) => [
     {
       method: 'POST',
       path: '/pembelian',
-      handler: handler.test,
+      handler: handler.postPembelianbyUser,
       options: {
          auth: 'ACC_jwt',
       },
@@ -18,7 +18,15 @@ const routes = (handler) => [
     {
       method: 'GET',
       path: '/Jual-beli',
-      handler: handler.test,
+      handler: handler.getJualBelibyUser,
+      options: {
+         auth: 'ACC_jwt',
+      },
+    },
+    {
+      method: 'GET',
+      path: '/Jual-beli/{ID}',
+      handler: handler.getJualBelibyId,
       options: {
          auth: 'ACC_jwt',
       },
@@ -26,7 +34,7 @@ const routes = (handler) => [
     {
       method: 'GET',
       path: '/pembelian',
-      handler: handler.test,
+      handler: handler.getPembelianbyUser,
       options: {
          auth: 'ACC_jwt',
       },
@@ -34,15 +42,15 @@ const routes = (handler) => [
     {
       method: 'GET',
       path: '/penjualan',
-      handler: handler.test,
+      handler: handler.getPenjualanbyUser,
       options: {
          auth: 'ACC_jwt',
       },
     },
     {
       method: 'PUT',
-      path: '/jual-beli/{id_jualbeli}',
-      handler: handler.test,
+      path: '/jual-beli/{ID}',
+      handler: handler.putJualBelibyId,
       options: {
          auth: 'ACC_jwt',
       },
@@ -50,7 +58,7 @@ const routes = (handler) => [
     {
       method: 'DELETE',
       path: '/jual-beli/{id_jualbeli}',
-      handler: handler.test,
+      handler: handler.deleteJualBelibyId,
       options: {
          auth: 'ACC_jwt',
       },
