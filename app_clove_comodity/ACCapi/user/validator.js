@@ -1,16 +1,36 @@
 const { 
-  PxP_UserPayloadSchema,
-  B_UserPayloadSchema,
+  AccUserPayloadSchema,
+  BuruhUserPayloadSchema,
+  UpdateAccUserPayloadSchema,
+  UpdateBuruhUserPayloadSchema,
+  UpdatePasswordAccUserPayloadSchema,
+  UpdatePasswordBuruhUserPayloadSchema,
  } = require('../../ACCvalidatorSchema');
 const InvariantError = require('../../exception/invariantErr');
  
 const UsersValidator = {
-  buruh: (payload) => {
-    const validationResult = B_UserPayloadSchema.validate(payload);
+  addBuruh: (payload) => {
+    const validationResult = BuruhUserPayloadSchema.validate(payload);
     if (validationResult.error) { throw new InvariantError(validationResult.error.message) }
   },
-  pxp: (payload) => {
-    const validationResult = PxP_UserPayloadSchema.validate(payload);
+  addAcc: (payload) => {
+    const validationResult = AccUserPayloadSchema.validate(payload);
+    if (validationResult.error) { throw new InvariantError(validationResult.error.message) }
+  },
+  updateBuruh: (payload) => {
+    const validationResult = UpdateBuruhUserPayloadSchema.validate(payload);
+    if (validationResult.error) { throw new InvariantError(validationResult.error.message) }
+  },
+  updateAcc: (payload) => {
+    const validationResult = UpdateAccUserPayloadSchema.validate(payload);
+    if (validationResult.error) { throw new InvariantError(validationResult.error.message) }
+  },
+  updatePasswordBuruh: (payload) => {
+    const validationResult = UpdateBuruhUserPayloadSchema.validate(payload);
+    if (validationResult.error) { throw new InvariantError(validationResult.error.message) }
+  },
+  UpdatePasswordAcc: (payload) => {
+    const validationResult = UpdateAccUserPayloadSchema.validate(payload);
     if (validationResult.error) { throw new InvariantError(validationResult.error.message) }
   },
 };

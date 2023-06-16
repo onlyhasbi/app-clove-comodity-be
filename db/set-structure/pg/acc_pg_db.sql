@@ -113,7 +113,7 @@ create table hasil_panen (
     id varchar(30) primary key,
     id_lahan varchar(30) not null,
     berat_kg integer not null,
-    hasil_panen_harian date not null,
+    waktu date not null,
     catatan varchar(30) null,
     foreign key (id_lahan) references lahan(id)
 );
@@ -124,7 +124,7 @@ create table setoran (
     volume_liter integer not null,
     berat_kg integer null,
     upah_rp integer not null,
-    setoran_panen_harian date not null,
+    waktu date not null,
     catatan varchar(30) null,
     foreign key (id_lahan) references lahan(id)
 );
@@ -189,7 +189,7 @@ create table jual_beli (
     jenis_komditas_cengkeh komoditas not null,
     berat_kg integer not null,
     harga_rp integer not null,
-    hari date not null,
+    waktu date not null,
     catatan varchar(30) null,
     foreign key (id_pembeli) references pxp(id),
     foreign key (id_penjual) references pxp(id)
