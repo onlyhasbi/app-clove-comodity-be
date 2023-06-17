@@ -3,6 +3,8 @@ const dummy = require('./index');
 
 const Dummy = new dummy();
 
+console.log(Dummy); 
+
 console.log(Dummy.filter('D-01')); 
 
 

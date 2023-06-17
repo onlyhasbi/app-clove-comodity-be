@@ -1,5 +1,8 @@
 const test = require('../ACCapi/test');
 
+const dummy = require('../ACCapi/dummy/index');
+const dummyS= require('../ACCservice/dummy/index')
+
 const auth = require('../ACCapi/auth');
 const AuthValidator = require('../ACCapi/auth/validator');
 const authService = require('../ACCservice/Postgres/AuthService');
@@ -40,10 +43,17 @@ const UsersService = new usersService();
 const AuthService = new authService();
 const LahanService = new lahanService()
 const SetoranService = new authService();
+const Dummy = new dummyS();
 
 const plugin = [
         {
             plugin: test,
+        },
+        {
+            plugin: dummy,
+            options: {
+                service : Dummy,
+            }
         },
         {
             plugin: user_petani,

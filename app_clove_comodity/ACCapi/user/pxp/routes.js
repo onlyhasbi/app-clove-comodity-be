@@ -5,52 +5,52 @@ const routes = (handler) => [
       handler: handler.addUserPetani,
     },
 
-  // {
-  //   method: 'GET',
-  //   path : `/userPetani/{ID}`,      
-  //   handler: handler.getUserPetaniWithID,
-  //     options: {
-  //       auth: 'ACC_jwt',
-  //     },
-  // },
+  {
+    method: 'GET',
+    path : `/userPetani/{ID}`,      
+    handler: handler.getUserPetaniWithID,
+      options: {
+        auth: 'ACC_jwt',
+      },
+  },
 
-  // {
-  //   method: 'PUT',
-  //   path : `/userPetani/{id}`,      
-  //   handler: handler.updateUserPetani,
-  //     options: {
-  //       auth: 'ACC_jwt',
-  //     },
-  // },
+  {
+    method: 'PUT',
+    path : `/userPetani/{id}`,      
+    handler: handler.updateUserPetaniWithID,
+      options: {
+        auth: 'ACC_jwt',
+      },
+  },
 
 
-  // {
-  //   method: 'PUT',
-  //   path : `/userPetani/sandi/{id}`,      
-  //   handler: handler.updateSandiUserPetani,
-  //     options: {
-  //       auth: 'ACC_jwt',
-  //     },
-  // },
+  {
+    method: 'PUT',
+    path : `/userPetani/sandi/{id}`,      
+    handler: handler.updateSandiUserPetaniWithID,
+      options: {
+        auth: 'ACC_jwt',
+      },
+  },
 
   // {
   //   method: 'PUT',
   //   path : `/userPetani/lupaSandi/{id}`,      
-  //   handler: handler.updateLupaSandiUserPetani,
+  //   handler: handler.updateLupaSandiUserPetaniWithID,
   //     options: {
   //       auth: 'ACC_jwt',
   //     },
   // },
 
 
-  // {
-  //   method: 'DELETE',
-  //   path : `/userPetani`,      
-  //   handler: handler.deleteUserBuruhPetani,
-  //     options: {
-  //       auth: 'ACC_jwt',
-  //     },
-  // },
+  {
+    method: 'DELETE',
+    path : `/userPetani`,      
+    handler: handler.deleteUserPetaniWithID,
+      options: {
+        auth: 'ACC_jwt',
+      },
+  },
   
   ];
    

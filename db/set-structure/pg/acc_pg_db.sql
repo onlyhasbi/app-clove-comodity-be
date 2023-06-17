@@ -16,7 +16,7 @@ create table buruh (
     sandi varchar(60) not null,
     tanggal_lahir date not null,
     jenis_kelamin gender not null,  
-    alamat varchar(100) null,
+    alamat varchar(100) null
 );
 
 
@@ -151,7 +151,7 @@ create table bahan_pengeringan (
     id_pxp varchar(30) not null,
     berat_kg integer not null,
     volume_liter integer null,
-    dikeringkan_hari date not null,
+    waktu_mulai_pengeringan date not null,
     catatan varchar(30) null,
     foreign key (id_pxp) references pxp(id)
 );

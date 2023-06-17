@@ -12,7 +12,9 @@ class Handler {
 
   async postUserBuruh(request, h) {
     try {
-      this._validator.buruh(request.payload);
+      console.log('scs')
+      this._validator.addBuruh(request.payload);
+      console.log('scs')
       const userId = await this._service.addUserB(request.payload);
       const response = h.response({
         status: 'success',
@@ -30,11 +32,94 @@ class Handler {
      }
   }
 
-  async getUserBuruh(h) {}
-  async putUserBuruh(request, h) {}
-  async putSandiUserBuruh(request, h) {}
-  async putLupaSandiUserBuruh(request, h) {}
-  async deleteUserBuruh(request, h) {}
+  async getUserBuruh( h) {
+    try {
+      const user = await this._service.getUserBuruh(request.auth.credentials.id);
+      const response = h.response({
+        status: 'success',
+        data: {
+          user,
+        },
+      });
+      response.code(201);
+      return response;
+    } 
+    catch (error ) { 
+      const response = await responseCatch(error, h); 
+      return response;
+    }
+  }
+  async updateUserBuruh(request, h) {
+    try {
+      this._validator.updateBuruh(request.payload);
+      const user = await this._service.updateUserBuruh(request.auth.credentials.id);
+      const response = h.response({
+        status: 'success',
+        data: {
+          userId,
+        },
+      });
+      response.code(201);
+      return response;
+    } 
+    catch (error ) { 
+      const response = await responseCatch(error, h); 
+      return response;
+    }
+  }
+  async updateSandiUserBuruh(request, h) {
+    try {
+      this._validator.updatePasswordBuruh(request.payload);
+      const user = await this._service.updateSandiUserBuruh(request.auth.credentials.id);
+      const response = h.response({
+        status: 'success',
+        data: {
+          userId,
+        },
+      });
+      response.code(201);
+      return response;
+    } 
+    catch (error ) { 
+      const response = await responseCatch(error, h); 
+      return response;
+    }
+  }
+  async updateLupaSandiUserBuruh(request, h) {
+    try {
+      this._validator.buruh(request.payload);
+      const user = await this._service.updateLupaSandiUserBuruh(request.auth.credentials.id);
+      const response = h.response({
+        status: 'success',
+        data: {
+          userId,
+        },
+      });
+      response.code(201);
+      return response;
+    } 
+    catch (error ) { 
+      const response = await responseCatch(error, h); 
+      return response;
+    }
+  }
+  async deleteUserBuruh(request, h) {
+    try {
+      const user = await this._service.deleteUserBuruh(request.auth.credentials.id);
+      const response = h.response({
+        status: 'success',
+        data: {
+          userId,
+        },
+      });
+      response.code(201);
+      return response;
+    } 
+    catch (error ) { 
+      const response = await responseCatch(error, h); 
+      return response;
+    }
+  }
 
 }
 

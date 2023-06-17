@@ -31,11 +31,11 @@ class Handler {
      }
   }
 
-  async getUserPetani( h) {}
-  async updateUserPetani(request, h) {}
-  async updateSandiUserPetani(request, h) {}
-  async updateLupaSandiUserPetani(request, h) {}
-  async deleteUserPetani(request, h) {}
+  async getUserPetaniWithID( h) {}
+  async updateUserPetaniWithID(request, h) {}
+  async updateSandiUserPetaniWithID(request, h) {}
+  async updateLupaSandiUserPetaniWithID(request, h) {}
+  async deleteUserPetaniWithID(request, h) {}
 }
 
   module.exports = Handler;

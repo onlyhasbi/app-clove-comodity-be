@@ -2,17 +2,15 @@ const responseCatch = require('../../exception/responHandlerCatch')
 const autoBind = require('auto-bind');
 
 class Handler {
-  constructor(dummy, validator) {
-    this._dummy = dummy;
-    this._validator = validator;
+  constructor(service) {
+    this._Service = service;
 
     autoBind(this);
   }
  
   async getLocation(request, h) {
     try {
-      this._validator.location(request.params);
-      const location = this._dummy.chek(request.params);
+      const location = await this._Service.check(request.params.id_location);
       const response = h.response({
         status: 'success',
         data: {
@@ -29,8 +27,8 @@ class Handler {
   }
   async getSubLocation(request, h) {
     try {
-      this._validator.sublocation(request.params);
-      const sub_location = this._dummy.filter(request.params);
+      console.log(request.params.id_kategori)
+      const sub_location = await this._Service.filter(request.params.id_kategori);
       const response = h.response({
         status: 'success',
         data: {
