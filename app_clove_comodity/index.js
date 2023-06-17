@@ -9,9 +9,6 @@ async function init() {
     const server = hapi.server({
         port: 3555,
         host: 'localhost',
-        // debug: {
-        //     request: ['error'],
-        // },
         routes: {
             cors: {
                 origin: ['*'],

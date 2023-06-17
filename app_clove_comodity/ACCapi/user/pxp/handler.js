@@ -12,8 +12,8 @@ class Handler {
 
   async addUserPetani(request, h) {
     try {
-      this._validator.pxp(request.payload);
-      const userId = await this._service.addUserPxP(request.payload);
+      this._validator.addAcc(request.payload);
+      const userId = await this._service.addUserAcc(request.payload);
       console.log(userId);
       const response = h.response({
         status: 'success',
@@ -31,8 +31,42 @@ class Handler {
      }
   }
 
-  async getUserPetaniWithID( h) {}
-  async updateUserPetaniWithID(request, h) {}
+  async getUserPetani(request, h) {
+    try {
+      console.log(request.auth.credentials.id)
+      const user = await this._service.getUserAcc(request.auth.credentials.id);
+      const response = h.response({
+        status: 'success',
+        data: {
+          user,
+        },
+      });
+      response.code(201);
+      return response;
+    } 
+    catch (error ) { 
+      const response = await responseCatch(error, h); 
+      return response;
+    }
+  }
+  async updateUserPetani(request, h) {
+    try {
+      this._validator.updateAcc(request.payload);
+      const userId = await this._service.updateUserAcc(request.auth.credentials.id, request.payload);
+      const response = h.response({
+        status: 'success',
+        data: {
+          userId,
+        },
+      });
+      response.code(201);
+      return response;
+    } 
+    catch (error ) { 
+      const response = await responseCatch(error, h); 
+      return response;
+    }
+  }
   async updateSandiUserPetaniWithID(request, h) {}
   async updateLupaSandiUserPetaniWithID(request, h) {}
   async deleteUserPetaniWithID(request, h) {}

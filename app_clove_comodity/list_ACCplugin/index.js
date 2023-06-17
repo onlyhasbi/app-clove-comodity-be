@@ -52,21 +52,25 @@ const plugin = [
         {
             plugin: dummy,
             options: {
-                service : Dummy,
+                dummy : Dummy,
             }
         },
         {
             plugin: user_petani,
             options: {
                 service : UsersService,
+                dummy : Dummy,
                 validator : UsersValidator,
+                author :AuthService,
             }
         },
         {
             plugin: user_buruh,
             options: {
                 service : UsersService,
+                dummy : Dummy,
                 validator : UsersValidator,
+                author : AuthService,
             }
         },
         {

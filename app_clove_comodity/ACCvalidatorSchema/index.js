@@ -6,31 +6,39 @@ const BuruhUserPayloadSchema = Joi.object({
   sandi: Joi.string().required(),
   tanggal_lahir: Joi.date().required(),
   jenis_kelamin: Joi.string().valid('laki-laki','perempuan').required(),
-  alamat: Joi.string().pattern(/^[a-zA-Z]{2}$-[0-9]{10}$/),
+  alamat: Joi.string().pattern(/^[a-zA-Z]{2}-\d{7}$/),
 });
 const AccUserPayloadSchema = Joi.object({
   nomor_telpon: Joi.string().pattern(/^[0-9]{10,12}$/).required(),
   jenis_pengguna: Joi.string().valid('perorangan','UMKM/KLP.Tani','CV', 'PT').required(),
   nama: Joi.string().required(),
   sandi: Joi.string().required(),
-  alamat: Joi.string().pattern(/^[a-zA-Z]{2}$-[0-9]{10}$/),
+  alamat: Joi.string().pattern(/^[a-zA-Z]{2}-\d{7}$/),
 });
 const UpdateBuruhUserPayloadSchema = Joi.object({
   nama: Joi.string().required(),
   tanggal_lahir: Joi.date().required(),
   jenis_kelamin: Joi.string().valid('laki-laki','perempuan').required(),
-  alamat: Joi.string().pattern(/^[a-zA-Z]{2}$-[0-9]{10}$/),
+  alamat: Joi.string().pattern(/^[a-zA-Z]{2}-\d{7}$/),
 });
-const UpdatePasswordAccUserPayloadSchema = Joi.object({
+const UpdateAccUserPayloadSchema = Joi.object({
   jenis_pengguna: Joi.string().valid('perorangan','UMKM/KLP.Tani','CV', 'PT').required(),
   nama: Joi.string().required(),
-  alamat: Joi.string().pattern(/^[a-zA-Z]{2}$-[0-9]{10}$/),
+  alamat: Joi.string().pattern(/^[a-zA-Z]{2}-\d{7}$/),
 });
-const UpdatePasswordBuruhUserPayloadSchema = Joi.object({
+// const UpdatePasswordBuruhUserPayloadSchema = Joi.object({
+//   nomor_telpon: Joi.string().pattern(/^[0-9]{10,12}$/).required(),
+//   sandi: Joi.string().required(),
+// });
+// const UpdatePasswordAccUserPayloadSchema = Joi.object({
+//   nomor_telpon: Joi.string().pattern(/^[0-9]{10,12}$/).required(),
+//   sandi: Joi.string().required(),
+// });
+const DeleteBuruhUserPayloadSchema = Joi.object({
   nomor_telpon: Joi.string().pattern(/^[0-9]{10,12}$/).required(),
   sandi: Joi.string().required(),
 });
-const UpdateAccUserPayloadSchema = Joi.object({
+const DeleteAccUserPayloadSchema = Joi.object({
   nomor_telpon: Joi.string().pattern(/^[0-9]{10,12}$/).required(),
   sandi: Joi.string().required(),
 });
@@ -47,12 +55,12 @@ const DeleteAuthPayloadSchema = Joi.object({
 });
 //validator lahan 
 const LahanPayloadSchema = Joi.object({
-  lokasi: Joi.string().pattern(/^[a-zA-Z]{2}$-[0-9]{10}$/).required(),
+  lokasi: Joi.string().pattern(/^[a-zA-Z]{2}-\d{7}$/).required(),
   luas_m2: Joi.number(),
   status_hak_panen: Joi.string().valid('milik_sendiri','milik_tergadai','milik_dengan_pajak', 'bagi_hasil').required(),
 });
 const LahanQuerySchema = Joi.object({
-  lokasi: Joi.string().pattern(/^[a-zA-Z]{2}$-[0-9]{10}$/),
+  lokasi: Joi.string().pattern(/^[a-zA-Z]{2}-\d{7}$/),
   luas_m2: Joi.string(),
   status_hak_panen: Joi.string().valid('milik_sendiri','milik_tergadai','milik_dengan_pajak', 'bagi_hasil'),
 });
@@ -147,9 +155,11 @@ module.exports = {
   AccUserPayloadSchema,
   BuruhUserPayloadSchema,
   UpdateBuruhUserPayloadSchema,
-  UpdatePasswordAccUserPayloadSchema,
-  UpdatePasswordBuruhUserPayloadSchema,
   UpdateAccUserPayloadSchema,
+  // UpdatePasswordAccUserPayloadSchema,
+  // UpdatePasswordBuruhUserPayloadSchema,
+  DeleteBuruhUserPayloadSchema,
+  DeleteAccUserPayloadSchema,
 
   //auth
   PostAuthPayloadSchema,

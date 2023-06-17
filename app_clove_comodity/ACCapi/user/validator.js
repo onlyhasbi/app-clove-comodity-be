@@ -3,14 +3,15 @@ const {
   BuruhUserPayloadSchema,
   UpdateAccUserPayloadSchema,
   UpdateBuruhUserPayloadSchema,
-  UpdatePasswordAccUserPayloadSchema,
-  UpdatePasswordBuruhUserPayloadSchema,
+  // UpdatePasswordAccUserPayloadSchema,
+  // UpdatePasswordBuruhUserPayloadSchema,
+  DeleteBuruhUserPayloadSchema,
+  DeleteAccUserPayloadSchema,
  } = require('../../ACCvalidatorSchema');
 const InvariantError = require('../../exception/invariantErr');
  
 const UsersValidator = {
   addBuruh: (payload) => {
-    console.log('vhgvgh')
     const validationResult = BuruhUserPayloadSchema.validate(payload);
     if (validationResult.error) { throw new InvariantError(validationResult.error.message) }
   },
@@ -26,12 +27,20 @@ const UsersValidator = {
     const validationResult = UpdateAccUserPayloadSchema.validate(payload);
     if (validationResult.error) { throw new InvariantError(validationResult.error.message) }
   },
-  updatePasswordBuruh: (payload) => {
-    const validationResult = UpdatePasswordBuruhUserPayloadSchema.validate(payload);
+  // updatePasswordBuruh: (payload) => {
+  //   const validationResult = UpdatePasswordBuruhUserPayloadSchema.validate(payload);
+  //   if (validationResult.error) { throw new InvariantError(validationResult.error.message) }
+  // },
+  // UpdatePasswordAcc: (payload) => {
+  //   const validationResult = UpdatePasswordAccUserPayloadSchema.validate(payload);
+  //   if (validationResult.error) { throw new InvariantError(validationResult.error.message) }
+  // },
+  deleteBuruh: (payload) => {
+    const validationResult = DeleteBuruhUserPayloadSchema.validate(payload);
     if (validationResult.error) { throw new InvariantError(validationResult.error.message) }
   },
-  UpdatePasswordAcc: (payload) => {
-    const validationResult = UpdatePasswordAccUserPayloadSchema.validate(payload);
+  deleteAcc: (payload) => {
+    const validationResult = DeleteAccUserPayloadSchema.validate(payload);
     if (validationResult.error) { throw new InvariantError(validationResult.error.message) }
   },
 };

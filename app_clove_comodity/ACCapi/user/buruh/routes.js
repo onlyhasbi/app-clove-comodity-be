@@ -14,23 +14,21 @@ const routes =(handler)=> [
   },
   {
     method: 'PUT',
-    path : `/userBuruh/{id}`,      
+    path : `/userBuruh`,      
     handler: handler.updateUserBuruh,
     options: {
         auth: 'ACC_jwt',
       },
   },
 
-
-
-  {
-    method: 'PUT',
-    path : `/userBuruh/sandi/{id}`,      
-    handler: handler.updateSandiUserBuruh,
-    options: {
-        auth: 'ACC_jwt',
-      },
-  },
+  // {
+  //   method: 'PUT',
+  //   path : `/userBuruh/sandi/{id}`,      
+  //   handler: handler.updateSandiUserBuruh,
+  //   options: {
+  //       auth: 'ACC_jwt',
+  //     },
+  // },
   // {
   //   method: 'PUT',
   //   path : `/userBuruh/lupasandi/{id}`,      
@@ -48,6 +46,7 @@ const routes =(handler)=> [
         auth: 'ACC_jwt',
       },
   },
+  
 ];
 
 module.exports= routes ;

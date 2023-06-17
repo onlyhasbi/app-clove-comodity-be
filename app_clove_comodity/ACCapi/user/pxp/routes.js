@@ -7,8 +7,8 @@ const routes = (handler) => [
 
   {
     method: 'GET',
-    path : `/userPetani/{ID}`,      
-    handler: handler.getUserPetaniWithID,
+    path : `/userPetani`,      
+    handler: handler.getUserPetani,
       options: {
         auth: 'ACC_jwt',
       },
@@ -16,8 +16,8 @@ const routes = (handler) => [
 
   {
     method: 'PUT',
-    path : `/userPetani/{id}`,      
-    handler: handler.updateUserPetaniWithID,
+    path : `/userPetani`,      
+    handler: handler.updateUserPetani,
       options: {
         auth: 'ACC_jwt',
       },
