@@ -108,8 +108,9 @@ class Handler {
   // }
   async deleteUserBuruh(request, h) {
     try {
-      this._validator.deleteBuruh(request.payload);
-      this._author.verifyUserCredential('buruh' , request.payload);
+      await this._validator.deleteBuruh(request.payload);
+      const Id = await this._author.verifyUserCredential('buruh' , request.payload);
+      console.log(Id , request.auth.credentials.id)
       const userId = await this._service.deleteUserBuruh(request.auth.credentials.id);
       const response = h.response({
         status: 'success',

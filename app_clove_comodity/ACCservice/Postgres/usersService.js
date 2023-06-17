@@ -48,7 +48,7 @@ class usersService {
       values: [id],
     };
     const result = await this._pool.query(query);
- 
+    console.log(result.rows.length)
     if (!result.rows.length) {
       throw new NotFoundError('user tidak ditemukan');
     }
@@ -61,7 +61,7 @@ class usersService {
       values: [id],
     };
     const result = await this._pool.query(query);
- 
+ console.log(result.rows.length)
     if (!result.rows.length) {
       throw new NotFoundError('user tidak ditemukan');
     }
@@ -74,6 +74,19 @@ class usersService {
       values: [nama, tanggal_lahir, jenis_kelamin, alamat, id],
     };
     const result = await this._pool.query(query);
+    console.log(result.rows.length)
+    if (!result.rows.length) {
+      throw new InvariantError('User gagal ditambahkan');
+    }
+    return id;
+  }
+
+  async updateUserAcc(id, {jenis_pengguna, nama,  alamat } ){
+    const query = {
+      text: `UPDATE pxp SET jenis_pengguna = $1, nama = $2, alamat = $3 WHERE id = $4 RETURNING id;`,
+      values: [jenis_pengguna, nama, alamat, id],
+    };
+    const result = await this._pool.query(query);
  
     if (!result.rows.length) {
       throw new InvariantError('User gagal ditambahkan');
@@ -84,6 +97,19 @@ class usersService {
   async deleteUserBuruh(id) {
     const query = {
       text: `DELETE FROM buruh WHERE id = $1 RETURNING id;`,
+      values: [id],
+    };
+    const result = await this._pool.query(query);
+ 
+    if (!result.rows.length) {
+      throw new NotFoundError('user tidak ditemukan');
+    }
+    return result.rows [0];
+  }
+
+  async deleteUserAcc(id) {
+    const query = {
+      text: `DELETE FROM pxp WHERE id = $1 RETURNING id;`,
       values: [id],
     };
     const result = await this._pool.query(query);

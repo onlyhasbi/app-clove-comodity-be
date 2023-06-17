@@ -24,14 +24,14 @@ const routes = (handler) => [
   },
 
 
-  {
-    method: 'PUT',
-    path : `/userPetani/sandi/{id}`,      
-    handler: handler.updateSandiUserPetaniWithID,
-      options: {
-        auth: 'ACC_jwt',
-      },
-  },
+  // {
+  //   method: 'PUT',
+  //   path : `/userPetani/sandi`,      
+  //   handler: handler.updateSandiUserPetani,
+  //     options: {
+  //       auth: 'ACC_jwt',
+  //     },
+  // },
 
   // {
   //   method: 'PUT',
@@ -46,7 +46,7 @@ const routes = (handler) => [
   {
     method: 'DELETE',
     path : `/userPetani`,      
-    handler: handler.deleteUserPetaniWithID,
+    handler: handler.deleteUserPetani,
       options: {
         auth: 'ACC_jwt',
       },
