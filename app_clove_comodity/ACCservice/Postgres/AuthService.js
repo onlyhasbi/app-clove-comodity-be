@@ -23,11 +23,11 @@ class AuthService {
 
   async verifyUserCredential(user_tabel , {nomor_telpon, sandi}) {
     const result = await this._pool.query(`SELECT id, sandi FROM ${user_tabel} WHERE nomor_telpon =  '${nomor_telpon}'`);
-    if (!result.rows.length) { throw new AuthenticationError('Kredensial yang Anda berikan salah') }
-
+    console.log(result.rows.length)
+    if (!result.rows.length) { throw new InvariantError('Nomor Telpon pengguna tidak terdaftar') }
     const { id, sandi: hashedPassword } = result.rows[0];
     const match = await bcrypt.compare(sandi, hashedPassword);
-    if (!match) { throw new AuthenticationError('Kredensial yang Anda berikan salah') }
+    if (!match) { throw new AuthenticationError('Sandi Salah') }
     return id;
   }
 

@@ -2,10 +2,10 @@ const Handler = require('./handler');
 const routes = require('./routes');
  
 module.exports = {
-  name: 'userPetani',
+  name: 'dummy',
   version: '1.0.0',
-  register: async (server, {service, validator, author}) => {
-    const pluginHandler = new Handler(service, validator, author);
+  register: async (server,  { dummy }) => {
+    const pluginHandler = new Handler(dummy);
     server.route(routes(pluginHandler));
   },
 };

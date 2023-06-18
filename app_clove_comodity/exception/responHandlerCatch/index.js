@@ -4,7 +4,7 @@ const responseCatch = async (error, h) => {
     console.log(error);
     if (error instanceof ClientError) {
         const response = h.response({
-        status: 'fail',
+        status: 'gagal',
         message: error.message,
         });
         response.code(error.statusCode);
