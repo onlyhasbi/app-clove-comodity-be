@@ -18,7 +18,7 @@ class Handler {
       const userId = await this._service.addUserBuruh(request.payload);
       const response = h.response({
         status: 'success',
-        message: `berhasil berhasil terdaftar sebagai user Buruh'.`,
+        message: `berhasill berhasil terdaftar sebagai user Buruh'.`,
         data: {
           userId,
         },
