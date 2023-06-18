@@ -1,43 +1,43 @@
-const routes =(handler)=> [
+const routes =(Handler)=> [
   {
-    method:'POST',
-    path:'/buruh/{ID_user}/kontak',
-    handler:handler.addBuruhKontakHandler,
+    method: 'POST',
+    path: '/buruh-kontak/{ID_user}',
+    handler: Handler.addBuruhKontakHandler,
   },
   {
-    method:'POST',
-    path:'/buruh/{ID_user}/lamaran',
-    handler:handler.addLamaranTerbukaHandler,
+    method: 'POST',
+    path: '/lamaran-terbuka/{ID_user}',
+    handler: Handler.addLamaranTerbukaHandler,
   },
   {
-    method:'GET',
-    path:'/buruh/{ID_user}/kontak',
-    handler:handler.getBuruhKontakHandler,
+    method: 'GET',
+    path: '/buruh-kontak/{ID_user}',
+    handler: Handler.getBuruhKontakHandler,
   },
   {
-    method:'GET',
-    path:'/buruh/{ID_user}/lamaran',
-    handler:handler.getBuruhKontakHandler,
+    method: 'GET',
+    path: '/lamaran-terbuka/{ID_user}',
+    handler: Handler.getLamaranTerbukaHandler,
   },
   {
-    method:'PUT',
-    path:'/buruh/{ID}/kontak',
-    handler:handler.editBuruhKontakHandler,
+    method: 'PUT',
+    path: '/buruh-kontak/{ID}',
+    handler: Handler.editBuruhKontakHandler,
   },
   {
-    method:'PUT',
-    path:'/buruh/{ID}/lamaran',
-    handler:handler.editBuruhKontakHandler,
+    method: 'PUT',
+    path: '/lamaran-terbuka/{ID}',
+    handler: Handler.editLamaranTerbukaHandler,
   },
   {
-    method:'DELETE',
-    path:'/buruh/{ID}/kontak',
-    handler:handler.deleteBuruhKontakHandler,
+    method: 'DELETE',
+    path: '/buruh-kontak/{ID}',
+    handler: Handler.deleteBuruhKontakHandler,
   },
   {
-    method:'DELETE',
-    path:'/buruh/{ID}/lamaran',
-    handler:handler.deleteBuruhKontakHandler,
+    method: 'DELETE',
+    path: '/lamaran-terbuka/{ID}',
+    handler: Handler.deleteLamaranTerbukaHandler,
   },
 ];
 

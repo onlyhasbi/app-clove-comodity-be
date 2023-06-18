@@ -48,7 +48,7 @@ class Handler {
             await this._validator.validateLowonganKerjaPayload(request.payload);
 
             const { ID_user}= request.params;
-            const {jenis_pekerjaan, upah, indakator_upah, catatan}= request.payload
+            const {jenis_pekerjaan, upah, indikator_upah, catatan}= request.payload
 
             const id_lowongan =generateId();
 
@@ -57,7 +57,7 @@ class Handler {
                 id_lowongan,
                 jenis_pekerjaan,
                 upah,
-                indakator_upah,
+                indkator_upah,
                 catatan,
             };
             await this._service.addLowonganKerja(lowonganData);
