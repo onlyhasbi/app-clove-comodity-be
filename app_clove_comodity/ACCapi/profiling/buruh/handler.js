@@ -4,7 +4,7 @@ const autoBind = require('auto-bind');
 
 
 class Handler {
-  constructor(service, validator) {
+  constructor(service, validator, author) {
     this._service = service;
     this._validator = validator;
     this._response = ( h, status, message, data ) => {
@@ -186,9 +186,9 @@ class Handler {
     } catch (error) {
       const response = await responseCatch(error, h);
       return response;
-    }
+     }
   }
-
+  
 }
 
 module.exports = Handler;

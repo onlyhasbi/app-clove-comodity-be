@@ -15,7 +15,8 @@ const usersService = require('../ACCservice/Postgres/usersService');
 
 const profiling_pxp = require('../ACCapi/profiling/pxp');
 const profiling_buruh = require('../ACCapi/profiling/buruh');
-const profilingValidator = require('../ACCapi/user/validator');
+const profilingValidator = require('../ACCapi/profiling/validator');
+const profilingService = require('../ACCservice/Postgres/profiling/buruhProfilService');
 
 const lahan = require('../ACCapi/dashboard/panen/lahan');
 const lahanService = require('../ACCservice/Postgres/accservice/lahan');
@@ -40,6 +41,7 @@ const information_buruh = require('../ACCapi/information/buruh');
 const informationValidator = require('../ACCapi/user/validator');
 
 const UsersService = new usersService();
+const ProfilingService = new profilingService();
 const AuthService = new authService();
 const LahanService = new lahanService()
 const SetoranService = new authService();
@@ -86,6 +88,10 @@ const plugin = [
         },
         {
             plugin: profiling_buruh,
+            options:{
+                service: ProfilingService,
+                validator : profilingValidator,
+            }
         },
         {
             plugin: lahan,

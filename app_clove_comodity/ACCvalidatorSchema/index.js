@@ -1,4 +1,11 @@
 const Joi = require('joi');
+
+const BuruhKontakPayloadSchema = Joi.object({
+  jenis_kontak: Joi.string().valid('telpon', 'whatsapp', 'facebook', 'instagram', 'linkid', 'indeed', 'lainnya').required(),
+  kontak: Joi.string().required(),
+})
+
+
 //validator users
 const BuruhUserPayloadSchema = Joi.object({
   nomor_telpon: Joi.string().pattern(/^[0-9]{10,12}$/).required(),
@@ -151,6 +158,11 @@ const JualBeliPanenQuerySchema = Joi.object({
 });
 
 module.exports = {
+
+  //profiling
+  BuruhKontakPayloadSchema,
+
+
   //users
   AccUserPayloadSchema,
   BuruhUserPayloadSchema,

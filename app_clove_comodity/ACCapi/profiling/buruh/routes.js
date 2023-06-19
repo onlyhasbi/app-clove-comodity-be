@@ -67,6 +67,7 @@ const routes =(Handler)=> [
       auth: 'ACC_jwt',
     },
   },
+  
 ];
 
 module.exports=routes;
