@@ -11,28 +11,31 @@ class Handler {
 
 
     autoBind(this);
+    
   }
 
-  async postKontakBuruh(request,h){
-    try{
+  async postKontakBuruh(request, h) {
+    try {
       this._validator.addKontakBuruh(request.payload);
-      const userId = await this._service.addKontak(request.payload);
+      const { jenis_kontak, kontak } = request.payload;
+    
+  
+      const userId = await this._service.addKontak( { jenis_kontak, kontak });
       const response = h.response({
-        status :'success',
-        message:'berhasil menambahkan kontak buruh',
-        data:{
+        status: 'success',
+        message: 'berhasil menambahkan kontak buruh',
+        data: {
           userId,
         },
       });
       response.code(201);
       return response;
-    }
-    catch (error ) { 
-      const response = await responseCatch(error, h); 
+    } catch (error) {
+      console.error(error);
+      const response = await responseCatch(error, h);
       return response;
-     }
+    }
   }
-  
 }
 
 module.exports = Handler;
