@@ -7,6 +7,10 @@ class Handler {
     this._service = service;
     this._validator = validator;
     this._author = author;
+    this._response = (h, status, data, message) => {
+      const response = h.response({ status, message, data, });
+      return response;
+    }
     
     autoBind(this);
   }
@@ -15,14 +19,7 @@ class Handler {
     try {
       this._validator.addAcc(request.payload);
       const userId = await this._service.addUserAcc(request.payload);
-      console.log(userId);
-      const response = h.response({
-        status: 'success',
-        message: `User PxP berhasil ditambahkan dengan id '${userId}'.`,
-        data: {
-          userId,
-        },
-      });
+      const response =  await this._response(h, 'success', { userId },  `berhasill berhasil terdaftar sebagai user ACC'.`);
       response.code(201);
       return response;
     } 
@@ -36,12 +33,7 @@ class Handler {
     try {
       console.log(request.auth.credentials.id)
       const user = await this._service.getUserAcc(request.auth.credentials.id);
-      const response = h.response({
-        status: 'success',
-        data: {
-          user,
-        },
-      });
+      const response =  await this._response( h, 'success', { user });
       response.code(201);
       return response;
     } 
@@ -54,12 +46,7 @@ class Handler {
     try {
       this._validator.updateAcc(request.payload);
       const userId = await this._service.updateUserAcc(request.auth.credentials.id, request.payload);
-      const response = h.response({
-        status: 'success',
-        data: {
-          userId,
-        },
-      });
+      const response =  await this._response(h, 'success', { userId },  `berhasil merubah data user acc.`);
       response.code(201);
       return response;
     } 
@@ -68,27 +55,27 @@ class Handler {
       return response;
     }
   }
-  async updateSandiUserPetani(request, h) {
-    await this._validator.updateSandiAcc(request.payload);
-    const {nomor_telpon, sandi_lama, sandi_baru} = request.payload;
-    await this._author.verifyUserCredential('pxp' , { nomor_telpon, sandi_lama });
-    const userId = await this._service.updateSandiUserAcc(request.auth.credentials.id, sandi_baru);
-    const response = h.response({
-      status: 'success',
-      data: {
-        userId,
-      },
-    });
-    response.code(201);
-    return response;
-
-  }
+  // async updateSandiUserPetani(request, h) {
+  //   try {
+  //     await this._validator.updateSandiAcc(request.payload);
+  //     const {nomor_telpon, sandi : sandi_lama , sandi_baru} = request.payload;
+  //     const permission_id = await this._author.verifyUserCredential('owner_user_acc' ,{ nomor_telpon, sandi });
+  //     const userId = await this._service.updateSandiUserAcc(request.auth.credentials.id, permission_id, sandi_baru);
+  //     const response =  await this._response(h, 'success', { userId },  `berhasil merubah sandi user acc.`);
+  //     response.code(201);
+  //     return response;
+  //   } 
+  //   catch (error ) { 
+  //     const response = await responseCatch(error, h); 
+  //     return response;
+  //   }
+  // }
   // async updateLupaSandiUserPetani(request, h) {}
   async deleteUserPetani(request, h) {
     try {
       await this._validator.deleteAcc(request.payload);
-      await this._author.verifyUserCredential('pxp' , request.payload);
-      const userId = await this._service.deleteUserAcc(request.auth.credentials.id);
+      const permission_id = await this._author.verifyUserCredential('owner_user_acc' , request.payload);
+      const userId = await this._service.deleteUserPetani(request.auth.credentials.id, permission_id);
       const response = h.response({
         status: 'success',
         data: {

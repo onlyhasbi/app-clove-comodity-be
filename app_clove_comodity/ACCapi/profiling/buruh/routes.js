@@ -18,7 +18,7 @@ const routes =(Handler)=> [
   },
   {
     method: 'PUT',
-    path: '/buruh-kontak',
+    path: '/buruh-kontak/{kontakId}',
     handler: Handler.editBuruhKontakHandler,
     options: {
       auth: 'ACC_jwt',
@@ -26,7 +26,7 @@ const routes =(Handler)=> [
   },
   {
     method: 'DELETE',
-    path: '/buruh-kontak',
+    path: '/buruh-kontak/{kontakId}',
     handler: Handler.deleteBuruhKontakHandler,
     options: {
       auth: 'ACC_jwt',
@@ -37,7 +37,7 @@ const routes =(Handler)=> [
 // endpoint api lamaran  
   {
     method: 'POST',
-    path: '/lamaran-terbuka',
+    path: '/lamaran-kerja',
     handler: Handler.addLamaranTerbukaHandler,
     options: {
       auth: 'ACC_jwt',
@@ -45,7 +45,7 @@ const routes =(Handler)=> [
   },
   {
     method: 'GET',
-    path: '/lamaran-terbuka',
+    path: '/lamaran-kerja',
     handler: Handler.getLamaranTerbukaHandler,
     options: {
       auth: 'ACC_jwt',
@@ -53,7 +53,7 @@ const routes =(Handler)=> [
   },
   {
     method: 'PUT',
-    path: '/lamaran-terbuka',
+    path: '/lamaran-kerja/{lamaranId}',
     handler: Handler.editLamaranTerbukaHandler,
     options: {
       auth: 'ACC_jwt',
@@ -61,7 +61,7 @@ const routes =(Handler)=> [
   },
   {
     method: 'DELETE',
-    path: '/lamaran-terbuka',
+    path: '/lamaran-kerja/{lamaranId}',
     handler: Handler.deleteLamaranTerbukaHandler,
     options: {
       auth: 'ACC_jwt',

@@ -1,4 +1,3 @@
-const AuthenticationError = require('../../../exception/authErr');
 const responseCatch = require('../../../exception/responHandlerCatch')
 const autoBind = require('auto-bind');
 
@@ -97,9 +96,8 @@ class Handler {
   async deleteUserBuruh(request, h) {
     try {
       await this._validator.deleteBuruh(request.payload);
-      const Id = await this._author.verifyUserCredential('buruh' , request.payload);
-      if (Id !== request.auth.credentials.id ) {throw new AuthenticationError('tidak ada hak akses untuk menghapus user');}
-      const userId = await this._service.deleteUserBuruh(request.auth.credentials.id);
+      const permission_id = await this._author.verifyUserCredential('owner_user_buruh' , request.payload);
+      const userId = await this._service.deleteUserBuruh(request.auth.credentials.id, permission_id);
       const response =  await this._response(h, 'success', { userId },  `berhasil menghapus data user Buruh.`);
       response.code(201);
       return response;

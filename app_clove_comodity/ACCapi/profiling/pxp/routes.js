@@ -1,63 +1,104 @@
 const routes = (handler) => [
+  //kontak acc
   {
     method: 'POST',
-    path: '/kontak/{ID_user}',
-    handler: handler.addKontakPxpHandler,
-  },
-  {
-    method: 'POST',
-    path: '/lowongan-kerja/{ID_user}',
-    handler: handler.addLowonganKerjaHandler,
-  },
-  {
-    method: 'POST',
-    path: '/penawaran-komoditi/{ID_user}',
-    handler: handler.addPenawaranKomoditiHandler,
+    path: '/acc-kontak',
+    handler: handler.addKontakHandler,
+    options: {
+      auth: 'ACC_jwt',
+    },
   },
   {
     method: 'GET',
-    path: '/kontak/{ID_user}',
+    path: '/acc-kontak',
     handler: handler.getKontakPxpHandler,
-  },
-  {
-    method: 'GET',
-    path: '/lowongan-kerja/{ID_user}',
-    handler: handler.getLowonganKerjaHandler,
-  },
-  {
-    method: 'GET',
-    path: '/penawaran-komoditi/{ID_user}',
-    handler: handler.getPenawaranKomoditiHandler,
+    options: {
+      auth: 'ACC_jwt',
+    },
   },
   {
     method: 'PUT',
-    path: '/kontak/{ID}',
+    path: '/acc-kontak/{kontakId}',
     handler: handler.editKontakPxpHandler,
-  },
-  {
-    method: 'PUT',
-    path: '/lowongan-kerja/{ID}',
-    handler: handler.editLowonganKerjaHandler,
-  },
-  {
-    method: 'PUT',
-    path: '/penawaran-komoditi/{ID}',
-    handler: handler.editPenawaranKomoditiHandler,
+    options: {
+      auth: 'ACC_jwt',
+    },
   },
   {
     method: 'DELETE',
-    path: '/kontak/{ID}',
+    path: '/acc-kontak/{kontakId}',
     handler: handler.deleteKontakPxpHandler,
+    options: {
+      auth: 'ACC_jwt',
+    },
+  },
+
+//lowongan kerja  
+  {
+    method: 'POST',
+    path: '/acc-lowongan-kerja',
+    handler: handler.addLowonganKerjaHandler,
+    options: {
+      auth: 'ACC_jwt',
+    },
+  },
+  {
+    method: 'GET',
+    path: '/acc-lowongan-kerja',
+    handler: handler.getLowonganKerjaHandler,
+    options: {
+      auth: 'ACC_jwt',
+    },
+  },
+  {
+    method: 'PUT',
+    path: '/acc-lowongan-kerja/{lowonganId}',
+    handler: handler.editLowonganKerjaHandler,
+    options: {
+      auth: 'ACC_jwt',
+    },
   },
   {
     method: 'DELETE',
-    path: '/lowongan-kerja/{ID}',
+    path: '/acc-lowongan-kerja/{lowonganId}',
     handler: handler.deleteLowonganKerjaHandler,
+    options: {
+      auth: 'ACC_jwt',
+    },
+  },
+
+//penawaran komoditi  
+  {
+    method: 'POST',
+    path: '/acc-penawaran-komoditi',
+    handler: handler.addPenawaranKomoditiHandler,
+    options: {
+      auth: 'ACC_jwt',
+    },
+  },
+  {
+    method: 'GET',
+    path: '/acc-penawaran-komoditi',
+    handler: handler.getPenawaranKomoditiHandler,
+    options: {
+      auth: 'ACC_jwt',
+    },
+  },
+  {
+    method: 'PUT',
+    path: '/acc-penawaran-komoditi',
+    handler: handler.editPenawaranKomoditiHandler,
+    options: {
+      auth: 'ACC_jwt',
+    },
   },
   {
     method: 'DELETE',
-    path: '/penawaran-komoditi/{ID}',
+    path: '/acc-penawaran-komoditi',
     handler: handler.deletePenawaranKomoditiHandler,
+    options: {
+      auth: 'ACC_jwt',
+    },
   },
 ];
 
