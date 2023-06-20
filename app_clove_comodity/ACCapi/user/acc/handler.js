@@ -15,7 +15,7 @@ class Handler {
     autoBind(this);
   }
 
-  async addUserPetani(request, h) {
+  async addUserAcc(request, h) {
     try {
       this._validator.addAcc(request.payload);
       const userId = await this._service.addUserAcc(request.payload);
@@ -29,7 +29,7 @@ class Handler {
      }
   }
 
-  async getUserPetani(request, h) {
+  async getUserAcc(request, h) {
     try {
       console.log(request.auth.credentials.id)
       const user = await this._service.getUserAcc(request.auth.credentials.id);
@@ -42,7 +42,7 @@ class Handler {
       return response;
     }
   }
-  async updateUserPetani(request, h) {
+  async updateUserAcc(request, h) {
     try {
       this._validator.updateAcc(request.payload);
       const userId = await this._service.updateUserAcc(request.auth.credentials.id, request.payload);
@@ -71,11 +71,11 @@ class Handler {
   //   }
   // }
   // async updateLupaSandiUserPetani(request, h) {}
-  async deleteUserPetani(request, h) {
+  async deleteUserAcc(request, h) {
     try {
       await this._validator.deleteAcc(request.payload);
       const permission_id = await this._author.verifyUserCredential('owner_user_acc' , request.payload);
-      const userId = await this._service.deleteUserPetani(request.auth.credentials.id, permission_id);
+      const userId = await this._service.deleteUserAcc(request.auth.credentials.id, permission_id);
       const response = h.response({
         status: 'success',
         data: {

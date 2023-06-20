@@ -11,7 +11,7 @@ const routes = (handler) => [
   {
     method: 'GET',
     path: '/acc-kontak',
-    handler: handler.getKontakPxpHandler,
+    handler: handler.getKontakHandler,
     options: {
       auth: 'ACC_jwt',
     },
@@ -19,7 +19,7 @@ const routes = (handler) => [
   {
     method: 'PUT',
     path: '/acc-kontak/{kontakId}',
-    handler: handler.editKontakPxpHandler,
+    handler: handler.editKontakHandler,
     options: {
       auth: 'ACC_jwt',
     },
@@ -27,7 +27,7 @@ const routes = (handler) => [
   {
     method: 'DELETE',
     path: '/acc-kontak/{kontakId}',
-    handler: handler.deleteKontakPxpHandler,
+    handler: handler.deleteKontakHandler,
     options: {
       auth: 'ACC_jwt',
     },

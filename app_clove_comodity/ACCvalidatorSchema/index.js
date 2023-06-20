@@ -1,9 +1,18 @@
 const Joi = require('joi');
 
-const BuruhKontakPayloadSchema = Joi.object({
+const kontakPayloadSchema = Joi.object({
   jenis_kontak: Joi.string().valid('telpon', 'whatsapp', 'facebook', 'instagram', 'linkid', 'indeed', 'lainnya').required(),
   kontak: Joi.string().required(),
-})
+});
+const lamaranPayloadSchema = Joi.object({
+
+});
+const jobReqruimentPayloadSchema = Joi.object({
+
+});
+const offerPayloadSchema = Joi.object({
+  
+});
 
 
 //validator users
@@ -42,16 +51,16 @@ const UpdateAccUserPayloadSchema = Joi.object({
 //   sandi: Joi.string().required(),
 // });
 const DeleteBuruhUserPayloadSchema = Joi.object({
-  nomor_telpon: Joi.string().pattern(/^[0-9]{10,12}$/).required(),
+  nomor_telpon: Joi.string().pattern(/^[0-9]{11,13}$/).required(),
   sandi: Joi.string().required(),
 });
 const DeleteAccUserPayloadSchema = Joi.object({
-  nomor_telpon: Joi.string().pattern(/^[0-9]{10,12}$/).required(),
+  nomor_telpon: Joi.string().pattern(/^[0-9]{11,13}$/).required(),
   sandi: Joi.string().required(),
 });
 //validator auth
 const PostAuthPayloadSchema = Joi.object({
-  nomor_telpon: Joi.string().pattern(/^[0-9]{10,12}$/).required(),
+  nomor_telpon: Joi.string().pattern(/^[0-9]{10,13}$/).required(),
   sandi: Joi.string().required(),
 });
 const PutAuthPayloadSchema = Joi.object({
@@ -160,7 +169,10 @@ const JualBeliPanenQuerySchema = Joi.object({
 module.exports = {
 
   //profiling
-  BuruhKontakPayloadSchema,
+  kontakPayloadSchema,
+  lamaranPayloadSchema,
+  jobReqruimentPayloadSchema,
+  offerPayloadSchema,
 
 
   //users

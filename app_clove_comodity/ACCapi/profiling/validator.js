@@ -6,7 +6,7 @@ const {
  } = require('../../ACCvalidatorSchema');
 const InvariantError = require('../../exception/invariantErr');
  
-const UsersValidator = {
+const profilingValidator = {
   kontak: (payload) => {
     const validationResult = kontakPayloadSchema.validate(payload);
     if (validationResult.error) { throw new InvariantError(validationResult.error.message) }
@@ -25,4 +25,4 @@ const UsersValidator = {
   },
 };
  
-module.exports = UsersValidator;
+module.exports = profilingValidator;

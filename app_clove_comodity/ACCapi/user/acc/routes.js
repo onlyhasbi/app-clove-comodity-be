@@ -1,14 +1,14 @@
 const routes = (handler) => [
     {
       method: 'POST',
-      path : `/userPetani`,      
-      handler: handler.addUserPetani,
+      path : `/userAcc`,      
+      handler: handler.addUserAcc,
     },
 
   {
     method: 'GET',
-    path : `/userPetani`,      
-    handler: handler.getUserPetani,
+    path : `/userAcc`,      
+    handler: handler.getUserAcc,
       options: {
         auth: 'ACC_jwt',
       },
@@ -16,8 +16,8 @@ const routes = (handler) => [
 
   {
     method: 'PUT',
-    path : `/userPetani`,      
-    handler: handler.updateUserPetani,
+    path : `/userAcc`,      
+    handler: handler.updateUserAcc,
       options: {
         auth: 'ACC_jwt',
       },
@@ -45,8 +45,8 @@ const routes = (handler) => [
 
   {
     method: 'DELETE',
-    path : `/userPetani`,      
-    handler: handler.deleteUserPetani,
+    path : `/userAcc`,      
+    handler: handler.deleteUserAcc,
       options: {
         auth: 'ACC_jwt',
       },

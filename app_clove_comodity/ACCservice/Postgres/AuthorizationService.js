@@ -1,5 +1,5 @@
-const NotFoundError = require('../../exceptions/notFoundError');
-const BadResourceError = require('../../exceptions/badResourceError');
+const NotFoundError = require('../../exception/notFoundErr');
+const BadResourceError = require('../../exception/badResourchErr');
 const { Pool } = require('pg');
 
 class authorizationService {
@@ -7,14 +7,11 @@ class authorizationService {
     this._pool = new Pool();
   }
   
-  async verifyAuthor(user, table, id ) {
-    const query = {
-      text: 'SELECT owner FROM $1 WHERE id = $2',
-      values: [table, id,],
-    }
-    const result1 = await this._pool.query(`SELECT id FROM ${table} WHERE author='${author}'`);
-    if (!result1.rows.length){ throw new NotFoundError(`tidak menemukan playlist`)}
-    if (result1.rows[0].owner  !== user ){ throw new BadResourceError(`user bukan owner playlist`)} 
+  async verifyUser(user, table, id ) {
+    const result1 = await this._pool.query(`SELECT user_owner FROM ${table} WHERE id='${id}'`);
+
+    if (!result1.rows.length){ throw new NotFoundError(`tidak menemukan id='${id} pada ${table}`)}
+    if (result1.rows[0].user_owner  !== user ){ throw new BadResourceError(`id='${id} bukan data milik anda`)} 
     return ;
   }
 }

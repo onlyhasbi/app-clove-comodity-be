@@ -3,7 +3,7 @@ const routes =(Handler)=> [
   {
     method: 'POST',
     path: '/buruh-kontak',
-    handler: Handler.addBuruhKontakHandler,
+    handler: Handler.addKontakHandler,
     options: {
       auth: 'ACC_jwt',
     },
@@ -11,7 +11,7 @@ const routes =(Handler)=> [
   {
     method: 'GET',
     path: '/buruh-kontak',
-    handler: Handler.getBuruhKontakHandler,
+    handler: Handler.getKontakHandler,
     options: {
       auth: 'ACC_jwt',
     },
@@ -19,7 +19,7 @@ const routes =(Handler)=> [
   {
     method: 'PUT',
     path: '/buruh-kontak/{kontakId}',
-    handler: Handler.editBuruhKontakHandler,
+    handler: Handler.editKontakHandler,
     options: {
       auth: 'ACC_jwt',
     },
@@ -27,7 +27,7 @@ const routes =(Handler)=> [
   {
     method: 'DELETE',
     path: '/buruh-kontak/{kontakId}',
-    handler: Handler.deleteBuruhKontakHandler,
+    handler: Handler.deleteKontakHandler,
     options: {
       auth: 'ACC_jwt',
     },

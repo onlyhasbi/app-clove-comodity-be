@@ -3,7 +3,7 @@ const AuthenticationError = require('../../exception/authErr');
 const bcrypt = require('bcrypt');
 const { Pool } = require('pg');
  
-class AuthService {
+class AuthorService {
   constructor() {
     this._pool = new Pool();
   }
@@ -24,10 +24,9 @@ class AuthService {
   async verifyUserCredential(user_tabel , {nomor_telpon, sandi}) {
     const result = await this._pool.query(`SELECT id, sandi FROM ${user_tabel} WHERE nomor_telpon =  '${nomor_telpon}'`);
     if (!result.rows.length) { throw new InvariantError('Nomor Telpon pengguna tidak terdaftar') }
-    
     const { id, sandi: hashedPassword } = result.rows[0];
     const match = await bcrypt.compare(sandi, hashedPassword);
-    if (!match) { throw new AuthenticationError('Sandi Salah') }
+    if (!match) { throw new AuthenticationError('Sandi Salah')}
     return id;
   }
 
@@ -35,4 +34,4 @@ class AuthService {
 
 
 
-module.exports = AuthService;
+module.exports = AuthorService;

@@ -3,9 +3,10 @@ const autoBind = require('auto-bind');
 
 
 class Handler {
-  constructor(service, validator, author) {
+  constructor(service, validator , author) {
     this._service = service;
     this._validator = validator;
+    this._author = author;
     this._response = ( h, status, data, message) => {
                         const response = h.response({ status, message, data, });
                         return response;
@@ -16,10 +17,11 @@ class Handler {
   }
 // handler kontak buruh 
   
-  async addBuruhKontakHandler(request, h) {
+  async addKontakHandler(request, h) {
     try {
-      await this._validator.Kontak(request.payload);
-      const userId = await this._service.addKontakBuruh(request.auth.credentials.id, request.payload);
+      await this._validator.kontak(request.payload);
+      console.log(this._service)
+      const userId = await this._service.addKontak(`kontak_buruh`, request.auth.credentials.id, request.payload);
       const response = await this._response( h, 'success',  { userId, }, `User berhasil ditambahkan dengan id`);
       response.code(201);
       return response;
@@ -30,9 +32,9 @@ class Handler {
     }
   };
 
-  async getBuruhKontakHandler(request, h) {
+  async getKontakHandler(request, h) {
     try {
-      const kontak = await this._service.getKontakBuruh(request.auth.credentials.id);
+      const kontak = await this._service.getKontakBuruh(`kontak_buruh` , request.auth.credentials.id);
       const response = await this._response(h, 'success', { kontak });
       response.code(200);
       return response;      
@@ -44,12 +46,12 @@ class Handler {
   }
 
 
-  async editBuruhKontakHandler(request, h) {
+  async editKontakHandler(request, h) {
     try {
       await this._validator.Kontak(request.payload);
       await this._validator.KontakId(request.params);
-      await this._dataChek.checkId('kontak', request.params.kontakId);
-      const kontakId = await this._service.editBuruhKontak(request.params, request.auth.credentials.id, request.payload);
+      await this._author.verifyUser(request.auth.credentials.id,`kontak_buruh` , request.params.kontakId)
+      const kontakId = await this._service.editBuruhKontak(`kontak_buruh` , request.params, request.payload);
       const response = await this._response('Success', { kontakId, } , 'Data kontak berhasil diubah')
       response.code(201);
       return response;
@@ -60,11 +62,11 @@ class Handler {
     }
   }
 
-  async deleteBuruhKontakHandler(request, h) {
+  async deleteKontakHandler(request, h) {
     try {
       await this._validator.idKontak(request.params);
-      await this._dataChek.checkId('kontak', request.params.kontakId);
-      await this._service.deleteBuruhKontak(request.params);
+      await this._author.verifyUser(request.auth.credentials.id,`kontak_buruh` , request.params.kontakId)
+      await this._service.deleteBuruhKontak(`kontak_buruh` , request.params);
       const response = await formatResponse('Success', undefined , 'Data kontak berhasil dihapus')
       response.code(201);
       return response;
@@ -143,7 +145,6 @@ class Handler {
       response.code(201);
       return response;
     } catch (error) {
->>>>>>> f05f75d8c4565fa440226a2e5c7021b7a488d612
       const response = await responseCatch(error, h);
       return response;
     }

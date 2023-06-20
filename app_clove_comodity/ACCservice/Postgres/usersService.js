@@ -28,11 +28,11 @@ class usersService {
   async addUserAcc({jenis_pengguna, nomor_telpon, nama, sandi, alamat}) {
     const id_userForNomorTelpon = await this.checkNomorTelpon('owner_user_acc', nomor_telpon);
     if ( id_userForNomorTelpon !== "kosong" ){  throw new InvariantError('nomor_telpon sudah terdaftar, anda bisa login sebagi pengguna dengan Nomor telpon dan sandi yang sesuai');}
-    const id = `pxp_user-${nanoid(7)}`;
+    const id = `a_user-${nanoid(7)}`;
     const hashedPassword = await bcrypt.hash(sandi, 10);
     
     const query = {
-      text: ` INSERT INTOowner_user_acc VALUES($1, $2, $3, $4, $5, $6) RETURNING id;`,
+      text: ` INSERT INTO owner_user_acc VALUES($1, $2, $3, $4, $5, $6) RETURNING id;`,
       values: [id, jenis_pengguna, nomor_telpon, nama, hashedPassword, alamat],
     };
     const result = await this._pool.query(query);

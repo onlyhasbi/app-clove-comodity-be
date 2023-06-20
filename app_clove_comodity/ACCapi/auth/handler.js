@@ -6,7 +6,7 @@ class Handler {
     this._authService = Service;
     this._tokenManager = tokenManager;
     this._validator = validator;
-    this._response = ( h, status, message, data ) => {
+    this._response = ( h, status,  data, message ) => {
       const response = h.response({ status, message, data, });
       return response;
     }
@@ -14,10 +14,10 @@ class Handler {
     autoBind(this);
   }
  
-  async postAuthB(request, h) {
+  async postAuthenticationBuruh(request, h) {
     try {
       await this._validator.PostAuthPayload(request.payload);
-      const id = await this._authService .verifyUserCredential("buruh", request.payload);
+      const id = await this._authService .verifyUserCredential("owner_user_buruh", request.payload);
       const accessToken = await this._tokenManager.generateAccessToken({ id });
       const refreshToken = await this._tokenManager.generateRefreshToken({ id });
       await this._authService.addRefreshToken(refreshToken);
@@ -31,10 +31,10 @@ class Handler {
     }
   }
 
-  async postAuthPxP(request, h) {
+  async postAuthenticationAcc(request, h) {
     try {
       await this._validator.PostAuthPayload(request.payload);
-      const id = await this._authService.verifyUserCredential("pxp", request.payload);
+      const id = await this._authService.verifyUserCredential("owner_user_acc", request.payload);
       const accessToken = await this._tokenManager.generateAccessToken({ id });
       const refreshToken = await this._tokenManager.generateRefreshToken({ id });
       await this._authService.addRefreshToken(refreshToken);
@@ -48,7 +48,7 @@ class Handler {
     }
   }
 
-  async putAuth(request, h) {
+  async putAuthentication(request, h) {
     try {
       this._validator.PutAuthPayload(request.payload);
       const { refreshToken } = request.payload;
@@ -64,7 +64,7 @@ class Handler {
     }
   }
 
-  async deleteAuth(request, h) {
+  async deleteAuthentication(request, h) {
     try {
       this._validator.DeleteAuthPayload(request.payload);
       const { refreshToken } = request.payload;
