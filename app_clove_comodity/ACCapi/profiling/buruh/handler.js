@@ -12,6 +12,7 @@ class Handler {
                       }
 
     autoBind(this);
+    
   }
 // handler kontak buruh 
   
@@ -78,12 +79,31 @@ class Handler {
   async addLamaranTerbukaHandler(request, h) {
     try {
       await this._validator.validateLamaranTerbukaPayload(request.payload);
-      const userId = await this._service.addLamaranTerbuka(request.auth.credentials.id, request.payload);
-      const response = await this._response( h, 'success',  { userId, }, `User berhasil ditambahkan dengan id`);
+
+      const { ID_user } = request.params;
+      const { jenis_pekerjaan, upah_harapan, indikator_upah, catatan } = request.payload;
+
+      const id_permintaan = generateId(); // Assuming generateId() is defined elsewhere
+
+      const lamaranData = {
+        id_user: ID_user,
+        jenis_pekerjaan,
+        upah_harapan,
+        indikator_upah,
+        catatan,
+      };
+      await this._service.addLamaranTerbuka(lamaranData);
+
+      const response = h.response({
+        status: 'success',
+        message: 'Lamaran berhasil ditambahkan',
+        data: {
+          id_permintaan,
+        },
+      });
       response.code(201);
       return response;
-    } 
-    catch (error) {
+    } catch (error) {
       const response = await responseCatch(error, h);
       return response;
     }
@@ -123,11 +143,11 @@ class Handler {
       response.code(201);
       return response;
     } catch (error) {
+>>>>>>> f05f75d8c4565fa440226a2e5c7021b7a488d612
       const response = await responseCatch(error, h);
       return response;
-     }
+    }
   }
-  
 }
 
 module.exports = Handler;
