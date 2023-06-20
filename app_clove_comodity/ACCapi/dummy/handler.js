@@ -4,6 +4,10 @@ const autoBind = require('auto-bind');
 class Handler {
   constructor(dummy) {
     this._Dummy = dummy;
+    this._response = ( h, status, message, data ) => {
+      const response = h.response({ status, message, data, });
+      return response;
+    }
 
     autoBind(this);
   }
@@ -11,13 +15,8 @@ class Handler {
   async getLocation(request, h) {
     try {
       const lokasi = await this._Dummy.dataLokasi(request.params.id_location);
-      const response = h.response({
-        status: 'success',
-        data: {
-          lokasi,
-        },
-      });
-      response.code(201);
+      const response =  await this._response(h, 'success', { lokasi, });
+      response.code(200);
       return response; 
     } 
     catch (error) {
@@ -25,16 +24,12 @@ class Handler {
       return response;
     }
   }
+
   async getSubLocation(request, h) {
     try {
       const lokasi = await this._Dummy.dataSubLokasi(request.params.id_kategori);
-      const response = h.response({
-        status: 'success',
-        data: {
-         lokasi,
-        },
-      });
-      response.code(201);
+      const response =  await this._response(h, 'success', { lokasi, });
+      response.code(200);
       return response; 
     } 
     catch (error) {

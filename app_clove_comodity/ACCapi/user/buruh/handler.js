@@ -1,3 +1,4 @@
+const AuthenticationError = require('../../../exception/authErr');
 const responseCatch = require('../../../exception/responHandlerCatch')
 const autoBind = require('auto-bind');
 
@@ -8,21 +9,19 @@ class Handler {
     this._dummy = dummy;
     this._validator = validator;
     this._author = author;
+    this._response = (h, status, data, message) => {
+      const response = h.response({ status, message, data, });
+      return response;
+    }
 
     autoBind(this);
   }
 
   async postUserBuruh(request, h) {
     try {
-      this._validator.addBuruh(request.payload);
+      await this._validator.addBuruh(request.payload);
       const userId = await this._service.addUserBuruh(request.payload);
-      const response = h.response({
-        status: 'success',
-        message: `berhasill berhasil terdaftar sebagai user Buruh'.`,
-        data: {
-          userId,
-        },
-      });
+      const response =  await this._response(h, 'success', { userId },  `berhasill berhasil terdaftar sebagai user Buruh'.`);
       response.code(201);
       return response;
     } 
@@ -34,14 +33,8 @@ class Handler {
 
   async getUserBuruh(request , h) {
     try {
-      console.log(request.auth.credentials.id)
       const user = await this._service.getUserBuruh(request.auth.credentials.id);
-      const response = h.response({
-        status: 'success',
-        data: {
-          user,
-        },
-      });
+      const response =  await this._response( h, 'success', { user });
       response.code(201);
       return response;
     } 
@@ -52,14 +45,9 @@ class Handler {
   }
   async updateUserBuruh(request, h) {
     try {
-      this._validator.updateBuruh(request.payload);
+      await this._validator.updateBuruh(request.payload);
       const userId = await this._service.updateUserBuruh(request.auth.credentials.id, request.payload);
-      const response = h.response({
-        status: 'success',
-        data: {
-          userId,
-        },
-      });
+      const response =  await this._response(h, 'success', { userId },  `berhasil merubah data user Buruh.`);
       response.code(201);
       return response;
     } 
@@ -110,14 +98,9 @@ class Handler {
     try {
       await this._validator.deleteBuruh(request.payload);
       const Id = await this._author.verifyUserCredential('buruh' , request.payload);
-      console.log(Id , request.auth.credentials.id)
+      if (Id !== request.auth.credentials.id ) {throw new AuthenticationError('tidak ada hak akses untuk menghapus user');}
       const userId = await this._service.deleteUserBuruh(request.auth.credentials.id);
-      const response = h.response({
-        status: 'success',
-        data: {
-          userId,
-        },
-      });
+      const response =  await this._response(h, 'success', { userId },  `berhasil menghapus data user Buruh.`);
       response.code(201);
       return response;
     } 

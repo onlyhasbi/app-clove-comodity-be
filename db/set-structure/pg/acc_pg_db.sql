@@ -40,7 +40,7 @@ create table kontak_buruh (
     id_buruh varchar(30) not null,
     jenis_kontak contact not null,
     kontak varchar(30) not null,
-    foreign key (id_buruh) references buruh(id)
+    foreign key (id_buruh) references buruh(id) ON DELETE CASCADE ON UPDATE CASCADE
 );
 
 create table lamaran_terbuka (
@@ -50,7 +50,7 @@ create table lamaran_terbuka (
     upah_harapan integer not null,
     indikator_ukur i_ukur not null,
     catatan varchar(60) null,
-    foreign key (id_buruh) references buruh(id)
+    foreign key (id_buruh) references buruh(id) ON DELETE CASCADE ON UPDATE CASCADE
 );
 
 /*tabel sistem profiling user petani dan pedagang*/
@@ -60,7 +60,7 @@ create table kontak_pxp (
     id_pxp varchar(30) not null,
     jenis_kontak contact not null,
     kontak varchar(30) not null,
-    foreign key (id_pxp) references pxp(id)
+    foreign key (id_pxp) references pxp(id) ON DELETE CASCADE ON UPDATE CASCADE
 );
 
 create table lowongan_kerja (
@@ -71,7 +71,7 @@ create table lowongan_kerja (
     indikator_upah i_ukur not null,
     status_kerja staker not null,
     catatan varchar(30) null,
-    foreign key (id_pxp) references pxp(id)
+    foreign key (id_pxp) references pxp(id) ON DELETE CASCADE ON UPDATE CASCADE
 );
 
 create table penawaran_komoditi (
@@ -84,7 +84,7 @@ create table penawaran_komoditi (
     indikator_ukur i_ukur not null,
     harga_rp integer not null,
     catatan varchar(30) null,
-    foreign key (id_pxp) references pxp(id)
+    foreign key (id_pxp) references pxp(id) ON DELETE CASCADE ON UPDATE CASCADE
 );
 
 /*tabel relasi kerja buruh di pxp*/
@@ -95,7 +95,7 @@ create table status_kerja_buruh (
     id_pxp varchar(30) not null,
     status_kerja  staker not null,
     foreign key (id_pxp) references pxp(id),
-    foreign key (id_buruh) references buruh(id)
+    foreign key (id_buruh) references buruh(id) ON DELETE CASCADE ON UPDATE CASCADE
 );
 
 /*tabel sistem pendataan proses panen*/

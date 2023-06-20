@@ -26,6 +26,7 @@ class dummyService {
       kategori_lokasi,
       nama_lokasi
     } = location[0]
+    const long = id_kategori.length
     
     const sub_lokasi = jsonData.filter((lokasi) => (lokasi.id_lokasi.slice(0, long)=== id_kategori) & (lokasi.id_lokasi !== id_lokasi) );
     const jumlah_sub_lokasi =sub_lokasi.length;
