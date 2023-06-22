@@ -4,8 +4,8 @@ const routes = require('./routes');
 module.exports = {
   name: 'profiling_pxp',
   version: '1.0.0',
-  register: async (server) => {
-    const pluginHandler = new Handler();
+  register: async (server ,{service, validator, author}) => {
+    const pluginHandler = new Handler(service, validator, author);
     server.route(routes(pluginHandler));
   },
 };

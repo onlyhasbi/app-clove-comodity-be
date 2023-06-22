@@ -3,10 +3,10 @@ const autoBind = require('auto-bind');
 
 class Handler {
 
-  constructor (service, validator, author) {
+  constructor (service, validator, authentic) {
     this._service = service;
     this._validator = validator;
-    this._author = author;
+    this._authentic = authentic;
     this._response = (h, status, data, message) => {
       const response = h.response({ status, message, data, });
       return response;
@@ -18,6 +18,7 @@ class Handler {
   async addUserAcc(request, h) {
     try {
       this._validator.addAcc(request.payload);
+      await this._dummy.chekIdLokasi(request.payload.alamat);
       const userId = await this._service.addUserAcc(request.payload);
       const response =  await this._response(h, 'success', { userId },  `berhasill berhasil terdaftar sebagai user ACC'.`);
       response.code(201);
@@ -45,6 +46,7 @@ class Handler {
   async updateUserAcc(request, h) {
     try {
       this._validator.updateAcc(request.payload);
+      await this._dummy.chekIdLokasi(request.payload.alamat);
       const userId = await this._service.updateUserAcc(request.auth.credentials.id, request.payload);
       const response =  await this._response(h, 'success', { userId },  `berhasil merubah data user acc.`);
       response.code(201);
@@ -74,7 +76,7 @@ class Handler {
   async deleteUserAcc(request, h) {
     try {
       await this._validator.deleteAcc(request.payload);
-      const permission_id = await this._author.verifyUserCredential('owner_user_acc' , request.payload);
+      const permission_id = await this._authentic.verifyUserCredential('owner_user_acc' , request.payload);
       const userId = await this._service.deleteUserAcc(request.auth.credentials.id, permission_id);
       const response = h.response({
         status: 'success',

@@ -20,12 +20,8 @@ const profiling_buruh = require('../ACCapi/profiling/buruh');
 const profilingValidator = require('../ACCapi/profiling/validator');
 const profilingService = require('../ACCservice/Postgres/profilingService');
 
-const lahan = require('../ACCapi/dashboard/panen/lahan');
-const lahanService = require('../ACCservice/Postgres/accservice/lahan');
-const setoran = require('../ACCapi/dashboard/panen/setoran');
-const setoranService = require('../ACCservice/Postgres/accservice/setoran');
-const hasil_panen = require('../ACCapi/dashboard/panen/hasil_panen');
-const hasilPanenService = require('../ACCservice/Postgres/accservice/hasilPanen')
+const panen = require('../ACCapi/dashboard/panen');
+const panenService = require('../ACCservice/Postgres/accservice/panenService');
 const panenValidator = require('../ACCapi/dashboard/panen/validator');
 
 const bahan_pengeringan = require('../ACCapi/dashboard/pengeringan/bahan_pengeringan');
@@ -47,7 +43,7 @@ const AuthorService = new authorService();
 const AuthenticationService = new authenticationService();
 
 const ProfilingService = new profilingService();
-const LahanService = new lahanService()
+const LahanService = new panenService()
 const SetoranService = new authenticationService();
 const Dummy = new dummyS();
 
@@ -67,7 +63,7 @@ const plugin = [
                 service : UsersService,
                 dummy : Dummy,
                 validator : UsersValidator,
-                author :AuthenticationService,
+                authentic :AuthenticationService,
             }
         },
         {
@@ -76,7 +72,7 @@ const plugin = [
                 service : UsersService,
                 dummy : Dummy,
                 validator : UsersValidator,
-                author : AuthenticationService,
+                authentic : AuthenticationService,
             }
         },
         {
@@ -105,24 +101,12 @@ const plugin = [
             }
         },
         {
-            plugin: lahan,
+            plugin: panen,
             options: {
                 service : SetoranService,
-
                 validator : panenValidator,
+                author : AuthorService,
             }
-        },
-        {
-            plugin: setoran,
-        },
-        {
-            plugin: hasil_panen,
-        },
-        {
-            plugin: bahan_pengeringan,
-        },
-        {
-            plugin: hasil_pengeringan,
         },
         {
             plugin: jual_beli,
