@@ -20,9 +20,8 @@ class Handler {
   async addKontakHandler(request, h) {
     try {
       await this._validator.kontak(request.payload);
-      console.log(this._service)
       const userId = await this._service.addKontak(`kontak_buruh`, request.auth.credentials.id, request.payload);
-      const response = await this._response( h, 'success',  { userId, }, `User berhasil ditambahkan dengan id`);
+      const response = await this._response( h, 'success',  { userId, }, `kontak di tambahkan`);
       response.code(201);
       return response;
     } 
@@ -34,7 +33,7 @@ class Handler {
 
   async getKontakHandler(request, h) {
     try {
-      const kontak = await this._service.getKontakBuruh(`kontak_buruh` , request.auth.credentials.id);
+      const kontak = await this._service.getKontak(`kontak_buruh` , request.auth.credentials.id);
       const response = await this._response(h, 'success', { kontak });
       response.code(200);
       return response;      
@@ -48,11 +47,11 @@ class Handler {
 
   async editKontakHandler(request, h) {
     try {
-      await this._validator.Kontak(request.payload);
-      await this._validator.KontakId(request.params);
+      await this._validator.kontak(request.payload);
+      console.log(request.payload)
       await this._author.verifyUser(request.auth.credentials.id,`kontak_buruh` , request.params.kontakId)
-      const kontakId = await this._service.editBuruhKontak(`kontak_buruh` , request.params, request.payload);
-      const response = await this._response('Success', { kontakId, } , 'Data kontak berhasil diubah')
+      const kontakId = await this._service.updateKontak(`kontak_buruh` , request.auth.credentials.id, request.params.kontakId, request.payload);
+      const response = await this._response(h, 'Success', { kontakId, } , 'Data kontak berhasil diubah')
       response.code(201);
       return response;
     }
@@ -64,10 +63,9 @@ class Handler {
 
   async deleteKontakHandler(request, h) {
     try {
-      await this._validator.idKontak(request.params);
       await this._author.verifyUser(request.auth.credentials.id,`kontak_buruh` , request.params.kontakId)
-      await this._service.deleteBuruhKontak(`kontak_buruh` , request.params);
-      const response = await formatResponse('Success', undefined , 'Data kontak berhasil dihapus')
+      await this._service.deleteKontak(`kontak_buruh` , request.params.kontakId);
+      const response = await this._response(h, 'Success', undefined , 'Data kontak berhasil dihapus')
       response.code(201);
       return response;
     } 

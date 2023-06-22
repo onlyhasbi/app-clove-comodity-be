@@ -69,19 +69,13 @@ const PutAuthPayloadSchema = Joi.object({
 const DeleteAuthPayloadSchema = Joi.object({
   refreshToken: Joi.string().required(),
 });
-//validator lahan 
+//validator panen
 const LahanPayloadSchema = Joi.object({
+  nama: Joi.string().required(),
   lokasi: Joi.string().pattern(/^[a-zA-Z]{2}-\d{7}$/).required(),
   luas_m2: Joi.number(),
   status_hak_panen: Joi.string().valid('milik_sendiri','milik_tergadai','milik_dengan_pajak', 'bagi_hasil').required(),
-});
-const LahanQuerySchema = Joi.object({
-  lokasi: Joi.string().pattern(/^[a-zA-Z]{2}-\d{7}$/),
-  luas_m2: Joi.string(),
-  status_hak_panen: Joi.string().valid('milik_sendiri','milik_tergadai','milik_dengan_pajak', 'bagi_hasil'),
-});
-
-//validator setoran 
+}); 
 const SetoranPayloadSchema = Joi.object({
   volume_liter: Joi.number().required(),
   berat_kg: Joi.string(),
@@ -89,27 +83,12 @@ const SetoranPayloadSchema = Joi.object({
   waktu: Joi.string(),
   catatan: Joi.string(),
 });
-const SetoranQuerySchema = Joi.object({
-  volume_liter: Joi.string(),
-  berat_kg: Joi.string(),
-  upah_rp: Joi.string().valid('milik_sendiri','milik_tergadai','milik_dengan_pajak', 'bagi_hasil').required(),
-  waktu: Joi.string(),
-  catatan: Joi.string(),
-});
-
-//validator Hasil_panen 
 const HasilPanenPayloadSchema = Joi.object({
   berat_kg: Joi.string().required(),
   waktu: Joi.string().required(),
   catatan: Joi.string().required(),
 });
-const HasilPanenQuerySchema = Joi.object({
-  berat_kg: Joi.string(),
-  waktu: Joi.string(),
-  catatan: Joi.string(),
-});
 
-//validator Hasil_panen ???? apakah pakai params, atau payload
 //kau pakai params langsung ambil dari nila yang di get ke front ed saja, klu pakai payload nanti tidak valid dan rawan error
 const LinkHasilSetoranPayloadSchema = Joi.object({
 
@@ -190,15 +169,10 @@ module.exports = {
   PutAuthPayloadSchema,
   DeleteAuthPayloadSchema,
 
-  //lahan
-  LahanPayloadSchema,
-  LahanQuerySchema,
-  //Setoran 
+  //panen
+  LahanPayloadSchema, 
   SetoranPayloadSchema,
-  SetoranQuerySchema,
-  //Hasil_panen 
   HasilPanenPayloadSchema,
-  HasilPanenQuerySchema,
 
   //Jual_beli 
   PenjualanPayloadSchema,

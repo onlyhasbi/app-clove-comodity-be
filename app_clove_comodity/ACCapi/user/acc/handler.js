@@ -3,8 +3,9 @@ const autoBind = require('auto-bind');
 
 class Handler {
 
-  constructor (service, validator, authentic) {
+  constructor (service,  dummy, validator,  authentic) {
     this._service = service;
+    this._dummy = dummy;
     this._validator = validator;
     this._authentic = authentic;
     this._response = (h, status, data, message) => {

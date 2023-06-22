@@ -43,8 +43,7 @@ const AuthorService = new authorService();
 const AuthenticationService = new authenticationService();
 
 const ProfilingService = new profilingService();
-const LahanService = new panenService()
-const SetoranService = new authenticationService();
+const PanenService = new panenService()
 const Dummy = new dummyS();
 
 const plugin = [
@@ -103,7 +102,7 @@ const plugin = [
         {
             plugin: panen,
             options: {
-                service : SetoranService,
+                service : PanenService,
                 validator : panenValidator,
                 author : AuthorService,
             }

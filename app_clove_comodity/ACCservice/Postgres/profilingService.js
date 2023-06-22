@@ -1,6 +1,7 @@
 const { Pool } = require('pg');
 const { nanoid } = require('nanoid');
-const InvariantError = require('../../exception/invariantErr'); 
+const InvariantError = require('../../exception/invariantErr');
+const NotFoundError = require('../../exception/notFoundErr'); 
 
 
 class profilingService {
@@ -9,8 +10,15 @@ class profilingService {
       this._serviceCache = serviceCache;
     }
 
+    async checkKontak(tabel , user , jenis_kontak, kontak) {
+      const result = await this._pool.query(`SELECT id FROM ${tabel} WHERE owner_user = '${user}' AND jenis_kontak='${jenis_kontak}' AND kontak= '${kontak}';`);
+      if (result.rows.length === 0) {  return ;}
+      throw new InvariantError('sudah ada data kontak dengan nilai yang sama.');
+    }
+
 //service add kontak untuk tabel kontak buruh dan acc     
     async addKontak( tabel , user ,{jenis_kontak, kontak}) {
+      await this.checkKontak(tabel , user , jenis_kontak, kontak);
       const id =`kontak-${nanoid(5)}`;      
       const query ={
         text :`INSERT INTO ${tabel} VALUES ($1, $2, $3, $4) RETURNING id`,
@@ -24,22 +32,23 @@ class profilingService {
     };
 
 // service get kontak untuk tabel kontak buruh dan acc 
-    async getUserAcc(tabel , user){
+    async getKontak(tabel , user){
       const query = {
-        text: `SELECT * FROM ${tabel} owner_user_acc WHERE owner_user = $1;`,
+        text: `SELECT * FROM ${tabel} WHERE owner_user = $1;`,
         values: [user],
       };
       const result = await this._pool.query(query);
       if (!result.rows.length) {
         throw new NotFoundError('kontak tidak ditemukan');
       }
-      return result.rows[0];
+      return result.rows;
     } 
 
 //service update kontak untuk tabel kontak buruh dan acc     
-    async updateKontak( tabel , id , {jenis_kontak, kontak}) {    
+    async updateKontak( tabel ,user , id , {jenis_kontak, kontak}) {  
+      this.checkKontak(tabel , user , jenis_kontak, kontak);
       const query ={
-        text :`UPDATE ${tabel} SET jenis_kontak = $1, kontak= $4 WHERE id = $3 RETURNING id`,
+        text :`UPDATE ${tabel} SET jenis_kontak = $1, kontak= $2 WHERE id = $3 RETURNING id`,
         values:[jenis_kontak, kontak, id,],
       };
       const result = await this._pool.query(query);
@@ -50,16 +59,16 @@ class profilingService {
     };
 
 // service delete kontak untuk tabel kontak buruh dan acc 
-    async deleteUserAcc(tabel , id){
+    async deleteKontak(tabel , id){
       const query = {
-        text: `DELETE FROM ${tabel} WHERE owner_user = $1;`,
+        text: `DELETE FROM ${tabel} WHERE id = $1 RETURNING id;`,
         values: [id],
       };
       const result = await this._pool.query(query);
       if (!result.rows.length) {
         throw new NotFoundError('kontak tidak ditemukan');
       }
-      return result.rows[0];
+      return;
     }   
   
     async addLowonganKerja({jenis_pekerjaan, upah, indikator_upah, catatan}){

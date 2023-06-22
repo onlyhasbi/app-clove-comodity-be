@@ -8,10 +8,9 @@ class authorizationService {
   }
   
   async verifyUser(user, table, id ) {
-    const result1 = await this._pool.query(`SELECT user_owner FROM ${table} WHERE id='${id}'`);
-
-    if (!result1.rows.length){ throw new NotFoundError(`tidak menemukan id='${id} pada ${table}`)}
-    if (result1.rows[0].user_owner  !== user ){ throw new BadResourceError(`id='${id} bukan data milik anda`)} 
+    const result1 = await this._pool.query(`SELECT owner_user FROM ${table} WHERE id='${id}' ;`);
+    if (!result1.rows.length){ throw new NotFoundError(`tidak menemukan id = ${id} pada tabel ${table}`)}
+    if (result1.rows[0].owner_user  !== user ){ throw new BadResourceError(`id='${id} bukan data milik anda`)} 
     return ;
   }
 }
