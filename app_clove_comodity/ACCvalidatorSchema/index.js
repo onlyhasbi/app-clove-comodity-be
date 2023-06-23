@@ -1,20 +1,5 @@
 const Joi = require('joi');
 
-const kontakPayloadSchema = Joi.object({
-  jenis_kontak: Joi.string().valid('telpon', 'whatsapp', 'facebook', 'instagram', 'linkid', 'indeed', 'lainnya').required(),
-  kontak: Joi.string().required(),
-});
-const lamaranPayloadSchema = Joi.object({
-
-});
-const jobReqruimentPayloadSchema = Joi.object({
-
-});
-const offerPayloadSchema = Joi.object({
-  
-});
-
-
 //validator users
 const BuruhUserPayloadSchema = Joi.object({
   nomor_telpon: Joi.string().pattern(/^[0-9]{10,12}$/).required(),
@@ -58,6 +43,12 @@ const DeleteAccUserPayloadSchema = Joi.object({
   nomor_telpon: Joi.string().pattern(/^[0-9]{11,13}$/).required(),
   sandi: Joi.string().required(),
 });
+
+
+
+
+
+
 //validator auth
 const PostAuthPayloadSchema = Joi.object({
   nomor_telpon: Joi.string().pattern(/^[0-9]{10,13}$/).required(),
@@ -69,6 +60,42 @@ const PutAuthPayloadSchema = Joi.object({
 const DeleteAuthPayloadSchema = Joi.object({
   refreshToken: Joi.string().required(),
 });
+
+
+
+
+//validator profiling
+const kontakPayloadSchema = Joi.object({
+  jenis_kontak: Joi.string().valid('telpon', 'whatsapp', 'facebook', 'instagram', 'linkid', 'indeed', 'lainnya').required(),
+  kontak: Joi.string().required(),
+});
+const lamaranPayloadSchema = Joi.object({
+  jenis_pekerjaan: Joi.string(),
+  upah_harapan: Joi.string(),
+  indikator_ukur: Joi.string(),
+  catatan: Joi.string(),
+
+});
+const jobReqruimentPayloadSchema = Joi.object({
+  jenis_pekerjaan: Joi.string(),
+  upah: Joi.string(),
+  indikator_upah: Joi.string(),
+});
+const offerPayloadSchema = Joi.object({
+  jenis_penawaran: Joi.string(),
+  jenis_komditas_cengkeh: Joi.string(),
+  max_nilai_ukur: Joi.string(),
+  min_nilai_ukur: Joi.string(),
+  indikator_ukur: Joi.string(),
+  harga_rp: Joi.string(),
+  catatan: Joi.string(),  
+});
+
+
+
+
+
+
 //validator panen
 const LahanPayloadSchema = Joi.object({
   nama: Joi.string().required(),
@@ -77,6 +104,7 @@ const LahanPayloadSchema = Joi.object({
   status_hak_panen: Joi.string().valid('milik_sendiri','milik_tergadai','milik_dengan_pajak', 'bagi_hasil').required(),
 }); 
 const SetoranPayloadSchema = Joi.object({
+  id_buruh: Joi.string().required(),
   volume_liter: Joi.number().required(),
   berat_kg: Joi.string(),
   upah_rp: Joi.string().valid('milik_sendiri','milik_tergadai','milik_dengan_pajak', 'bagi_hasil').required(),
@@ -88,6 +116,13 @@ const HasilPanenPayloadSchema = Joi.object({
   waktu: Joi.string().required(),
   catatan: Joi.string().required(),
 });
+
+
+
+
+
+
+
 
 //kau pakai params langsung ambil dari nila yang di get ke front ed saja, klu pakai payload nanti tidak valid dan rawan error
 const LinkHasilSetoranPayloadSchema = Joi.object({
@@ -142,7 +177,14 @@ const JualBeliPanenQuerySchema = Joi.object({
   harga_rp : Joi.number().required(),
   waktu : Joi.date().required(),
   catatan : Joi.string().required(),
+});
 
+
+
+
+//validator request params
+const statusQuerySchema = Joi.object({
+  status_aktif: Joi.boolean().required(), 
 });
 
 module.exports = {
@@ -152,7 +194,6 @@ module.exports = {
   lamaranPayloadSchema,
   jobReqruimentPayloadSchema,
   offerPayloadSchema,
-
 
   //users
   AccUserPayloadSchema,
@@ -179,6 +220,8 @@ module.exports = {
   PembelianPayloadSchema,
   penjualanPanenQuerySchema,
   pembelianPanenQuerySchema,
-  JualBeliPanenQuerySchema
+  JualBeliPanenQuerySchema,
 
+//validator request params
+  statusQuerySchema
   };

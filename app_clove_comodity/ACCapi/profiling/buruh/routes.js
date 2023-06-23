@@ -38,7 +38,7 @@ const routes =(Handler)=> [
   {
     method: 'POST',
     path: '/lamaran-kerja',
-    handler: Handler.addLamaranTerbukaHandler,
+    handler: Handler.addLamaranHandler,
     options: {
       auth: 'ACC_jwt',
     },
@@ -46,7 +46,7 @@ const routes =(Handler)=> [
   {
     method: 'GET',
     path: '/lamaran-kerja',
-    handler: Handler.getLamaranTerbukaHandler,
+    handler: Handler.getLamaranHandler,
     options: {
       auth: 'ACC_jwt',
     },
@@ -54,7 +54,7 @@ const routes =(Handler)=> [
   {
     method: 'PUT',
     path: '/lamaran-kerja/{lamaranId}',
-    handler: Handler.editLamaranTerbukaHandler,
+    handler: Handler.editLamaranHandler,
     options: {
       auth: 'ACC_jwt',
     },
@@ -62,7 +62,7 @@ const routes =(Handler)=> [
   {
     method: 'DELETE',
     path: '/lamaran-kerja/{lamaranId}',
-    handler: Handler.deleteLamaranTerbukaHandler,
+    handler: Handler.deleteLamaranHandler,
     options: {
       auth: 'ACC_jwt',
     },

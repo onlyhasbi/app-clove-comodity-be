@@ -43,13 +43,14 @@ create table kontak_buruh (
     foreign key (owner_user) references owner_user_buruh(id) ON DELETE CASCADE 
 );
 
-create table lamaran_terbuka (
+create table lamaran_kerja(
     id varchar(30) primary key,
     owner_user varchar(30) not null,
     jenis_pekerjaan job not null,
     upah_harapan integer not null,
     indikator_ukur i_ukur not null,
     catatan varchar(60) null,
+    status_aktif boolean not null,
     foreign key (owner_user) references owner_user_buruh(id) ON DELETE CASCADE 
 );
 

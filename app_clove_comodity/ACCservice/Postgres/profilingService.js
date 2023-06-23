@@ -38,10 +38,11 @@ class profilingService {
         values: [user],
       };
       const result = await this._pool.query(query);
-      if (!result.rows.length) {
-        throw new NotFoundError('kontak tidak ditemukan');
-      }
-      return result.rows;
+      if (!result.rows.length) { throw new NotFoundError('kontak tidak ditemukan');}
+      const owner_user = user;
+      const jumlah_kontak =result.rows.length;
+      const kontak = result.rows;
+      return {owner_user, jumlah_kontak, kontak};
     } 
 
 //service update kontak untuk tabel kontak buruh dan acc     
