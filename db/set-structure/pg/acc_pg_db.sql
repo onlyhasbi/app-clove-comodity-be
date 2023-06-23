@@ -76,7 +76,7 @@ create table lowongan_kerja (
     foreign key (owner_user) references owner_user_acc(id) ON DELETE CASCADE
 );
 
-create table penawaran_komoditi (
+create table penawaran_komoditas (
     id varchar(30) primary key,
     owner_user varchar(30) not null,
     jenis_penawaran penawaran not null,

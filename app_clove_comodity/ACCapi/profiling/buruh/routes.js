@@ -60,6 +60,14 @@ const routes =(Handler)=> [
     },
   },
   {
+    method: 'PUT',
+    path: '/status-lamaran-kerja/{lamaranId}',
+    handler: Handler.editStatusLamaranHandler,
+    options: {
+      auth: 'ACC_jwt',
+    },
+  },
+  {
     method: 'DELETE',
     path: '/lamaran-kerja/{lamaranId}',
     handler: Handler.deleteLamaranHandler,

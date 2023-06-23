@@ -28,7 +28,6 @@ const profilingValidator = {
     const validationResult = statusQuerySchema.validate(payload);
     if (validationResult.error) { throw new InvariantError(validationResult.error.message) }
   },
-  sta
 };
  
 module.exports = profilingValidator;

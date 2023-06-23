@@ -77,7 +77,7 @@ class Handler {
 
 
 // handler lowongan kerja
-    async addLowonganKerjaHandler(request, h) {
+    async addLowonganHandler(request, h) {
       try {
         await this._validator.lowongan(request.payload);
         const lowonganId = await this._service.addLowonganKerja(request.auth.credentials.id, request.payload);
@@ -90,7 +90,7 @@ class Handler {
         return response;
       }
     };
-    async getLowonganKerjaHandler(request, h) {
+    async getLowonganHandler(request, h) {
       try {
         const lowonganKerja = await this._service.getLowonganKerja(request.auth.credentials.id);
         const response = await this._response(h, 'success', lowonganKerja);
@@ -102,7 +102,7 @@ class Handler {
         return response;
       }
     }
-    async editLowonganKerjaHandler(request, h) {
+    async editLowonganHandler(request, h) {
       try {
         await this._validator.lamaran(request.payload);
         await this._author.verifyUser(request.auth.credentials.id,`lowongan_kerja` , request.params.lowonganId)
@@ -116,7 +116,7 @@ class Handler {
         return response;
       }
     }
-    async editStatusLowonganKerjaHandler(request, h) {
+    async editStatusLowonganHandler(request, h) {
       try {
         await this._validator.status(request.query);
         await this._author.verifyUser(request.auth.credentials.id,`lowongan_kerja` , request.params.lowonganId)
@@ -130,7 +130,7 @@ class Handler {
         return response;
       }
     }
-    async deleteLowonganKerjaHandler(request, h) {
+    async deleteLowonganHandler(request, h) {
       try {
         await this._author.verifyUser(request.auth.credentials.id,`lowongan_kerja` , request.params.lowonganId)
         await this._service.deleteLowonganKerja(request.params.lowonganId);
@@ -164,8 +164,8 @@ class Handler {
     };
     async getPenawaranHandler(request, h) {
       try {
-        const penawaran_komoditi = await this._service.getPenawaranKerja(request.auth.credentials.id);
-        const response = await this._response(h, 'success', penawaran_komoditi);
+        const penawaran_komoditas = await this._service.getPenawaranKerja(request.auth.credentials.id);
+        const response = await this._response(h, 'success', penawaran_komoditas);
         response.code(200);
         return response;      
       } 
@@ -177,9 +177,9 @@ class Handler {
     async editPenawaranHandler(request, h) {
       try {
         await this._validator.lamaran(request.payload);
-        await this._author.verifyUser(request.auth.credentials.id,`penawaran_komoditi` , request.params.lowonganId)
+        await this._author.verifyUser(request.auth.credentials.id,`penawaran_komoditas` , request.params.lowonganId)
         const penawaranId = await this._service.updatePenawaranKerja(request.auth.credentials.id, request.params.lowonganId, request.payload);
-        const response = await this._response(h, 'Success', {penawaranId} , 'Data penawaran_komoditi  kerja diubah')
+        const response = await this._response(h, 'Success', {penawaranId} , 'Data penawaran komoditas  kerja diubah')
         response.code(201);
         return response;
       }
@@ -191,9 +191,9 @@ class Handler {
     async editStatusPenawaranHandler(request, h) {
       try {
         await this._validator.status(request.query);
-        await this._author.verifyUser(request.auth.credentials.id,`penawaran_komoditi` , request.params.penawaranId)
+        await this._author.verifyUser(request.auth.credentials.id,`penawaran_komoditas` , request.params.penawaranId)
         const penawaran = await this._service.updateStatusPenawaran(request.auth.credentials.id, request.params.penawaranId, request.query);
-        const response = await this._response(h, 'Success', penawaran , 'status penawaran_komoditi  diubah')
+        const response = await this._response(h, 'Success', penawaran , 'status penawaran komoditas  diubah')
         response.code(201);
         return response;
       }
@@ -204,9 +204,9 @@ class Handler {
     }
     async deletePenawaranHandler(request, h) {
       try {
-        await this._author.verifyUser(request.auth.credentials.id,`penawaran_komoditi` , request.params.penawaranId)
+        await this._author.verifyUser(request.auth.credentials.id,`penawaran_komoditas` , request.params.penawaranId)
         await this._service.deletePenawaran(request.params.penawaranId);
-        const response = await this._response(h, 'Success', undefined , 'Data penawaran komoditi  dihapus')
+        const response = await this._response(h, 'Success', undefined , 'Data penawaran komoditas  dihapus')
         response.code(201);
         return response;
       } 

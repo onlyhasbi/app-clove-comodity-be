@@ -36,66 +36,82 @@ const routes = (handler) => [
 //lowongan kerja  
   {
     method: 'POST',
-    path: '/acc-lowongan-kerja',
-    handler: handler.addLowonganKerjaHandler,
+    path: '/lowongan-kerja',
+    handler: handler.addLowonganHandler,
     options: {
       auth: 'ACC_jwt',
     },
   },
   {
     method: 'GET',
-    path: '/acc-lowongan-kerja',
-    handler: handler.getLowonganKerjaHandler,
+    path: '/lowongan-kerja',
+    handler: handler.getLowonganHandler,
     options: {
       auth: 'ACC_jwt',
     },
   },
   {
     method: 'PUT',
-    path: '/acc-lowongan-kerja/{lowonganId}',
-    handler: handler.editLowonganKerjaHandler,
+    path: '/lowongan-kerja/{lowonganId}',
+    handler: handler.editLowonganHandler,
+    options: {
+      auth: 'ACC_jwt',
+    },
+  },
+  {
+    method: 'PUT',
+    path: '/status-lowongan-kerja/{lowonganId}',
+    handler: handler.editStatusLowonganHandler,
     options: {
       auth: 'ACC_jwt',
     },
   },
   {
     method: 'DELETE',
-    path: '/acc-lowongan-kerja/{lowonganId}',
-    handler: handler.deleteLowonganKerjaHandler,
+    path: '/lowongan-kerja/{lowonganId}',
+    handler: handler.deleteLowonganHandler,
     options: {
       auth: 'ACC_jwt',
     },
   },
 
-//penawaran komoditi  
+//penawaran komoditas  
   {
     method: 'POST',
-    path: '/acc-penawaran-komoditi',
-    handler: handler.addPenawaranKomoditiHandler,
+    path: '/penawaran-komoditas',
+    handler: handler.addPenawaranHandler,
     options: {
       auth: 'ACC_jwt',
     },
   },
   {
     method: 'GET',
-    path: '/acc-penawaran-komoditi',
-    handler: handler.getPenawaranKomoditiHandler,
+    path: '/penawaran-komoditas',
+    handler: handler.getPenawaranHandler,
     options: {
       auth: 'ACC_jwt',
     },
   },
   {
     method: 'PUT',
-    path: '/acc-penawaran-komoditi',
-    handler: handler.editPenawaranKomoditiHandler,
+    path: '/penawaran-komoditas/{penawaranId}',
+    handler: handler.editPenawaranHandler,
+    options: {
+      auth: 'ACC_jwt',
+    },
+  },
+  {
+    method: 'PUT',
+    path: '/status-penawaran-komoditas/{penawaranId}',
+    handler: handler.editStatusPenawaranHandler,
     options: {
       auth: 'ACC_jwt',
     },
   },
   {
     method: 'DELETE',
-    path: '/acc-penawaran-komoditi',
-    handler: handler.deletePenawaranKomoditiHandler,
+    path: '/penawaran-komoditas/{penawaranId}',
+    handler: handler.deletePenawaranHandler,
     options: {
       auth: 'ACC_jwt',
     },
