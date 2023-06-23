@@ -8,8 +8,9 @@ class Handler {
     this._dummy = dummy;
     this._validator = validator;
     this._authentic = authentic;
-    this._response = (h, status, data, message) => {
-      const response = h.response({ status, message, data, });
+    this._response = (h, code, data, message) => {
+      const response = h.response({ status: "success", message, data, });
+      response.code(code);      
       return response;
     }
 
@@ -21,8 +22,7 @@ class Handler {
       await this._validator.addBuruh(request.payload);
       await this._dummy.chekIdLokasi(request.payload.alamat);
       const userId = await this._service.addUserBuruh(request.payload);
-      const response =  await this._response(h, 'success', { userId },  `berhasill berhasil terdaftar sebagai user Buruh'.`);
-      response.code(201);
+      const response =  await this._response(h, 201, {userId},  `berhasill berhasil terdaftar sebagai user Buruh'.`);
       return response;
     } 
     catch (error ) { 
@@ -34,8 +34,7 @@ class Handler {
   async getUserBuruh(request , h) {
     try {
       const user = await this._service.getUserBuruh(request.auth.credentials.id);
-      const response =  await this._response( h, 'success', { user });
-      response.code(201);
+      const response =  await this._response( h, 200, {user});
       return response;
     } 
     catch (error ) { 
@@ -48,8 +47,7 @@ class Handler {
       await this._validator.updateBuruh(request.payload);
       await this._dummy.chekIdLokasi(request.payload.alamat);
       const userId = await this._service.updateUserBuruh(request.auth.credentials.id, request.payload);
-      const response =  await this._response(h, 'success', { userId },  `berhasil merubah data user Buruh.`);
-      response.code(201);
+      const response =  await this._response(h, 201, {userId},  `berhasil merubah data user Buruh.`);
       return response;
     } 
     catch (error ) { 
@@ -57,51 +55,27 @@ class Handler {
       return response;
     }
   }
-  // async updateSandiUserBuruh(request, h) {
-  //   try {
-  //     this._validator.updatePasswordBuruh(request.payload);
-  //     const {nomor_telpon, sandi_lama, sandi_baru} = request.payload;
-  //     this._author.verifyUserCredential('buruh' , {nomor_telpon, sandi_lama}):
-  //     const user = await this._service.updateSandiUserBuruh(request.auth.credentials.id , sandi_baru);
-  //     const response = h.response({
-  //       status: 'success',
-  //       data: {
-  //         userId,
-  //       },
-  //     });
-  //     response.code(201);
-  //     return response;
-  //   } 
-  //   catch (error ) { 
-  //     const response = await responseCatch(error, h); 
-  //     return response;
-  //   }
-  // }
-  // async updateLupaSandiUserBuruh(request, h) {
-  //   try {
-  //     this._validator.buruh(request.payload);
-  //     const user = await this._service.updateLupaSandiUserBuruh(request.auth.credentials.id);
-  //     const response = h.response({
-  //       status: 'success',
-  //       data: {
-  //         userId,
-  //       },
-  //     });
-  //     response.code(201);
-  //     return response;
-  //   } 
-  //   catch (error ) { 
-  //     const response = await responseCatch(error, h); 
-  //     return response;
-  //   }
-  // }
+  async updateSandiUserBuruh(request, h) {
+    try {
+      await this._validator.updatePasswordBuruh(request.payload);
+      const {nomor_telpon, sandi_lama, sandi_baru} = request.payload;
+      const permission_id = await this._authentic.verifyUserCredential('owner_user_buruh', {nomor_telpon, sandi_baru});
+      const userId = await this._service.updateSandiUserBuruh(request.auth.credentials.id , sandi_baru);
+      const response =  await this._response(h, 201, {userId},  `berhasil menghapus data user Buruh.`);
+      return response;
+    } 
+    catch (error ) { 
+      const response = await responseCatch(error, h); 
+      return response;
+    }
+  }
+  //async updateLupaSandiUserBuruh(request, h) {}
   async deleteUserBuruh(request, h) {
     try {
       await this._validator.deleteBuruh(request.payload);
       const permission_id = await this._authentic.verifyUserCredential('owner_user_buruh' , request.payload);
       const userId = await this._service.deleteUserBuruh(request.auth.credentials.id, permission_id);
-      const response =  await this._response(h, 'success', { userId },  `berhasil menghapus data user Buruh.`);
-      response.code(201);
+      const response =  await this._response(h, 201, {userId},  `berhasil menghapus user Buruh.`);
       return response;
     } 
     catch (error ) { 
