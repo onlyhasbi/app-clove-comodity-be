@@ -27,19 +27,13 @@ const UpdateAccUserPayloadSchema = Joi.object({
   nama: Joi.string().required(),
   alamat: Joi.string().pattern(/^[a-zA-Z]{2}-\d{7}$/),
 });
-// const UpdatePasswordBuruhUserPayloadSchema = Joi.object({
-//   nomor_telpon: Joi.string().pattern(/^[0-9]{10,12}$/).required(),
-//   sandi: Joi.string().required(),
-// });
-// const UpdatePasswordAccUserPayloadSchema = Joi.object({
-//   nomor_telpon: Joi.string().pattern(/^[0-9]{10,12}$/).required(),
-//   sandi: Joi.string().required(),
-// });
-const DeleteBuruhUserPayloadSchema = Joi.object({
-  nomor_telpon: Joi.string().pattern(/^[0-9]{11,13}$/).required(),
+const UpdatePasswordUserPayloadSchema = Joi.object({
+  nomor_telpon: Joi.string().pattern(/^[0-9]{10,12}$/).required(),
   sandi: Joi.string().required(),
+  sandi_baru: Joi.string().required(),
 });
-const DeleteAccUserPayloadSchema = Joi.object({
+
+const CredentialParameterPayloadSchema = Joi.object({
   nomor_telpon: Joi.string().pattern(/^[0-9]{11,13}$/).required(),
   sandi: Joi.string().required(),
 });
@@ -50,10 +44,6 @@ const DeleteAccUserPayloadSchema = Joi.object({
 
 
 //validator auth
-const PostAuthPayloadSchema = Joi.object({
-  nomor_telpon: Joi.string().pattern(/^[0-9]{10,13}$/).required(),
-  sandi: Joi.string().required(),
-});
 const PutAuthPayloadSchema = Joi.object({
   refreshToken: Joi.string().required(),
 });
@@ -200,13 +190,11 @@ module.exports = {
   BuruhUserPayloadSchema,
   UpdateBuruhUserPayloadSchema,
   UpdateAccUserPayloadSchema,
-  // UpdatePasswordAccUserPayloadSchema,
-  // UpdatePasswordBuruhUserPayloadSchema,
-  DeleteBuruhUserPayloadSchema,
-  DeleteAccUserPayloadSchema,
+  UpdatePasswordUserPayloadSchema,
+
+  CredentialParameterPayloadSchema,
 
   //auth
-  PostAuthPayloadSchema,
   PutAuthPayloadSchema,
   DeleteAuthPayloadSchema,
 

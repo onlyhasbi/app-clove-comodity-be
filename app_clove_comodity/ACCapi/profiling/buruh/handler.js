@@ -116,7 +116,7 @@ class Handler {
     try {
       await this._validator.status(request.query);
       await this._author.verifyUser(request.auth.credentials.id,`lamaran_kerja` , request.params.lamaranId)
-      const lamaranKerja = await this._service.updateStatusLamaran(request.auth.credentials.id, request.params.lamaranId, request.query);
+      const lamaranKerja = await this._service.updateStatus( "lamaran_kerja", request.params.lamaranId, "status_aktif", request.query);
       const response = await this._response(h, 201, lamaranKerja , 'status lamran kerja diubah')
       return response;
     }

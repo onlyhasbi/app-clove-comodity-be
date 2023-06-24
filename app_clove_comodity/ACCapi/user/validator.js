@@ -3,10 +3,8 @@ const {
   BuruhUserPayloadSchema,
   UpdateAccUserPayloadSchema,
   UpdateBuruhUserPayloadSchema,
-  // UpdatePasswordAccUserPayloadSchema,
-  // UpdatePasswordBuruhUserPayloadSchema,
-  DeleteBuruhUserPayloadSchema,
-  DeleteAccUserPayloadSchema,
+  UpdatePasswordUserPayloadSchema,
+  CredentialParameterPayloadSchema,
  } = require('../../ACCvalidatorSchema');
 const InvariantError = require('../../exception/invariantErr');
  
@@ -27,20 +25,12 @@ const UsersValidator = {
     const validationResult = UpdateAccUserPayloadSchema.validate(payload);
     if (validationResult.error) { throw new InvariantError(validationResult.error.message) }
   },
-  // updatePasswordBuruh: (payload) => {
-  //   const validationResult = UpdatePasswordBuruhUserPayloadSchema.validate(payload);
-  //   if (validationResult.error) { throw new InvariantError(validationResult.error.message) }
-  // },
-  // UpdatePasswordAcc: (payload) => {
-  //   const validationResult = UpdatePasswordAccUserPayloadSchema.validate(payload);
-  //   if (validationResult.error) { throw new InvariantError(validationResult.error.message) }
-  // },
-  deleteBuruh: (payload) => {
-    const validationResult = DeleteBuruhUserPayloadSchema.validate(payload);
+  updateSandiUser: (payload) => {
+    const validationResult = UpdatePasswordUserPayloadSchema.validate(payload);
     if (validationResult.error) { throw new InvariantError(validationResult.error.message) }
   },
-  deleteAcc: (payload) => {
-    const validationResult = DeleteAccUserPayloadSchema.validate(payload);
+  deleteUser: (payload) => {
+    const validationResult = CredentialParameterPayloadSchema.validate(payload);
     if (validationResult.error) { throw new InvariantError(validationResult.error.message) }
   },
 };

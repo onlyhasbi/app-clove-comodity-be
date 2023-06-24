@@ -22,16 +22,14 @@ const routes = (handler) => [
         auth: 'ACC_jwt',
       },
   },
-
-
-  // {
-  //   method: 'PUT',
-  //   path : `/userPetani/sandi`,      
-  //   handler: handler.updateSandiUserPetani,
-  //     options: {
-  //       auth: 'ACC_jwt',
-  //     },
-  // },
+  {
+    method: 'PUT',
+    path : `/gantiSandiAcc`,      
+    handler: handler.updateSandiUserAcc,
+      options: {
+        auth: 'ACC_jwt',
+      },
+  },
 
   // {
   //   method: 'PUT',

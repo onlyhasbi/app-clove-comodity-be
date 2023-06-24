@@ -20,15 +20,14 @@ const routes =(handler)=> [
         auth: 'ACC_jwt',
       },
   },
-
-  // {
-  //   method: 'PUT',
-  //   path : `/userBuruh/sandi/{id}`,      
-  //   handler: handler.updateSandiUserBuruh,
-  //   options: {
-  //       auth: 'ACC_jwt',
-  //     },
-  // },
+  {
+    method: 'PUT',
+    path : `/gantiSandiBuruh`,      
+    handler: handler.updateSandiUserBuruh,
+    options: {
+        auth: 'ACC_jwt',
+      },
+  },
   // {
   //   method: 'PUT',
   //   path : `/userBuruh/lupasandi/{id}`,      

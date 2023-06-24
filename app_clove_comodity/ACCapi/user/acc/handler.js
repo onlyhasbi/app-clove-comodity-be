@@ -55,13 +55,12 @@ class Handler {
       return response;
     }
   }
-  async updateSandiUserPetani(request, h) {
+  async updateSandiUserAcc(request, h) {
     try {
-      await this._validator.updateSandiAcc(request.payload);
-      const {nomor_telpon, sandi : sandi_lama , sandi_baru} = request.payload;
-      const permission_id = await this._author.verifyUserCredential('owner_user_acc' ,{ nomor_telpon, sandi });
-      const userId = await this._service.updateSandiUserAcc(request.auth.credentials.id, permission_id, sandi_baru);
-      const response =  await this._response(h, 201, {userId},  `berhasil merubah sandi user acc.`);
+      await this._validator.updateSandiUser(request.payload);
+      const permission_id = await this._authentic.verifyUserCredential('owner_user_acc', request.payload);
+      const userId = await this._service.updateSandiUser('owner_user_acc', request.auth.credentials.id, permission_id, request.payload.sandi_baru);
+      const response =  await this._response(h, 201, {userId},  `berhasil mengganti sandi user acc.`);
       return response;
     } 
     catch (error) { 
@@ -72,9 +71,9 @@ class Handler {
   // async updateLupaSandiUserPetani(request, h) {}
   async deleteUserAcc(request, h) {
     try {
-      await this._validator.deleteAcc(request.payload);
+      await this._validator.deleteUser(request.payload);
       const permission_id = await this._authentic.verifyUserCredential('owner_user_acc' , request.payload);
-      const userId = await this._service.deleteUserAcc(request.auth.credentials.id, permission_id);
+      const userId = await this._service.deleteUser("owner_user_acc", request.auth.credentials.id, permission_id);
       const response =  await this._response(h, 201, { userId },  `berhasil menghapus user acc.`);
       return response;
     } 
