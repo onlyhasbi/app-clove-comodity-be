@@ -1,5 +1,7 @@
 const routes = (handler) => [
-  //user menambahkan data lahan 
+
+
+//user menambahkan data lahan 
   {
     method: 'POST',
     path: '/lahan',
@@ -32,39 +34,113 @@ const routes = (handler) => [
        auth: 'ACC_jwt',
     },
   },
-    //user menambahkan data lahan 
-    {
-      method: 'POST',
-      path: '/setoran',
-      handler: handler.addSetoranHandler,
-      options: {
-         auth: 'ACC_jwt',
-      },
+
+
+
+
+//user menambahkan data hasil panen
+  {
+    method: 'POST',
+    path: '/hasil-panen/{lahanId}',
+    handler: handler.addHasilPanenHandler,
+    options: {
+        auth: 'ACC_jwt',
     },
-    {
-      method: 'GET',
-      path: '/setoran',  
-      handler: handler.getSetoranHandler,
-      options: {
-         auth: 'ACC_jwt',
-      },
+  },
+  {
+    method: 'GET',
+    path: '/hasil-panen',  
+    handler: handler.getHasilPanenHandler,
+    options: {
+        auth: 'ACC_jwt',
     },
-    {
-      method: 'PUT',
-      path: '/setoran/{setoranId}',
-      handler: handler.editSetoranHandler,
-      options: {
-         auth: 'ACC_jwt',
-      },
+  },
+  {
+    method: 'GET',
+    path: '/hasil-panen/{lahanId}',  
+    handler: handler.getHasilPanenByLahanHandler,
+    options: {
+        auth: 'ACC_jwt',
     },
-    {
-      method: 'DELETE',
-      path: '/setoran/{setoranId}',
-      handler: handler.deleteSetoranHandler,
-      options: {
-         auth: 'ACC_jwt',
-      },
+  },
+  {
+    method: 'PUT',
+    path: '/hasil-panen/{hasilPanenId}',
+    handler: handler.editHasilPanenHandler,
+    options: {
+        auth: 'ACC_jwt',
     },
-  ];
+  },
+  {
+    method: 'DELETE',
+    path: '/hasil-panen/{hasilPanenId}',
+    handler: handler.deleteHasilPanenHandler,
+    options: {
+        auth: 'ACC_jwt',
+    },
+  },
+
+
+
+
+
+//user menambahkan data setoran 
+  {
+    method: 'POST',
+    path: '/setoran/{lahanId}',
+    handler: handler.addSetoranHandler,
+    options: {
+        auth: 'ACC_jwt',
+    },
+  },
+  {
+    method: 'GET',
+    path: '/setoran',  
+    handler: handler.getSetoranHandler,
+    options: {
+        auth: 'ACC_jwt',
+    },
+  },
+  {
+    method: 'GET',
+    path: '/setoran/{lahanId}',  
+    handler: handler.getSetoranByLahanHandler,
+    options: {
+        auth: 'ACC_jwt',
+    },
+  },
+  {
+    method: 'PUT',
+    path: '/setoran/{setoranId}',
+    handler: handler.editSetoranHandler,
+    options: {
+        auth: 'ACC_jwt',
+    },
+  },
+  {
+    method: 'PUT',
+    path: '/setoran-pada-hasil-panen/{hasilPanenId}',  
+    handler: handler.putSetoranPadaHasilPanenHandler,
+    options: {
+        auth: 'ACC_jwt',
+    },
+  },
+  {
+    method: 'PUT',
+    path: '/status-pembayaran-setoran/{setoranId}',  
+    handler: handler.putStatusPembayaranSetoranPanenHandler,
+    options: {
+        auth: 'ACC_jwt',
+    },
+  },
+  {
+    method: 'DELETE',
+    path: '/setoran/{setoranId}',
+    handler: handler.deleteSetoranHandler,
+    options: {
+        auth: 'ACC_jwt',
+    },
+  },
+];
    
-  module.exports = routes;
+module.exports = routes;

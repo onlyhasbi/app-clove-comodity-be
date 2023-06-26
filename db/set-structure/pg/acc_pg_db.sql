@@ -8,6 +8,9 @@ CREATE TYPE job AS ENUM('buruh_panen','buruh_penjemuran');
 CREATE TYPE staker AS ENUM('melamar', 'undangan', 'bekerja', 'ditolak', 'menolak');
 CREATE TYPE stala AS ENUM('milik_sendiri','milik_tergadai','milik_dengan_pajak', 'bagi_hasil');
 CREATE TYPE komoditas AS ENUM('kering', 'basah');
+CREATE TYPE editor AS ENUM('share','hanya_owner');
+CREATE TYPE pihak AS ENUM('penjual', 'pembeli');
+
 
 create table owner_user_buruh (
     id varchar(30) primary key,
@@ -18,8 +21,6 @@ create table owner_user_buruh (
     jenis_kelamin gender not null,  
     alamat varchar(100) null
 );
-
-
 create table owner_user_acc (
     id varchar(30) primary key,
     jenis_pengguna pengguna not null,
@@ -28,7 +29,6 @@ create table owner_user_acc (
     sandi varchar(60) not null,
     alamat varchar(100) null
 );
-
 create table auth (
     token varchar(200) primary key
 );
@@ -42,7 +42,6 @@ create table kontak_buruh (
     kontak varchar(30) not null,
     foreign key (owner_user) references owner_user_buruh(id) ON DELETE CASCADE 
 );
-
 create table lamaran_kerja(
     id varchar(30) primary key,
     owner_user varchar(30) not null,
@@ -55,7 +54,6 @@ create table lamaran_kerja(
 );
 
 /*tabel sistem profiling user petani dan pedagang*/
-
 create table kontak_acc (
     id varchar(30) primary key,
     owner_user varchar(30) not null,
@@ -63,7 +61,6 @@ create table kontak_acc (
     kontak varchar(30) not null,
     foreign key (owner_user) references owner_user_acc(id) ON DELETE CASCADE 
 );
-
 create table lowongan_kerja (
     id varchar(30) primary key,
     owner_user varchar(30) not null,
@@ -75,7 +72,6 @@ create table lowongan_kerja (
     status_referensi boolean not null,
     foreign key (owner_user) references owner_user_acc(id) ON DELETE CASCADE
 );
-
 create table penawaran_komoditas (
     id varchar(30) primary key,
     owner_user varchar(30) not null,
@@ -90,8 +86,8 @@ create table penawaran_komoditas (
     foreign key (owner_user) references owner_user_acc(id) ON DELETE CASCADE
 );
 
-/*tabel relasi kerja buruh di pxp*/
 
+/*tabel relasi kerja buruh di pxp*/
 create table status_kerja_buruh (
     id varchar(30) primary key,
     id_buruh varchar(30) not null,
@@ -101,8 +97,8 @@ create table status_kerja_buruh (
     foreign key (id_buruh) references owner_user_buruh(id) ON DELETE CASCADE 
 );
 
-/*tabel sistem pendataan proses panen*/
 
+/*tabel sistem pendataan proses panen*/
 create table lahan (
     id varchar(30) primary key,
     owner_user varchar(30) DEFAULT 'admin-1dvcfsr' not null,
@@ -112,19 +108,18 @@ create table lahan (
     status_hak_panen stala null,
     foreign key (owner_user) references owner_user_ACC(id) ON DELETE SET DEFAULT 
 );
-
 create table hasil_panen (
     id varchar(30) primary key,
     id_lahan varchar(30) not null,
-    berat_kg integer not null,
+    berat_pengukuran_kg integer null,
+    volume_pengukuran_kg integer null,
     waktu date not null,
     catatan varchar(30) null,
     foreign key (id_lahan) references lahan(id)
 );
-
 create table setoran (
     id varchar(30) primary key,
-    id_lahan varchar(30) not null,
+    id_hasil_panen varchar(30) not null,
     id_buruh varchar(30) DEFAULT 'buruh-unknow' not null,
     volume_liter integer not null,
     berat_kg integer null,
@@ -133,20 +128,12 @@ create table setoran (
     catatan varchar(30) null,
     status_pembayaran boolean not null,
     hari_pembayaran date not null,
-    foreign key (id_lahan) references lahan(id),
+    foreign key (id_hasil_panen) references hasil_panen(id),
     foreign key (id_buruh) references owner_user_buruh(id) ON DELETE SET DEFAULT
-);
-
-create table link_hasil_setoran (
-    id_setoran varchar(30) primary key,
-    id_hasil_p varchar(30) not null,
-    foreign key (id_setoran) references setoran(id) ON DELETE CASCADE,
-    foreign key (id_hasil_p) references hasil_panen(id) ON DELETE CASCADE
 );
 
 
 /*tabel sistem pendataan proses pengeringan*/
-
 create table tim_pengeringan (
     id varchar(30) primary key,
     nama_tim varchar(60) not null,
@@ -196,15 +183,16 @@ create table link_pengeringan (
 
 create table jual_beli (
     id varchar(30) primary key,
-    id_penjual varchar(30) DEFAULT 'admin-1dvcfsr' not null,
-    id_pembeli varchar(30) DEFAULT 'admin-1dvcfsr' not null,
+    owner_user varchar(30) DEFAULT 'admin-1dvcfsr' not null,
+    non_owner_user varchar(30) not null,
+    owner_user_as pihak not null,
+    editor editor not null,
     jenis_komditas_cengkeh komoditas not null,
     berat_kg integer not null,
     harga_rp integer not null,
     waktu date not null,
     catatan varchar(30) null,
-    status_confirm_penjual boolean not null,
-    status_confirm_pembeli boolean not null,
-    foreign key (id_pembeli) references owner_user_ACC(id) ON DELETE SET DEFAULT,
-    foreign key (id_penjual) references owner_user_ACC(id) ON DELETE SET DEFAULT
+    verifikasi_non_author boolean not null,
+    foreign key (owner_user) references owner_user_acc(id) ON DELETE SET DEFAULT,
+    foreign key (owner_user) references owner_user_acc(id) ON DELETE SET DEFAULT
 );
