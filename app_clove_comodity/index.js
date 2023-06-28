@@ -28,7 +28,7 @@ async function init() {
             aud: false,
             iss: false,
             sub: false,
-            maxAgeSec: 3600,
+            maxAgeSec: 14400,
         },
         validate: (artifacts) => ({
             isValid: true,

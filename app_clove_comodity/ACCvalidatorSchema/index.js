@@ -1,11 +1,5 @@
 const Joi = require('joi');
 
-const BuruhKontakPayloadSchema = Joi.object({
-  jenis_kontak: Joi.string().valid('telpon', 'whatsapp', 'facebook', 'instagram', 'linkid', 'indeed', 'lainnya').required(),
-  kontak: Joi.string().required(),
-})
-
-
 //validator users
 const BuruhUserPayloadSchema = Joi.object({
   nomor_telpon: Joi.string().pattern(/^[0-9]{10,12}$/).required(),
@@ -33,74 +27,93 @@ const UpdateAccUserPayloadSchema = Joi.object({
   nama: Joi.string().required(),
   alamat: Joi.string().pattern(/^[a-zA-Z]{2}-\d{7}$/),
 });
-// const UpdatePasswordBuruhUserPayloadSchema = Joi.object({
-//   nomor_telpon: Joi.string().pattern(/^[0-9]{10,12}$/).required(),
-//   sandi: Joi.string().required(),
-// });
-// const UpdatePasswordAccUserPayloadSchema = Joi.object({
-//   nomor_telpon: Joi.string().pattern(/^[0-9]{10,12}$/).required(),
-//   sandi: Joi.string().required(),
-// });
-const DeleteBuruhUserPayloadSchema = Joi.object({
+const UpdatePasswordUserPayloadSchema = Joi.object({
   nomor_telpon: Joi.string().pattern(/^[0-9]{10,12}$/).required(),
   sandi: Joi.string().required(),
+  sandi_baru: Joi.string().required(),
 });
-const DeleteAccUserPayloadSchema = Joi.object({
-  nomor_telpon: Joi.string().pattern(/^[0-9]{10,12}$/).required(),
+
+const CredentialParameterPayloadSchema = Joi.object({
+  nomor_telpon: Joi.string().pattern(/^[0-9]{11,13}$/).required(),
   sandi: Joi.string().required(),
 });
+
+
+
+
+
+
 //validator auth
-const PostAuthPayloadSchema = Joi.object({
-  nomor_telpon: Joi.string().pattern(/^[0-9]{10,12}$/).required(),
-  sandi: Joi.string().required(),
-});
 const PutAuthPayloadSchema = Joi.object({
   refreshToken: Joi.string().required(),
 });
 const DeleteAuthPayloadSchema = Joi.object({
   refreshToken: Joi.string().required(),
 });
-//validator lahan 
+
+
+
+
+//validator profiling
+const kontakPayloadSchema = Joi.object({
+  jenis_kontak: Joi.string().valid('telpon', 'whatsapp', 'facebook', 'instagram', 'linkid', 'indeed', 'lainnya').required(),
+  kontak: Joi.string().required(),
+});
+const lamaranPayloadSchema = Joi.object({
+  jenis_pekerjaan: Joi.string(),
+  upah_harapan: Joi.string(),
+  indikator_ukur: Joi.string(),
+  catatan: Joi.string(),
+
+});
+const jobReqruimentPayloadSchema = Joi.object({
+  jenis_pekerjaan: Joi.string(),
+  upah: Joi.string(),
+  indikator_upah: Joi.string(),
+});
+const offerPayloadSchema = Joi.object({
+  jenis_penawaran: Joi.string(),
+  jenis_komditas_cengkeh: Joi.string(),
+  max_nilai_ukur: Joi.string(),
+  min_nilai_ukur: Joi.string(),
+  indikator_ukur: Joi.string(),
+  harga_rp: Joi.string(),
+  catatan: Joi.string(),  
+});
+
+
+
+
+
+
+//validator panen
 const LahanPayloadSchema = Joi.object({
+  nama: Joi.string().required(),
   lokasi: Joi.string().pattern(/^[a-zA-Z]{2}-\d{7}$/).required(),
   luas_m2: Joi.number(),
   status_hak_panen: Joi.string().valid('milik_sendiri','milik_tergadai','milik_dengan_pajak', 'bagi_hasil').required(),
-});
-const LahanQuerySchema = Joi.object({
-  lokasi: Joi.string().pattern(/^[a-zA-Z]{2}-\d{7}$/),
-  luas_m2: Joi.string(),
-  status_hak_panen: Joi.string().valid('milik_sendiri','milik_tergadai','milik_dengan_pajak', 'bagi_hasil'),
-});
-
-//validator setoran 
+}); 
 const SetoranPayloadSchema = Joi.object({
+  id_buruh: Joi.string().required(),
   volume_liter: Joi.number().required(),
   berat_kg: Joi.string(),
   upah_rp: Joi.string().valid('milik_sendiri','milik_tergadai','milik_dengan_pajak', 'bagi_hasil').required(),
   waktu: Joi.string(),
   catatan: Joi.string(),
 });
-const SetoranQuerySchema = Joi.object({
-  volume_liter: Joi.string(),
-  berat_kg: Joi.string(),
-  upah_rp: Joi.string().valid('milik_sendiri','milik_tergadai','milik_dengan_pajak', 'bagi_hasil').required(),
-  waktu: Joi.string(),
-  catatan: Joi.string(),
-});
-
-//validator Hasil_panen 
 const HasilPanenPayloadSchema = Joi.object({
   berat_kg: Joi.string().required(),
   waktu: Joi.string().required(),
   catatan: Joi.string().required(),
 });
-const HasilPanenQuerySchema = Joi.object({
-  berat_kg: Joi.string(),
-  waktu: Joi.string(),
-  catatan: Joi.string(),
-});
 
-//validator Hasil_panen ???? apakah pakai params, atau payload
+
+
+
+
+
+
+
 //kau pakai params langsung ambil dari nila yang di get ke front ed saja, klu pakai payload nanti tidak valid dan rawan error
 const LinkHasilSetoranPayloadSchema = Joi.object({
 
@@ -154,45 +167,49 @@ const JualBeliPanenQuerySchema = Joi.object({
   harga_rp : Joi.number().required(),
   waktu : Joi.date().required(),
   catatan : Joi.string().required(),
+});
 
+
+
+
+//validator request params
+const statusQuerySchema = Joi.object({
+  status_aktif: Joi.boolean().required(), 
 });
 
 module.exports = {
 
   //profiling
-  BuruhKontakPayloadSchema,
-
+  kontakPayloadSchema,
+  lamaranPayloadSchema,
+  jobReqruimentPayloadSchema,
+  offerPayloadSchema,
 
   //users
   AccUserPayloadSchema,
   BuruhUserPayloadSchema,
   UpdateBuruhUserPayloadSchema,
   UpdateAccUserPayloadSchema,
-  // UpdatePasswordAccUserPayloadSchema,
-  // UpdatePasswordBuruhUserPayloadSchema,
-  DeleteBuruhUserPayloadSchema,
-  DeleteAccUserPayloadSchema,
+  UpdatePasswordUserPayloadSchema,
+
+  CredentialParameterPayloadSchema,
 
   //auth
-  PostAuthPayloadSchema,
   PutAuthPayloadSchema,
   DeleteAuthPayloadSchema,
 
-  //lahan
-  LahanPayloadSchema,
-  LahanQuerySchema,
-  //Setoran 
+  //panen
+  LahanPayloadSchema, 
   SetoranPayloadSchema,
-  SetoranQuerySchema,
-  //Hasil_panen 
   HasilPanenPayloadSchema,
-  HasilPanenQuerySchema,
 
   //Jual_beli 
   PenjualanPayloadSchema,
   PembelianPayloadSchema,
   penjualanPanenQuerySchema,
   pembelianPanenQuerySchema,
-  JualBeliPanenQuerySchema
+  JualBeliPanenQuerySchema,
 
+//validator request params
+  statusQuerySchema
   };

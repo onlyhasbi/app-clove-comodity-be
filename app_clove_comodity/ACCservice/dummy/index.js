@@ -12,7 +12,13 @@ class dummyService {
       if (location.length === 0) { throw new NotFoundError('id_lokasi tidak di temukan') }
       return location;
   }
-
+  async chekIdLokasi (id){
+    const data = await fs.readFileSync('app_clove_comodity/ACCservice/dummy/lokasi.json');
+      const jsonData = JSON.parse(data);
+      const location = jsonData.filter((lokasi) => lokasi.id_lokasi === id )
+      if (location.length === 0) { throw new NotFoundError(`id_lokasi yang digunakan tidak terdaftar, gunakan data id_lokasi yang ada pada relative-path:'/dummySubLocation/ID-0000000' dan sublokasi berikutnya pada relative-path:'/dummySubLocation/{id_location}'.`) }
+      return location;
+  };
 
   async dataSubLokasi(id) {
     const data = fs.readFileSync('app_clove_comodity/ACCservice/dummy/lokasi.json');

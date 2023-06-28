@@ -1,29 +1,27 @@
 const test = require('../ACCapi/test');
 
 const dummy = require('../ACCapi/dummy/index');
-const dummyS= require('../ACCservice/dummy/index')
+const dummyS= require('../ACCservice/dummy/index');
 
 const auth = require('../ACCapi/auth');
 const AuthValidator = require('../ACCapi/auth/validator');
-const authService = require('../ACCservice/Postgres/AuthService');
+const authenticationService = require('../ACCservice/Postgres/AuthenticationService');
 const TokenManager = require('../tokenize/TokenManager')
 
-const user_petani = require('../ACCapi/user/pxp');
+const user_acc = require('../ACCapi/user/acc');
 const user_buruh = require('../ACCapi/user/buruh')
 const UsersValidator = require('../ACCapi/user/validator');
 const usersService = require('../ACCservice/Postgres/usersService');
 
-const profiling_pxp = require('../ACCapi/profiling/pxp');
+const authorService = require('../ACCservice/Postgres/AuthorizationService');
+
+const profiling_acc = require('../ACCapi/profiling/acc');
 const profiling_buruh = require('../ACCapi/profiling/buruh');
 const profilingValidator = require('../ACCapi/profiling/validator');
-const profilingService = require('../ACCservice/Postgres/profiling/buruhProfilService');
+const profilingService = require('../ACCservice/Postgres/profilingService');
 
-const lahan = require('../ACCapi/dashboard/panen/lahan');
-const lahanService = require('../ACCservice/Postgres/accservice/lahan');
-const setoran = require('../ACCapi/dashboard/panen/setoran');
-const setoranService = require('../ACCservice/Postgres/accservice/setoran');
-const hasil_panen = require('../ACCapi/dashboard/panen/hasil_panen');
-const hasilPanenService = require('../ACCservice/Postgres/accservice/hasilPanen')
+const panen = require('../ACCapi/dashboard/panen');
+const panenService = require('../ACCservice/Postgres/accservice/panenService');
 const panenValidator = require('../ACCapi/dashboard/panen/validator');
 
 const bahan_pengeringan = require('../ACCapi/dashboard/pengeringan/bahan_pengeringan');
@@ -41,10 +39,11 @@ const information_buruh = require('../ACCapi/information/buruh');
 const informationValidator = require('../ACCapi/user/validator');
 
 const UsersService = new usersService();
+const AuthorService = new authorService();
+const AuthenticationService = new authenticationService();
+
 const ProfilingService = new profilingService();
-const AuthService = new authService();
-const LahanService = new lahanService()
-const SetoranService = new authService();
+const PanenService = new panenService()
 const Dummy = new dummyS();
 
 const plugin = [
@@ -58,12 +57,12 @@ const plugin = [
             }
         },
         {
-            plugin: user_petani,
+            plugin: user_acc,
             options: {
                 service : UsersService,
                 dummy : Dummy,
                 validator : UsersValidator,
-                author :AuthService,
+                authentic :AuthenticationService,
             }
         },
         {
@@ -72,46 +71,41 @@ const plugin = [
                 service : UsersService,
                 dummy : Dummy,
                 validator : UsersValidator,
-                author : AuthService,
+                authentic : AuthenticationService,
             }
         },
         {
             plugin: auth,
             options: {
-                service : AuthService,
+                service : AuthenticationService,
                 tokenManager : TokenManager,
                 validator : AuthValidator,
             }
         },
         {
-            plugin: profiling_pxp,
+            plugin: profiling_acc,
+            options: {
+                service: ProfilingService,
+                validator : profilingValidator,
+                author : AuthorService,
+            }
         },
         {
             plugin: profiling_buruh,
             options:{
                 service: ProfilingService,
                 validator : profilingValidator,
+                author : AuthorService,
+                
             }
         },
         {
-            plugin: lahan,
+            plugin: panen,
             options: {
-                service : SetoranService,
-
+                service : PanenService,
                 validator : panenValidator,
+                author : AuthorService,
             }
-        },
-        {
-            plugin: setoran,
-        },
-        {
-            plugin: hasil_panen,
-        },
-        {
-            plugin: bahan_pengeringan,
-        },
-        {
-            plugin: hasil_pengeringan,
         },
         {
             plugin: jual_beli,
