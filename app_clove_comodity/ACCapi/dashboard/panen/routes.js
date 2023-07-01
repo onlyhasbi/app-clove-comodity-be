@@ -119,7 +119,7 @@ const routes = (handler) => [
   },
   {
     method: 'PUT',
-    path: '/setoran-pada-hasil-panen/{hasilPanenId}',  
+    path: '/setoran/{setoranId}/pada-hasil-panen/{hasilPanenId}',  
     handler: handler.putSetoranPadaHasilPanenHandler,
     options: {
         auth: 'ACC_jwt',

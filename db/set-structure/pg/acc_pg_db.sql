@@ -136,18 +136,18 @@ create table setoran (
 /*tabel sistem pendataan proses pengeringan*/
 create table tim_pengeringan (
     id varchar(30) primary key,
+    owner_user varchar(30) DEFAULT 'admin-1dvcfsr' not null,
     nama_tim varchar(60) not null,
     ketua_tim varchar(30) DEFAULT 'buruh-unknow' not null,
+    foreign key (owner_user) references owner_user_acc(id) ON DELETE SET DEFAULT
     foreign key (ketua_tim) references owner_user_buruh(id) ON DELETE SET DEFAULT
 );
-
 create table anggota_tim (
     id_tim varchar(30) primary key,
     anggota_tim varchar(30) DEFAULT 'buruh-unknow' not null,
     foreign key (anggota_tim) references owner_user_buruh(id) ON DELETE SET DEFAULT,
     foreign key (id_tim) references tim_pengeringan(id) ON DELETE CASCADE
 );
-
 create table bahan_pengeringan (
     id varchar(30) primary key,
     owner_user varchar(30) DEFAULT 'admin-1dvcfsr' not null,
@@ -157,7 +157,6 @@ create table bahan_pengeringan (
     catatan varchar(30) null,
     foreign key (owner_user) references owner_user_acc(id) ON DELETE SET DEFAULT
 );
-
 create table hasil_pengeringan (
     id varchar(30) primary key,
     owner_user varchar(30) DEFAULT 'acc-unknow' not null,
@@ -168,7 +167,7 @@ create table hasil_pengeringan (
     catatan varchar(30) null,
     upah varchar(30) null,
     status_pembayaran boolean,
-    foreign key (owner_user) references owner_user_ACC(id) ON DELETE SET DEFAULT,
+    foreign key (owner_user) references owner_user_acc(id) ON DELETE SET DEFAULT,
     foreign key (tim_pengeringan) references tim_pengeringan(id) ON DELETE CASCADE
 );
 
@@ -194,5 +193,5 @@ create table jual_beli (
     catatan varchar(30) null,
     verifikasi_non_author boolean not null,
     foreign key (owner_user) references owner_user_acc(id) ON DELETE SET DEFAULT,
-    foreign key (owner_user) references owner_user_acc(id) ON DELETE SET DEFAULT
+    foreign key (non_owner_user) references owner_user_acc(id) ON DELETE SET DEFAULT
 );

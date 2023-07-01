@@ -8,10 +8,11 @@ class Handler {
     this._service = service;
     this._validator =validator;
     this._author = author;
-    this._response = ( h, status, data, message) => {
-        const response = h.response({ status, message, data, });
-        return response;
-      }
+    this._response = (h, code, data, message) => {
+      const response = h.response({ status: "success", message, data, });
+      response.code(code);
+      return response;
+    }
 
     autoBind(this);
 }
@@ -25,8 +26,7 @@ class Handler {
     try {
       await this._validator.lahan(request.payload);
       const lahanId = await this._service.addLahan(request.auth.credentials.id, request.payload);
-      const response = await this._response( h, 'success',  { lahanId, }, `Lahan berhasil ditambahkan`);
-      response.code(201);
+      const response = await this._response( h, 201,  { lahanId, }, `Lahan berhasil ditambahkan`);
       return response;
     } 
     catch (error) {
@@ -37,8 +37,7 @@ class Handler {
   async getLahanHandler(request, h) {
     try {
       const lahan = await this._service.getLahan(request.auth.credentials.id);
-      const response = await this._response(h, 'success', lahan );
-      response.code(200);
+      const response = await this._response(h, 200, lahan );
       return response;      
     } 
     catch (error) {
@@ -49,10 +48,9 @@ class Handler {
   async editLahanHandler(request, h) {
     try {
       await this._validator.lahan(request.payload);
-      await this._author.verifyUser(request.auth.credentials.id, `lahan` , request.params.lahanId)
+      await this._author.verifyUser(request.auth.credentials.id, `lahan` , request.params.lahanId);
       const lahanId = await this._service.updateLahan(  request.auth.credentials.id, request.params.lahanId, request.payload);
-      const response = await this._response(h, 'Success', { lahanId, } , 'Data lahan berhasil diubah')
-      response.code(201);
+      const response = await this._response(h, 201, { lahanId, } , 'Data lahan berhasil diubah');
       return response;
     }
     catch (error) {
@@ -62,10 +60,9 @@ class Handler {
   }
   async deleteLahanHandler(request, h) {
     try {
-      await this._author.verifyUser(request.auth.credentials.id,`lahan` , request.params.lahanId)
+      await this._author.verifyUser(request.auth.credentials.id,`lahan` , request.params.lahanId);
       await this._service.deleteLahan(request.params.lahanId);
-      const response = await this._response(h, 'Success', undefined , 'Data lahan berhasil dihapus')
-      response.code(201);
+      const response = await this._response(h, 201, undefined , 'Data lahan berhasil dihapus');
       return response;
     } 
     catch (error) {
@@ -81,10 +78,9 @@ class Handler {
 async addHasilPanenHandler(request, h) {
   try {
     await this._validator.hasilPanen(request.payload);
-    await this._author.verifyUser(request.auth.credentials.id, `lahan` , request.payload.id_lahan)
+    await this._author.verifyUser(request.auth.credentials.id, `lahan` , request.payload.id_lahan);
     const hasilPanenId = await this._service.addHasilPanenHandler(request.payload);
-    const response = await this._response( h, 'success',  { hasilPanenId, }, `Lahan berhasil ditambahkan`);
-    response.code(201);
+    const response = await this._response( h, 201,  { hasilPanenId, }, `Lahan berhasil ditambahkan`);
     return response;
   } 
   catch (error) {
@@ -95,8 +91,7 @@ async addHasilPanenHandler(request, h) {
 async getHasilPanenHandler(request, h) {
   try {
     const hasilPanen = await this._service.getHasilPanen(request.auth.credentials.id);
-    const response = await this._response(h, 'success', hasilPanen );
-    response.code(200);
+    const response = await this._response(h, 200, hasilPanen );
     return response;      
   } 
   catch (error) {
@@ -109,8 +104,7 @@ async getHasilPanenByLahanHandler(request, h) {
     await validator.lahanId(request.lahanId);
     await this._author.verifyUser(request.auth.credentials.id, `lahan` , request.params.lahanId);
     const hasilPanen = await this._service.getHasilPanen(request.params.lahanId);
-    const response = await this._response(h, 'success', hasilPanen );
-    response.code(200);
+    const response = await this._response(h, 200, hasilPanen );
     return response;
   } 
   catch (error) {
@@ -125,8 +119,7 @@ async editHasilPanenHandler(request, h) {
     await this._author.verifyUser(request.auth.credentials.id, `lahan` , id_lahan);
     await this._author.verifyUser(request.auth.credentials.id, `lahan` , request.payload.id_lahan);
     const lahanId = await this._service.updateHasilPanen(request.params.hasilPanenId, request.payload);
-    const response = await this._response(h, 'Success', { lahanId } , 'Data lahan berhasil diubah');
-    response.code(201);
+    const response = await this._response(h, 201, { lahanId } , 'Data lahan berhasil diubah');
     return response;
   }
   catch (error) {
@@ -139,8 +132,7 @@ async deleteHasilPanenHandler(request, h) {
     const id_lahan = await this._service.chekLahanHasilPanen(request.params.hasilPanenId);
     await this._author.verifyUser(request.auth.credentials.id, `lahan` , id_lahan);
     await this._service.deleteLahan(request.params.lahanId);
-    const response = await this._response(h, 'Success', undefined , 'Data lahan berhasil dihapus')
-    response.code(201);
+    const response = await this._response(h, 201, undefined , 'Data lahan berhasil dihapus');
     return response;
   } 
   catch (error) {
@@ -157,8 +149,7 @@ async addSetoranHandler(request, h) {
     const id_lahan = await this._service.chekLahanHasilPanen(request.params.payload.id_hasil_panen);
     await this._author.verifyUser(request.auth.credentials.id, `lahan` , id_lahan);
     const setoranId = await this._service.addSetoranHandler(request.payload);
-    const response = await this._response( h, 'success',  {setoranId}, `Lahan berhasil ditambahkan`);
-    response.code(201);
+    const response = await this._response( h, 201,  {setoranId}, `Lahan berhasil ditambahkan`);
     return response;
   } 
   catch (error) {
@@ -169,8 +160,7 @@ async addSetoranHandler(request, h) {
 async getSetoranHandler(request, h) {
   try {
     const hasilPanen = await this._service.getHasilPanen(request.auth.credentials.id);
-    const response = await this._response(h, 'success', hasilPanen );
-    response.code(200);
+    const response = await this._response(h, 200, hasilPanen );
     return response;      
   } 
   catch (error) {
@@ -183,8 +173,7 @@ async getSetoranByLahanHandler(request, h) {
     await validator.lahanId(request.lahanId);
     await this._author.verifyUser(request.auth.credentials.id, `lahan` , request.params.lahanId);
     const hasilPanen = await this._service.getSetoran(request.params.lahanId);
-    const response = await this._response(h, 'success', hasilPanen );
-    response.code(200);
+    const response = await this._response(h, 200, hasilPanen );
     return response;
   } 
   catch (error) {
@@ -198,8 +187,7 @@ async getSetoranByHasilPanenHandler(request, h) {
     const id_lahan = await this._service.chekLahanHasilPanen(request.params.hasilPanenId);
     await this._author.verifyUser(request.auth.credentials.id, `lahan` , id_lahan);
     const hasilPanen = await this._service.getSetoran(request.params.hasilPanenId);
-    const response = await this._response(h, 'success', hasilPanen );
-    response.code(200);
+    const response = await this._response(h, 200, hasilPanen );
     return response;
   } 
   catch (error) {
@@ -215,8 +203,7 @@ async editSetoranHandler(request, h) {
     await this._author.verifyUser(request.auth.credentials.id, `lahan` , id_lahan);
     await this._author.verifyUser(request.auth.credentials.id, `lahan` , request.payload.id_lahan);
     const lahanId = await this._service.updateHasilPanen(request.params.setoranId, request.payload);
-    const response = await this._response(h, 'Success', { lahanId } , 'Data lahan berhasil diubah');
-    response.code(201);
+    const response = await this._response(h, 201, { lahanId } , 'Data lahan berhasil diubah');
     return response;
   }
   catch (error) {
@@ -230,8 +217,7 @@ async deleteSetoranHandler(request, h) {
     const id_lahan = await this._service.chekLahanHasilPanen(id_hasil_panen);
     await this._author.verifyUser(request.auth.credentials.id, `lahan` , id_lahan);
     await this._service.deleteLahan(request.params.setoranId);
-    const response = await this._response(h, 'Success', undefined , 'Data lahan berhasil dihapus')
-    response.code(201);
+    const response = await this._response(h, 201, undefined , 'Data lahan berhasil dihapus');
     return response;
   } 
   catch (error) {

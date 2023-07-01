@@ -106,23 +106,21 @@ const HasilPanenPayloadSchema = Joi.object({
   waktu: Joi.string().required(),
   catatan: Joi.string().required(),
 });
-
-
-
-
-
-
-
-
 //kau pakai params langsung ambil dari nila yang di get ke front ed saja, klu pakai payload nanti tidak valid dan rawan error
 const LinkHasilSetoranPayloadSchema = Joi.object({
 
 });
-
 //validator Hasil_panen
 const LinkSetoranBuruhPayloadSchema = Joi.object({
 
 });
+
+
+
+
+
+
+
 //validator jual_beli
 const PenjualanPayloadSchema = Joi.object({
   id_pembeli : Joi.string().required(),
@@ -170,7 +168,17 @@ const JualBeliPanenQuerySchema = Joi.object({
 });
 
 
+//validator pengeringan 
+const TimPengeringanPayloadSchema = Joi.object({
+  nama_tim: Joi.string().required(),
+  ketua_tim: Joi.string().required(), 
+});
+const BahanPengeringanPayloadSchema = Joi.object({
 
+});
+const HasilPengeringanPayloadSchema = Joi.object({
+
+});
 
 //validator request params
 const statusQuerySchema = Joi.object({
@@ -209,6 +217,11 @@ module.exports = {
   penjualanPanenQuerySchema,
   pembelianPanenQuerySchema,
   JualBeliPanenQuerySchema,
+
+  //pengeringan 
+  TimPengeringanPayloadSchema,
+  BahanPengeringanPayloadSchema,
+  HasilPengeringanPayloadSchema,
 
 //validator request params
   statusQuerySchema

@@ -1,10 +1,24 @@
-const { 
-  PayloadLahanSchema,
-  QueryLahanSchema,
+const {
+  TimPengeringanPayloadSchema,
+  AnggotaTimParamsSchema,
+  BahanPengeringanPayloadSchema,
+  HasilPengeringanPayloadSchema,
  } = require('../../../ACCvalidatorSchema');
 const InvariantError = require('../../../exception/invariantErr');
  
-const PanenValidator = {
+const PengeringanValidator = {
+  timPengeringan: (payload) => {
+    const validationResult = TimPengeringanPayloadSchema.validate(payload);
+    if (validationResult.error) { throw new InvariantError(validationResult.error.message) }
+  },
+  bahan: (payload) => {
+    const validationResult = BahanPengeringanPayloadSchema.validate(payload);
+    if (validationResult.error) { throw new InvariantError(validationResult.error.message) }
+  },
+  hasil: (query) => {
+    const validationResult = HasilPengeringanPayloadSchema.validate(query);
+    if (validationResult.error) { throw new InvariantError(validationResult.error.message) }
+  },
 };
  
-module.exports = PanenValidator;
+module.exports = PengeringanValidator;

@@ -1,11 +1,18 @@
-const {
-  PostAuthPayloadSchema,
-  PutAuthPayloadSchema,
-  DeleteAuthPayloadSchema,
-} = require('../schema');
-const InvariantError = require('../../exception/invariantErr');
+const { 
+  PembelianPayloadSchema,
+  PenjualanPayloadSchema,
+ } = require('../../../ACCvalidatorSchema');
+const InvariantError = require('../../../exception/invariantErr');
  
-const AuthsValidator = {
+const JualBeliValidator = {
+  pembelian: (payload) => {
+    const validationResult = PembelianPayloadSchema.validate(payload);
+    if (validationResult.error) { throw new InvariantError(validationResult.error.message) }
+  },
+  penjualan: (query) => {
+    const validationResult = PenjualanPayloadSchema.validate(query);
+    if (validationResult.error) { throw new InvariantError(validationResult.error.message) }
+  },
 };
  
-module.exports = AuthsValidator;
+module.exports = JualBeliValidator;
