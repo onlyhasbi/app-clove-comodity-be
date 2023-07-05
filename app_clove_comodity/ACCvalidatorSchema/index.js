@@ -60,24 +60,25 @@ const kontakPayloadSchema = Joi.object({
   kontak: Joi.string().required(),
 });
 const lamaranPayloadSchema = Joi.object({
-  jenis_pekerjaan: Joi.string(),
-  upah_harapan: Joi.string(),
-  indikator_ukur: Joi.string(),
+  jenis_pekerjaan: Joi.string().valid('buruh_panen','buruh_penjemuran').required(),
+  upah_harapan: Joi.number().required(),
+  indikator_ukur: Joi.string().valid('berat/kg', 'volume/liter').required(),
   catatan: Joi.string(),
 
 });
 const jobReqruimentPayloadSchema = Joi.object({
-  jenis_pekerjaan: Joi.string(),
-  upah: Joi.string(),
-  indikator_upah: Joi.string(),
+  jenis_pekerjaan: Joi.string().valid('buruh_panen','buruh_penjemuran').required(),
+  upah_rp: Joi.number().required(),
+  indikator_ukur: Joi.string().valid('berat/kg', 'volume/liter').required(),
+  catatan: Joi.string(),  
 });
 const offerPayloadSchema = Joi.object({
-  jenis_penawaran: Joi.string(),
-  jenis_komditas_cengkeh: Joi.string(),
-  max_nilai_ukur: Joi.string(),
-  min_nilai_ukur: Joi.string(),
-  indikator_ukur: Joi.string(),
-  harga_rp: Joi.string(),
+  jenis_penawaran: Joi.string().valid('menjual', 'membeli').required(),
+  jenis_komoditas: Joi.string().valid('kering', 'basah').required(),
+  max: Joi.number(),
+  min: Joi.number(),
+  satuan: Joi.string().valid('berat/kg', 'volume/liter').required(),
+  harga_rp: Joi.number().required(),
   catatan: Joi.string(),  
 });
 
@@ -92,19 +93,22 @@ const LahanPayloadSchema = Joi.object({
   lokasi: Joi.string().pattern(/^[a-zA-Z]{2}-\d{7}$/).required(),
   luas_m2: Joi.number(),
   status_hak_panen: Joi.string().valid('milik_sendiri','milik_tergadai','milik_dengan_pajak', 'bagi_hasil').required(),
-}); 
-const SetoranPayloadSchema = Joi.object({
-  id_buruh: Joi.string().required(),
-  volume_liter: Joi.number().required(),
-  berat_kg: Joi.string(),
-  upah_rp: Joi.string().valid('milik_sendiri','milik_tergadai','milik_dengan_pajak', 'bagi_hasil').required(),
-  waktu: Joi.string(),
-  catatan: Joi.string(),
 });
 const HasilPanenPayloadSchema = Joi.object({
-  berat_kg: Joi.string().required(),
+  id_lahan : Joi.string().required(),
+  berat_pengukuran_kg: Joi.number(),
+  volume_pengukuran_kg: Joi.number(),
   waktu: Joi.string().required(),
   catatan: Joi.string().required(),
+}); 
+const SetoranPayloadSchema = Joi.object({
+  id_hasil_panen: Joi.string().required(),
+  id_buruh: Joi.string().required(),
+  volume_liter: Joi.number().required(),
+  berat_kg: Joi.number().required(),
+  upah_rp: Joi.number().required(),
+  waktu: Joi.date().required(),
+  catatan: Joi.string(),
 });
 //kau pakai params langsung ambil dari nila yang di get ke front ed saja, klu pakai payload nanti tidak valid dan rawan error
 const LinkHasilSetoranPayloadSchema = Joi.object({
@@ -174,10 +178,17 @@ const TimPengeringanPayloadSchema = Joi.object({
   ketua_tim: Joi.string().required(), 
 });
 const BahanPengeringanPayloadSchema = Joi.object({
-
+  berat_kg: Joi.number().required(),
+  volume_liter: Joi.number().required(),
+  waktu_mulai_pengeringan: Joi.date().required(),
+  catatan: Joi.string().required(),
 });
 const HasilPengeringanPayloadSchema = Joi.object({
-
+  tim_pengeringan: Joi.string().required(),
+  berat_kg: Joi.number().required(),
+  volume_liter: Joi.number().required(),
+  dikeringkan: Joi.string().valid('','').required(),
+  catatan: Joi.string().required(),
 });
 
 //validator request params

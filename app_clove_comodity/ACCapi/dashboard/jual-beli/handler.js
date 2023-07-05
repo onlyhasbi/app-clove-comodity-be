@@ -1,4 +1,5 @@
-const responseCatch = require('../../../exception/responHandlerCatch')
+const responseCatch = require('../../../exception/responHandlerCatch');
+const autoBind = require ('auto-bind');
 
 
 class Handler {

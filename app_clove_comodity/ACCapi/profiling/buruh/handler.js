@@ -7,41 +7,13 @@ class Handler {
     this._service = service;
     this._validator = validator;
     this._author = author;
-<<<<<<< HEAD
-
-
-    autoBind(this);
-    console.log(this._validator);
-  }
-
-  async postKontakBuruh(request,h){
-    try{
-      this._validator.addKontakBuruh(request.payload);
-      const userId = await this._service.addKontak( request.payload);
-      const response = h.response({
-        status :'success',
-        message:'berhasil menambahkan kontak buruh',
-        data:{
-          userId,
-        },
-      });
-      response.code(201);
-      return response;
-    }
-    catch (error ) { 
-      console.error(error);
-      const response = await responseCatch(error, h); 
-      return response;
-     }
-=======
     this._response = ( h, code, data, message) => {
       const response = h.response({ status: "success", message, data, });
       response.code(code);
       return response;
     }
-    autoBind(this);   
+    autoBind(this);  
   }
-
 
 
 
@@ -163,7 +135,6 @@ class Handler {
       const response = await responseCatch(error, h);
       return response;
     }
->>>>>>> 4bb930930a4e77284404f18d7984856db3ef2f67
   }
   
 }

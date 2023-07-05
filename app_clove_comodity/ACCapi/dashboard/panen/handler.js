@@ -79,7 +79,7 @@ async addHasilPanenHandler(request, h) {
   try {
     await this._validator.hasilPanen(request.payload);
     await this._author.verifyUser(request.auth.credentials.id, `lahan` , request.payload.id_lahan);
-    const hasilPanenId = await this._service.addHasilPanenHandler(request.payload);
+    const hasilPanenId = await this._service.addHasilPanen(request.payload);
     const response = await this._response( h, 201,  { hasilPanenId, }, `Lahan berhasil ditambahkan`);
     return response;
   } 
@@ -101,9 +101,8 @@ async getHasilPanenHandler(request, h) {
 }
 async getHasilPanenByLahanHandler(request, h) {
   try {
-    await validator.lahanId(request.lahanId);
     await this._author.verifyUser(request.auth.credentials.id, `lahan` , request.params.lahanId);
-    const hasilPanen = await this._service.getHasilPanen(request.params.lahanId);
+    const hasilPanen = await this._service.getHasilPanenByLahan(request.params.lahanId);
     const response = await this._response(h, 200, hasilPanen );
     return response;
   } 
@@ -118,8 +117,8 @@ async editHasilPanenHandler(request, h) {
     const id_lahan = await this._service.chekLahanHasilPanen(request.params.hasilPanenId);
     await this._author.verifyUser(request.auth.credentials.id, `lahan` , id_lahan);
     await this._author.verifyUser(request.auth.credentials.id, `lahan` , request.payload.id_lahan);
-    const lahanId = await this._service.updateHasilPanen(request.params.hasilPanenId, request.payload);
-    const response = await this._response(h, 201, { lahanId } , 'Data lahan berhasil diubah');
+    const hasilPanenId = await this._service.updateHasilPanen(request.params.hasilPanenId, request.payload);
+    const response = await this._response(h, 201, { hasilPanenId } , 'Data lahan berhasil diubah');
     return response;
   }
   catch (error) {
@@ -131,7 +130,7 @@ async deleteHasilPanenHandler(request, h) {
   try {
     const id_lahan = await this._service.chekLahanHasilPanen(request.params.hasilPanenId);
     await this._author.verifyUser(request.auth.credentials.id, `lahan` , id_lahan);
-    await this._service.deleteLahan(request.params.lahanId);
+    await this._service.deleteHasilPanen(request.params.hasilPanenId);
     const response = await this._response(h, 201, undefined , 'Data lahan berhasil dihapus');
     return response;
   } 
@@ -146,10 +145,11 @@ async deleteHasilPanenHandler(request, h) {
 async addSetoranHandler(request, h) {
   try {
     await this._validator.setoran(request.payload);
-    const id_lahan = await this._service.chekLahanHasilPanen(request.params.payload.id_hasil_panen);
+    const id_lahan = await this._service.chekLahanHasilPanen(request.payload.id_hasil_panen);
+    const id_buruh = await this._service.chekBuruh(request.payload.id_buruh);
     await this._author.verifyUser(request.auth.credentials.id, `lahan` , id_lahan);
-    const setoranId = await this._service.addSetoranHandler(request.payload);
-    const response = await this._response( h, 201,  {setoranId}, `Lahan berhasil ditambahkan`);
+    const setoranId = await this._service.addSetoran(request.payload);
+    const response = await this._response( h, 201,  {setoranId}, `setoran berhasil ditambahkan`);
     return response;
   } 
   catch (error) {
@@ -159,7 +159,7 @@ async addSetoranHandler(request, h) {
 }
 async getSetoranHandler(request, h) {
   try {
-    const hasilPanen = await this._service.getHasilPanen(request.auth.credentials.id);
+    const hasilPanen = await this._service.getSetoran(request.auth.credentials.id);
     const response = await this._response(h, 200, hasilPanen );
     return response;      
   } 
@@ -170,9 +170,8 @@ async getSetoranHandler(request, h) {
 }
 async getSetoranByLahanHandler(request, h) {
   try {
-    await validator.lahanId(request.lahanId);
     await this._author.verifyUser(request.auth.credentials.id, `lahan` , request.params.lahanId);
-    const hasilPanen = await this._service.getSetoran(request.params.lahanId);
+    const hasilPanen = await this._service.getSetoranByLahan(request.params.lahanId);
     const response = await this._response(h, 200, hasilPanen );
     return response;
   } 
@@ -183,10 +182,9 @@ async getSetoranByLahanHandler(request, h) {
 }
 async getSetoranByHasilPanenHandler(request, h) {
   try {
-    await validator.lahanId(request.lahanId);
     const id_lahan = await this._service.chekLahanHasilPanen(request.params.hasilPanenId);
     await this._author.verifyUser(request.auth.credentials.id, `lahan` , id_lahan);
-    const hasilPanen = await this._service.getSetoran(request.params.hasilPanenId);
+    const hasilPanen = await this._service.getSetoranByHasilPanen(request.params.hasilPanenId);
     const response = await this._response(h, 200, hasilPanen );
     return response;
   } 
@@ -198,11 +196,10 @@ async getSetoranByHasilPanenHandler(request, h) {
 async editSetoranHandler(request, h) {
   try {
     await this._validator.setoran(request.payload);
-    const id_hasil_panen = await this._service.chekLahanHasilPanen(request.params.setoranId);
+    const id_hasil_panen = await this._service.chekSetoranHasilPanen(request.params.setoranId);
     const id_lahan = await this._service.chekLahanHasilPanen(id_hasil_panen);
     await this._author.verifyUser(request.auth.credentials.id, `lahan` , id_lahan);
-    await this._author.verifyUser(request.auth.credentials.id, `lahan` , request.payload.id_lahan);
-    const lahanId = await this._service.updateHasilPanen(request.params.setoranId, request.payload);
+    const lahanId = await this._service.updateSetoran(request.params.setoranId, request.payload);
     const response = await this._response(h, 201, { lahanId } , 'Data lahan berhasil diubah');
     return response;
   }
@@ -211,12 +208,15 @@ async editSetoranHandler(request, h) {
     return response;
   }
 }
+
+async setSetoranPadaHasilPanenHandler() {};
+async setStatusPembayaranSetoranHandler() {};
 async deleteSetoranHandler(request, h) {
   try {
-    const id_hasil_panen = await this._service.chekLahanHasilPanen(request.params.setoranId);
+    const id_hasil_panen = await this._service.chekSetoranHasilPanen(request.params.setoranId);
     const id_lahan = await this._service.chekLahanHasilPanen(id_hasil_panen);
     await this._author.verifyUser(request.auth.credentials.id, `lahan` , id_lahan);
-    await this._service.deleteLahan(request.params.setoranId);
+    await this._service.deleteSetoran(request.params.setoranId);
     const response = await this._response(h, 201, undefined , 'Data lahan berhasil dihapus');
     return response;
   } 

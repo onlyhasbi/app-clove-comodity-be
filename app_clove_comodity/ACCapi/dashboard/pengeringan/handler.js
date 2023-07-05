@@ -1,4 +1,5 @@
-const responseCatch = require('../../../exception/responHandlerCatch')
+const responseCatch = require('../../../exception/responHandlerCatch');
+const autoBind = require ('auto-bind');
 
 
 class Handler {
@@ -42,7 +43,7 @@ class Handler {
     try {
       await this._validator.timPengeringan(request.payload);
       await this._author.verifyUser(request.auth.credentials.id, `tim_pengeringan` , request.params.timId);
-      const timPengeringanId = await this._service.updateTimPengeringan(  request.auth.credentials.id, request.params.timId, request.payload);
+      const timPengeringanId = await this._service.updateTimPengeringan(request.params.timId, request.payload);
       const response = await this._response(h, 201, { timPengeringanId, } , 'Data Tim pengeringan berhasil diubah');
       return response;
     } 
@@ -68,9 +69,8 @@ class Handler {
 //handler anggota tim pengeringan
   async addAnggotaTimHandler(request, h) {
     try {
-      await this._service.chekAnggotaTim('ada', request.params.anggotaTimId, request.params.timId);
       await this._author.verifyUser(request.auth.credentials.id, `tim_pengeringan` , request.params.timId);
-      const anggotaTimId = await this._service.addAnggotaTim(request.payload, request.params.timId);
+      const anggotaTimId = await this._service.addAnggotaTim(request.payload, request.params.timId, request.params.anggotaTimId);
       const response = await this._response( h, 201,  { anggotaTimId }, `Anggota tim berhasil ditambahkan ke dalam tim`);
       return response;
     } 
@@ -95,7 +95,7 @@ class Handler {
     try {
       await this._service.chekAnggotaTim('tidak ada', request.params.anggotaTimId, request.params.timId);
       await this._author.verifyUser(request.auth.credentials.id, `tim_pengeringan` , request.params.anggotaTimId);
-      await this._service.deleteLahan(request.payload, request.params.timId);
+      await this._service.deleteAnggotaTim(request.payload, request.params.timId);
       const response = await this._response(h, 201, undefined , 'Anggota tim berhasil dihapus');
       return response;
     } 
@@ -135,7 +135,7 @@ class Handler {
     try {
       await this._validator.bahan(request.payload);
       await this._author.verifyUser(request.auth.credentials.id, `bahan_pengeringan` , request.params.bahanId);
-      const BahanPengeringanId = await this._service.updateBahan(  request.auth.credentials.id, request.params.bahanId, request.payload);
+      const BahanPengeringanId = await this._service.updateBahan(request.params.bahanId, request.payload);
       const response = await this._response(h, 201, { BahanPengeringanId } , 'Data bahan pengeringan berhasil diubah');
       return response;
     } 
@@ -147,7 +147,7 @@ class Handler {
   async deleteBahanHandler(request, h) {
     try {
       await this._author.verifyUser(request.auth.credentials.id,`bahan_pengeringan` , request.params.bahanId);
-      await this._service.deleteLahan(request.params.bahanId);
+      await this._service.deleteBahan(request.params.bahanId);
       const response = await this._response(h, 201, undefined , 'Data bahan pengeringan berhasil dihapus');
       return response;
     } 
@@ -188,7 +188,7 @@ class Handler {
       await this._validator.hasil(request.payload);
       await this._author.verifyUser(request.auth.credentials.id, `hasil_pengeringan` , request.params.hasilId);
       await this._author.verifyUser(request.auth.credentials.id, `tim_pengeringan` , request.payload.tim_pengeringan);
-      const hasilPengeringanId = await this._service.updateHasil(  request.auth.credentials.id, request.params.hasilId, request.payload);
+      const hasilPengeringanId = await this._service.updateHasil(request.params.hasilId, request.payload);
       const response = await this._response(h, 201, { hasilPengeringanId } , 'Data hasil pengeringan berhasil diubah');
       return response;
     } 
@@ -197,10 +197,14 @@ class Handler {
       return response;
      }
   }
+  async setStatusPembayaranPengeringanHandler(){
+
+    
+  };
   async deleteHasilHandler(request, h) {
     try {
       await this._author.verifyUser(request.auth.credentials.id, `hasil_pengeringan` , request.params.hasilId);
-      await this._service.deleteHasiln(request.params.hasilId);
+      await this._service.deleteHasil(request.params.hasilId);
       const response = await this._response(h, 201, undefined , 'Data hasil pengeringan berhasil dihapus');
       return response;
     } 
@@ -214,7 +218,7 @@ class Handler {
     try {
       await this._author.verifyUser(request.auth.credentials.id, `bahan_pengeringan` , request.params.bahanId);
       await this._author.verifyUser(request.auth.credentials.id, `hasil_pengeringan` , request.params.hasilId);
-      await this._service.addHasil(request.params.bahanId, request.params.hasilId);
+      await this._service.addLinkPengeringan(request.params.bahanId, request.params.hasilId);
       const response = await this._response( h, 201,  undefined, `menetapkan bahan yang dikeringkan pada hasil pengeringan`);
       return response;
     } 
@@ -223,11 +227,11 @@ class Handler {
       return response;
     }
   }
-  async deleteLinkBahanPadaHasilPengeringanHandler(request, h) {
+  async DeleteLinkBahanPadaHasilPengeringanHandler(request, h) {
     try {
       await this._author.verifyUser(request.auth.credentials.id, `bahan_pengeringan` , request.params.bahanId);
       await this._author.verifyUser(request.auth.credentials.id, `hasil_pengeringan` , request.params.hasilId);
-      await this._service.deleteHasil(request.params.bahanId, request.params.hasilId);
+      await this._service.deleteLinkPengeringan(request.params.bahanId, request.params.hasilId);
       const response = await this._response( h, 201,  undefined, `menetapkan bahan yang dikeringkan tidak pada hasil pengeringan`);
       return response;
     } 

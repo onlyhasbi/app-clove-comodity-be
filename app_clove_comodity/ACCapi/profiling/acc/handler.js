@@ -77,7 +77,7 @@ class Handler {
   async addLowonganHandler(request, h) {
     try {
       await this._validator.lowongan(request.payload);
-      const lowonganId = await this._service.addLowonganKerja(request.auth.credentials.id, request.payload);
+      const lowonganId = await this._service.addLowongan(request.auth.credentials.id, request.payload);
       const response = await this._response( h, 201, {lowonganId}, `lowongan kerja di tambahkan`);
       response.code(201);
       return response;
@@ -89,7 +89,7 @@ class Handler {
   };
   async getLowonganHandler(request, h) {
     try {
-      const lowonganKerja = await this._service.getLowonganKerja(request.auth.credentials.id);
+      const lowonganKerja = await this._service.getLowongan(request.auth.credentials.id);
       const response = await this._response(h, 200, lowonganKerja);
       return response;      
     } 
@@ -100,9 +100,9 @@ class Handler {
   }
   async editLowonganHandler(request, h) {
     try {
-      await this._validator.lamaran(request.payload);
+      await this._validator.lowongan(request.payload);
       await this._author.verifyUser(request.auth.credentials.id,`lowongan_kerja` , request.params.lowonganId)
-      const lowonganKerjaId = await this._service.updateLowonganKerja(request.auth.credentials.id, request.params.lowonganId, request.payload);
+      const lowonganKerjaId = await this._service.updateLowongan(request.auth.credentials.id, request.params.lowonganId, request.payload);
       const response = await this._response(h, 201, {lowonganKerjaId}, 'Data lamran kerja diubah');
       return response;
     }
@@ -115,7 +115,7 @@ class Handler {
     try {
       await this._validator.status(request.query);
       await this._author.verifyUser(request.auth.credentials.id,`lowongan_kerja` , request.params.lowonganId)
-      const lowonganKerja = await this._service.updateStatusLowonganKerja(request.auth.credentials.id, request.params.lowonganId, request.query);
+      const lowonganKerja = await this._service.updateStatusLowongan(request.auth.credentials.id, request.params.lowonganId, request.query);
       const response = await this._response(h, 201, lowonganKerja , 'status lowongan kerja diubah')
       return response;
     }
@@ -127,7 +127,7 @@ class Handler {
   async deleteLowonganHandler(request, h) {
     try {
       await this._author.verifyUser(request.auth.credentials.id,`lowongan_kerja` , request.params.lowonganId)
-      await this._service.deleteLowonganKerja(request.params.lowonganId);
+      await this._service.deleteLowongan(request.params.lowonganId);
       const response = await this._response(h, 201, undefined , 'Data lowongan kerja dihapus')
       return response;
     } 
@@ -145,7 +145,7 @@ class Handler {
   async addPenawaranHandler(request, h) {
     try {
       await this._validator.penawaran(request.payload);
-      const penawaranId = await this._service.addPenawaranKerja(request.auth.credentials.id, request.payload);
+      const penawaranId = await this._service.addPenawaran(request.auth.credentials.id, request.payload);
       const response = await this._response(h, 201,  {penawaranId}, `penawaran_komoditi di tambahkan`);
       return response;
     } 
@@ -156,7 +156,7 @@ class Handler {
   };
   async getPenawaranHandler(request, h) {
     try {
-      const penawaran_komoditas = await this._service.getPenawaranKerja(request.auth.credentials.id);
+      const penawaran_komoditas = await this._service.getPenawaran(request.auth.credentials.id);
       const response = await this._response(h, 200, penawaran_komoditas);
       return response;      
     } 
@@ -167,9 +167,9 @@ class Handler {
   }
   async editPenawaranHandler(request, h) {
     try {
-      await this._validator.lamaran(request.payload);
-      await this._author.verifyUser(request.auth.credentials.id,`penawaran_komoditas` , request.params.lowonganId)
-      const penawaranId = await this._service.updatePenawaranKerja(request.auth.credentials.id, request.params.lowonganId, request.payload);
+      await this._validator.penawaran(request.payload);
+      await this._author.verifyUser(request.auth.credentials.id,`penawaran_komoditas` , request.params.penawaranId)
+      const penawaranId = await this._service.updatePenawaran(request.auth.credentials.id, request.params.penawaranId, request.payload);
       const response = await this._response(h, 201, {penawaranId} , 'Data penawaran komoditas  kerja diubah')
       return response;
     }

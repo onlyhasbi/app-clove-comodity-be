@@ -1,6 +1,5 @@
 const {
   TimPengeringanPayloadSchema,
-  AnggotaTimParamsSchema,
   BahanPengeringanPayloadSchema,
   HasilPengeringanPayloadSchema,
  } = require('../../../ACCvalidatorSchema');

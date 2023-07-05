@@ -15,8 +15,8 @@ const usersService = require('../ACCservice/Postgres/usersService');
 
 const authorService = require('../ACCservice/Postgres/AuthorizationService');
 
-const profiling_acc = require('../ACCapi/profiling/acc');
-const profiling_buruh = require('../ACCapi/profiling/buruh');
+const profiling_acc = require('../ACCapi/profiling/acc/index');
+const profiling_buruh = require('../ACCapi/profiling/buruh/index');
 const profilingValidator = require('../ACCapi/profiling/validator');
 const profilingService = require('../ACCservice/Postgres/profilingService');
 
@@ -24,26 +24,22 @@ const panen = require('../ACCapi/dashboard/panen');
 const panenService = require('../ACCservice/Postgres/accservice/panenService');
 const panenValidator = require('../ACCapi/dashboard/panen/validator');
 
-const bahan_pengeringan = require('../ACCapi/dashboard/pengeringan/bahan_pengeringan');
-const hasil_pengeringan = require('../ACCapi/dashboard/pengeringan/hasil_pengeringan');
-const pengringanValidator = require('../ACCapi/user/validator');
+const pengeringan = require('../ACCapi/dashboard/pengeringan');
+const pengeringanService = require('../ACCservice/Postgres/accservice/pengeringanServices');
+const pengeringanValidator = require('../ACCapi/dashboard/pengeringan/validator');
 
 const jual_beli = require('../ACCapi/dashboard/jual-beli');
-const jualBeliValidator = require('../ACCapi/user/validator');
+const jualBeliService = require('../ACCservice/Postgres/accservice/jualBeliService');
+const jualBeliValidator = require('../ACCapi/dashboard/jual-beli/validator');
 
-const rekapitulasi = require('../ACCapi/dashboard/rekapitulasi');
-const rekapitulasiValidator = require('../ACCapi/user/validator');
-
-const information_pxp = require('../ACCapi/information/pxp');
-const information_buruh = require('../ACCapi/information/buruh');
-const informationValidator = require('../ACCapi/user/validator');
 
 const UsersService = new usersService();
 const AuthorService = new authorService();
 const AuthenticationService = new authenticationService();
 
 const ProfilingService = new profilingService();
-const PanenService = new panenService()
+const PanenService = new panenService();
+const PengeringanService = new pengeringanService();
 const Dummy = new dummyS();
 
 const plugin = [
@@ -108,16 +104,20 @@ const plugin = [
             }
         },
         {
+            plugin: pengeringan,
+            options: {
+                service : PengeringanService,
+                validator : pengeringanValidator,
+                author : AuthorService,
+            }
+        },
+        {
             plugin: jual_beli,
-        },
-        {
-            plugin: rekapitulasi,
-        },
-        {
-            plugin: information_pxp,
-        },
-        {
-            plugin: information_buruh,
+            options: {
+                service : jualBeliService,
+                validator : jualBeliValidator,
+                author : AuthorService,
+            }
         },
     ];
 

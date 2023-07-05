@@ -78,7 +78,7 @@ const routes = (handler) => [
     {
       method: 'GET',
       path: '/Jual-beli/{jualBeliId}',
-      handler: handler.getJualBelibyIdHandler,
+      handler: handler.getJualBeliByIdHandler,
       options: {
          auth: 'ACC_jwt',
       },

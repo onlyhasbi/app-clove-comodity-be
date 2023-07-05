@@ -41,7 +41,7 @@ const routes = (handler) => [
 //user menambahkan data hasil panen
   {
     method: 'POST',
-    path: '/hasil-panen/{lahanId}',
+    path: '/hasil-panen',
     handler: handler.addHasilPanenHandler,
     options: {
         auth: 'ACC_jwt',
@@ -87,7 +87,7 @@ const routes = (handler) => [
 //user menambahkan data setoran 
   {
     method: 'POST',
-    path: '/setoran/{lahanId}',
+    path: '/setoran',
     handler: handler.addSetoranHandler,
     options: {
         auth: 'ACC_jwt',
@@ -103,8 +103,16 @@ const routes = (handler) => [
   },
   {
     method: 'GET',
-    path: '/setoran/{lahanId}',  
+    path: '/setoran-lahan/{lahanId}',  
     handler: handler.getSetoranByLahanHandler,
+    options: {
+        auth: 'ACC_jwt',
+    },
+  },
+  {
+    method: 'GET',
+    path: '/setoran-hasil-panen/{hasilPanenId}',  
+    handler: handler.getSetoranByHasilPanenHandler,
     options: {
         auth: 'ACC_jwt',
     },
@@ -120,7 +128,7 @@ const routes = (handler) => [
   {
     method: 'PUT',
     path: '/setoran/{setoranId}/pada-hasil-panen/{hasilPanenId}',  
-    handler: handler.putSetoranPadaHasilPanenHandler,
+    handler: handler.setSetoranPadaHasilPanenHandler,
     options: {
         auth: 'ACC_jwt',
     },
@@ -128,7 +136,7 @@ const routes = (handler) => [
   {
     method: 'PUT',
     path: '/status-pembayaran-setoran/{setoranId}',  
-    handler: handler.putStatusPembayaranSetoranPanenHandler,
+    handler: handler.setStatusPembayaranSetoranHandler,
     options: {
         auth: 'ACC_jwt',
     },

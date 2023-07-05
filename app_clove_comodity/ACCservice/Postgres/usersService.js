@@ -42,7 +42,6 @@ class usersService {
       values: [id, jenis_pengguna, nomor_telpon, nama, hashedPassword, alamat],
     };
     const result = await this._pool.query(query);
- 
     if (!result.rows.length) {
       throw new InvariantError('User gagal ditambahkan');
     }
@@ -54,7 +53,6 @@ class usersService {
       values: [id],
     };
     const result = await this._pool.query(query);
-    console.log(result.rows.length)
     if (!result.rows.length) {
       throw new NotFoundError('user tidak ditemukan');
     }
@@ -66,7 +64,6 @@ class usersService {
       values: [id],
     };
     const result = await this._pool.query(query);
- console.log(result.rows.length)
     if (!result.rows.length) {
       throw new NotFoundError('user tidak ditemukan');
     }
@@ -78,7 +75,6 @@ class usersService {
       values: [nama, tanggal_lahir, jenis_kelamin, alamat, id],
     };
     const result = await this._pool.query(query);
-    console.log(result.rows.length)
     if (!result.rows.length) {
       throw new InvariantError('User gagal ditambahkan');
     }

@@ -26,7 +26,7 @@ const routes = (handler) => [
   },
   {
     method: 'DELETE',
-    path: '/tim-pengeringan/{{timId}',
+    path: '/tim-pengeringan/{timId}',
     handler: handler.deleteTimPengeringanHandler,
     options: {
        auth: 'ACC_jwt',
@@ -134,7 +134,7 @@ const routes = (handler) => [
   {
     method: 'PUT',
     path: '/status-pembayaran-hasil-pengeringan/{hasilPengeringanId}',  
-    handler: handler.putStatusPembayaranSetoranPanenHandler,
+    handler: handler.setStatusPembayaranPengeringanHandler,
     options: {
         auth: 'ACC_jwt',
     },

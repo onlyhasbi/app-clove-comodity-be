@@ -76,7 +76,7 @@ create table penawaran_komoditas (
     id varchar(30) primary key,
     owner_user varchar(30) not null,
     jenis_penawaran penawaran not null,
-    jenis_komditas komoditas not null,
+    jenis_komoditas komoditas not null,
     max integer not null,
     min integer not null,
     satuan i_ukur not null,
@@ -91,9 +91,9 @@ create table penawaran_komoditas (
 create table status_kerja_buruh (
     id varchar(30) primary key,
     id_buruh varchar(30) not null,
-    id_pxp varchar(30) not null,
+    owner_user varchar(30) not null,
     status_kerja  staker not null,
-    foreign key (id_pxp) references owner_user_acc(id),
+    foreign key (owner_user) references owner_user_acc(id),
     foreign key (id_buruh) references owner_user_buruh(id) ON DELETE CASCADE 
 );
 
@@ -127,7 +127,7 @@ create table setoran (
     waktu date not null,
     catatan varchar(30) null,
     status_pembayaran boolean not null,
-    hari_pembayaran date not null,
+    hari_pembayaran date null,
     foreign key (id_hasil_panen) references hasil_panen(id),
     foreign key (id_buruh) references owner_user_buruh(id) ON DELETE SET DEFAULT
 );
@@ -139,7 +139,7 @@ create table tim_pengeringan (
     owner_user varchar(30) DEFAULT 'admin-1dvcfsr' not null,
     nama_tim varchar(60) not null,
     ketua_tim varchar(30) DEFAULT 'buruh-unknow' not null,
-    foreign key (owner_user) references owner_user_acc(id) ON DELETE SET DEFAULT
+    foreign key (owner_user) references owner_user_acc(id) ON DELETE SET DEFAULT,
     foreign key (ketua_tim) references owner_user_buruh(id) ON DELETE SET DEFAULT
 );
 create table anggota_tim (
