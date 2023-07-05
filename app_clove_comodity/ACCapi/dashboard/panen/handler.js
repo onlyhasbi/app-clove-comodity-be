@@ -146,7 +146,7 @@ async addSetoranHandler(request, h) {
   try {
     await this._validator.setoran(request.payload);
     const id_lahan = await this._service.chekLahanHasilPanen(request.payload.id_hasil_panen);
-    const id_buruh = await this._service.chekBuruh(request.payload.id_buruh);
+    await this._service.chekBuruh(request.payload.id_buruh);
     await this._author.verifyUser(request.auth.credentials.id, `lahan` , id_lahan);
     const setoranId = await this._service.addSetoran(request.payload);
     const response = await this._response( h, 201,  {setoranId}, `setoran berhasil ditambahkan`);
@@ -196,6 +196,9 @@ async getSetoranByHasilPanenHandler(request, h) {
 async editSetoranHandler(request, h) {
   try {
     await this._validator.setoran(request.payload);
+    const id_lahan_payload = await this._service.chekLahanHasilPanen(request.payload.id_hasil_panen);
+    await this._service.chekBuruh(request.payload.id_buruh);
+    await this._author.verifyUser(request.auth.credentials.id, `lahan` , id_lahan_payload);
     const id_hasil_panen = await this._service.chekSetoranHasilPanen(request.params.setoranId);
     const id_lahan = await this._service.chekLahanHasilPanen(id_hasil_panen);
     await this._author.verifyUser(request.auth.credentials.id, `lahan` , id_lahan);
@@ -208,9 +211,22 @@ async editSetoranHandler(request, h) {
     return response;
   }
 }
-
-async setSetoranPadaHasilPanenHandler() {};
-async setStatusPembayaranSetoranHandler() {};
+async setStatusPembayaranSetoranHandler(request, h) {
+try {
+  const status ={ ...request.query }
+  await this._validator.statusBayar(status);
+  const id_hasil_panen = await this._service.chekSetoranHasilPanen(request.params.setoranId);
+  const id_lahan = await this._service.chekLahanHasilPanen(id_hasil_panen);
+  await this._author.verifyUser(request.auth.credentials.id, `lahan` , id_lahan);
+  const {id, message} = await this._service.setStatus('setoran','status_pembayaran', request.params.setoranId, status.status);
+  const response = await this._response(h, 201, { setoranId:id } , message);
+  return response;
+} 
+catch (error) {
+  const response = await responseCatch(error, h);
+  return response;
+}
+};
 async deleteSetoranHandler(request, h) {
   try {
     const id_hasil_panen = await this._service.chekSetoranHasilPanen(request.params.setoranId);

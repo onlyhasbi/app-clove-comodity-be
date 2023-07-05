@@ -1,7 +1,9 @@
-const { 
+const {
+  StatusQuerySchema, 
   LahanPayloadSchema,
   SetoranPayloadSchema,
   HasilPanenPayloadSchema,
+  asasas,
  } = require('../../../ACCvalidatorSchema');
 const InvariantError = require('../../../exception/invariantErr');
  
@@ -10,12 +12,17 @@ const PanenValidator = {
     const validationResult = LahanPayloadSchema.validate(payload);
     if (validationResult.error) { throw new InvariantError(validationResult.error.message) }
   },
-  setoran: (query) => {
-    const validationResult = SetoranPayloadSchema.validate(query);
+  setoran: (payload) => {
+    const validationResult = SetoranPayloadSchema.validate(payload);
     if (validationResult.error) { throw new InvariantError(validationResult.error.message) }
   },
-  hasilPanen: (query) => {
-    const validationResult = HasilPanenPayloadSchema.validate(query);
+  hasilPanen: (payload) => {
+    const validationResult = HasilPanenPayloadSchema.validate(payload);
+    if (validationResult.error) { throw new InvariantError(validationResult.error.message) }
+  },
+
+  statusBayar: (query) => {
+    const validationResult = StatusQuerySchema.validate(query);
     if (validationResult.error) { throw new InvariantError(validationResult.error.message) }
   },
 };

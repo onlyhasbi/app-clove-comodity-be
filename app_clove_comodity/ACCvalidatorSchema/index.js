@@ -192,8 +192,8 @@ const HasilPengeringanPayloadSchema = Joi.object({
 });
 
 //validator request params
-const statusQuerySchema = Joi.object({
-  status_aktif: Joi.boolean().required(), 
+const StatusQuerySchema = Joi.object({
+  status: Joi.boolean().required(), 
 });
 
 module.exports = {
@@ -235,5 +235,5 @@ module.exports = {
   HasilPengeringanPayloadSchema,
 
 //validator request params
-  statusQuerySchema
+  StatusQuerySchema,
   };

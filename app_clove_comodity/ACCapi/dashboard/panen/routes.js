@@ -127,15 +127,7 @@ const routes = (handler) => [
   },
   {
     method: 'PUT',
-    path: '/setoran/{setoranId}/pada-hasil-panen/{hasilPanenId}',  
-    handler: handler.setSetoranPadaHasilPanenHandler,
-    options: {
-        auth: 'ACC_jwt',
-    },
-  },
-  {
-    method: 'PUT',
-    path: '/status-pembayaran-setoran/{setoranId}',  
+    path: '/status-pembayaran-setoran/{setoranId}',  //+guery ?status={typedataboolean}
     handler: handler.setStatusPembayaranSetoranHandler,
     options: {
         auth: 'ACC_jwt',

@@ -301,6 +301,16 @@ class panenService {
       if (!result) {  throw new InvariantError('lahan gagal Dihapus');}
       return;
     } 
+    async setStatus(table, field, id, status_value) {
+      const query ={
+        text :`UPDATE ${table} SET ${field} = $1  WHERE id = $2 RETURNING id`,
+        values:[status_value, id,],
+      };
+      const result = await this._pool.query(query);
+      if(!result.rows.length){  throw new InvariantError(`set ${status_value} nilai ${field} pada tabel ${table} dengan  id ${id} `); }
+      const message = `set ${status_value} nilai ${field} pada tabel ${table} dengan  id ${id}.`;
+      return {id, message};
+    }
 }
 
   module.exports = panenService;
