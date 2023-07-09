@@ -2,7 +2,7 @@ const routes = (handler) => [
     {
       method: 'POST',
       path: '/penjualan',
-      handler: handler.addPenjualanHandler,
+      handler: handler.postPenjualanHandler,
       options: {
          auth: 'ACC_jwt',
       },
@@ -17,7 +17,7 @@ const routes = (handler) => [
     },
     {
       method: 'PUT',
-      path: '/penjualan/{penjualanId}',
+      path: '/penjualan/{jualBeliId}',
       handler: handler.editPenjualanHandler,
       options: {
          auth: 'ACC_jwt',
@@ -25,7 +25,7 @@ const routes = (handler) => [
     },
     {
       method: 'DELETE',
-      path: '/penjualan/{penjualanId}',
+      path: '/penjualan/{jualBeliId}',
       handler: handler.deletePenjualanHandler,
       options: {
          auth: 'ACC_jwt',
@@ -37,7 +37,7 @@ const routes = (handler) => [
     {
       method: 'POST',
       path: '/pembelian',
-      handler: handler.addPembelianHandler,
+      handler: handler.postPembelianHandler,
       options: {
          auth: 'ACC_jwt',
       },
@@ -52,7 +52,7 @@ const routes = (handler) => [
     },
     {
       method: 'PUT',
-      path: '/pembelian/{pembelianId}',
+      path: '/pembelian/{jualBeliId}',
       handler: handler.editPembelianHandler,
       options: {
          auth: 'ACC_jwt',
@@ -60,7 +60,7 @@ const routes = (handler) => [
     },
     {
       method: 'DELETE',
-      path: '/pembelian/{pembelianId}',
+      path: '/pembelian/{jualBeliId}',
       handler: handler.deletePembelianHandler,
       options: {
          auth: 'ACC_jwt',
@@ -69,7 +69,7 @@ const routes = (handler) => [
     
     {
       method: 'GET',
-      path: '/Jual-beli',
+      path: '/jual-beli',
       handler: handler.getJualBeliHandler,
       options: {
          auth: 'ACC_jwt',
@@ -77,7 +77,7 @@ const routes = (handler) => [
     },
     {
       method: 'GET',
-      path: '/Jual-beli/{jualBeliId}',
+      path: '/jual-beli/{jualBeliId}',
       handler: handler.getJualBeliByIdHandler,
       options: {
          auth: 'ACC_jwt',
@@ -86,7 +86,7 @@ const routes = (handler) => [
 
     {
       method: 'PUT',
-      path: '/set-editor/{jualBeliId}',
+      path: '/editor/{jualBeliId}',
       handler: handler.setEditorHandler,
       options: {
          auth: 'ACC_jwt',

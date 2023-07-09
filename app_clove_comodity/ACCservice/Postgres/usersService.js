@@ -1,6 +1,7 @@
 const { Pool } = require('pg');
 const { nanoid } = require('nanoid');
 const bcrypt = require('bcrypt');
+const moment = require('moment');
 const AuthenticationError = require('../../exception/authErr');
 const InvariantError = require('../../exception/invariantErr'); 
 const NotFoundError = require('../../exception/notFoundErr'); 
@@ -56,7 +57,7 @@ class usersService {
     if (!result.rows.length) {
       throw new NotFoundError('user tidak ditemukan');
     }
-    return result.rows [0];
+    return result.rows[0];
   }
   async getUserAcc(id){
     const query = {
@@ -67,7 +68,7 @@ class usersService {
     if (!result.rows.length) {
       throw new NotFoundError('user tidak ditemukan');
     }
-    return result.rows [0];
+    return result.rows[0];
   }
   async updateUserBuruh (id, {nama, tanggal_lahir, jenis_kelamin, alamat } ){
     const query = {

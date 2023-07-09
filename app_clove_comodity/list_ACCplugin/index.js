@@ -40,6 +40,7 @@ const AuthenticationService = new authenticationService();
 const ProfilingService = new profilingService();
 const PanenService = new panenService();
 const PengeringanService = new pengeringanService();
+const JualBeliService = new jualBeliService();
 const Dummy = new dummyS();
 
 const plugin = [
@@ -114,7 +115,7 @@ const plugin = [
         {
             plugin: jual_beli,
             options: {
-                service : jualBeliService,
+                service : JualBeliService,
                 validator : jualBeliValidator,
                 author : AuthorService,
             }

@@ -17,11 +17,12 @@ class Handler {
 }
 
 //handler penjualan
-  async addPenjualanHandler () {
+  async postPenjualanHandler (request, h) {
     try {
       await this._validator.penjualan(request.payload);
-      const jualBeliId = await this._service.addPenjualan(request.auth.credentials.id, request.payload);
-      const response = await this._response( h, 201 ,  { jualBeliId, }, `data penjualan berhasil ditambahkan`);
+      await this._service.checkTransactionPartnersIsUser(request.auth.credentials.id, request.payload.id_pembeli);
+      const jualBeliId = await this._service.addJualBeli('penjual', request.auth.credentials.id, request.payload.id_pembeli, request.payload);
+      const response = await this._response( h, 201 ,  {jualBeliId,}, `data penjualan berhasil ditambahkan`);
       return response;
     } 
     catch (error) {
@@ -29,7 +30,7 @@ class Handler {
       return response;
     }    
   }
-  async getPenjualanHandler() {
+  async getPenjualanHandler(request, h) {
     try {
       const penjualan = await this._service.getPenjualan(request.auth.credentials.id);
       const response = await this._response(h, 200, penjualan );
@@ -40,12 +41,13 @@ class Handler {
       return response;
     }
   }
-  async editPenjualanHandler() {
+  async editPenjualanHandler(request, h) {
     try {
       await this._validator.penjualan(request.payload);
-      await this._author.verifyUser(request.auth.credentials.id, `jual-beli` , request.params.jualBeliId)
-      const jualBeliId = await this._service.updatePenjualan(  request.auth.credentials.id, request.params.jualBeliId, request.payload);
-      const response = await this._response(h, 201, { jualBeliId } , 'Data lahan berhasil diubah');
+      await this._author.verifyUser(request.auth.credentials.id, `jual_beli` , request.params.jualBeliId)
+      await this._service.checkTransactionPartnersIsUser(request.auth.credentials.id, request.payload.id_pembeli);
+      const jualBeliId = await this._service.updateJualBeli(request.params.jualBeliId, request.payload.id_pembeli, request.payload);
+      const response = await this._response(h, 201, { jualBeliId } , 'Data penjualan berhasil diubah');
       return response;
     }
     catch (error) {
@@ -53,11 +55,11 @@ class Handler {
       return response;
     }
   }
-  async deletePenjualanHandler() {
+  async deletePenjualanHandler(request, h) {
     try {
-      await this._author.verifyUser(request.auth.credentials.id, `jual-beli` , request.params.jualBeliId)
-      await this._service.deletePenjualan(request.params.jualBeliId);
-      const response = await this._response(h, 201, undefined , 'Data lahan berhasil dihapus');
+      await this._author.verifyUser(request.auth.credentials.id, `jual_beli` , request.params.jualBeliId)
+      await this._service.deleteJualBeli(request.params.jualBeliId);
+      const response = await this._response(h, 201, undefined , 'Data penjualan berhasil dihapus');
       return response;
     } 
     catch (error) {
@@ -68,11 +70,12 @@ class Handler {
 
   
 //handler pembelian  
-  async addPembelianHandler () {
+  async postPembelianHandler (request, h) {
     try {
       await this._validator.pembelian(request.payload);
-      const jualBeliId = await this._service.addPembelian(request.auth.credentials.id, request.payload);
-      const response = await this._response( h, 201,  { jualBeliId, }, `data penjualan berhasil ditambahkan`);
+      await this._service.checkTransactionPartnersIsUser(request.auth.credentials.id, request.payload.id_penjual);
+      const jualBeliId = await this._service.addJualBeli('pembeli', request.auth.credentials.id, request.payload.id_penjual, request.payload);
+      const response = await this._response( h, 201,  { jualBeliId, }, `data peembelian berhasil ditambahkan`);
       return response;
     } 
     catch (error) {
@@ -80,7 +83,7 @@ class Handler {
       return response;
     }
   }
-  async getPembelianHandler() {
+  async getPembelianHandler(request, h) {
     try {
       const pembelian = await this._service.getPembelian(request.auth.credentials.id);
       const response = await this._response(h, 200, pembelian );
@@ -91,12 +94,13 @@ class Handler {
       return response;
     }
   }
-  async editPembelianHandler() {
+  async editPembelianHandler(request, h) {
     try {
       await this._validator.pembelian(request.payload);
-      await this._author.verifyUser(request.auth.credentials.id, `jual-beli` , request.params.jualBeliId)
-      const jualBeliId = await this._service.updatePembelian(  request.auth.credentials.id, request.params.jualBeliId, request.payload);
-      const response = await this._response(h, 201, { jualBeliId } , 'Data lahan berhasil diubah');
+      await this._author.verifyUser(request.auth.credentials.id, `jual_beli` , request.params.jualBeliId);
+      await this._service.checkTransactionPartnersIsUser(request.auth.credentials.id, request.payload.id_penjual);
+      const jualBeliId = await this._service.updateJualBeli( request.params.jualBeliId, request.payload.id_penjual, request.payload);
+      const response = await this._response(h, 201, { jualBeliId } , 'Data pembelian berhasil diubah');
       return response;
     }
     catch (error) {
@@ -104,11 +108,11 @@ class Handler {
       return response;
     }
   }
-  async deletePembelianHandler() {
+  async deletePembelianHandler(request, h) {
     try {
-      await this._author.verifyUser(request.auth.credentials.id, `jual-beli` , request.params.jualBeliId)
-      await this._service.deletePembelian(request.params.jualBeliId);
-      const response = await this._response(h, 201, undefined , 'Data lahan berhasil dihapus');
+      await this._author.verifyUser(request.auth.credentials.id, `jual_beli` , request.params.jualBeliId)
+      await this._service.deleteJualBeli(request.params.jualBeliId);
+      const response = await this._response(h, 201, undefined , 'Data pembelian berhasil dihapus');
       return response;
     } 
     catch (error) {
@@ -119,10 +123,11 @@ class Handler {
 
 
 //handler jual-beli  
-  async getJualBeliHandler() {
+  async getJualBeliHandler(request, h) {
     try {
-      const jualBeliUser = await this._service.getJualBeli(request.auth.credentials.id);
-      const response = await this._response(h, 200, jualBeliUser );
+      console.log('cscs')
+      const data = await this._service.getJualBeli(request.auth.credentials.id);
+      const response = await this._response(h, 200, data );
       return response;      
     } 
     catch (error) {
@@ -130,10 +135,10 @@ class Handler {
       return response;
     }
   }
-  async getJualBeliByIdHandler() {
+  async getJualBeliByIdHandler(request, h) {
     try {
-      const jualBeliUser = await this._service.getJualBeli(request.params.jualBeliId);
-      const response = await this._response(h, 200, jualBeliUser );
+      const data = await this._service.getJualBeliById(request.params.jualBeliId);
+      const response = await this._response(h, 200, data );
       return response;      
     } 
     catch (error) {
@@ -144,9 +149,9 @@ class Handler {
 
 
 //handler data kelengkapan jual-beli  
-  async setEditorHandler() {
+  async setEditorHandler(request, h) {
     try {
-      await this._author.verifyUser(request.auth.credentials.id, `jual-beli` , request.params.jualBeliId)
+      await this._author.verifyTransactionPartnersIsUser(request.auth.credentials.id, `jual-beli` , request.params.jualBeliId)
       const editorJualBeliId = await this._service.setEditor(request.params.jualBeliId, request.query.value);
       const response = await this._response(h, 201, { editorJualBeliId } , 'Data lahan berhasil diubah');
       return response;
@@ -156,11 +161,11 @@ class Handler {
       return response;
     }
   }
-  async verifikasiPenjualanHandler () {
+  async verifikasiPenjualanHandler (request, h) {
     try {
-      //  verifikasi non_owner_user //await this._author.verifyUser(request.auth.credentials.id, `jual-beli` , request.params.jualBeliId)
-      const editorJualBeliId = await this._service.setVerifikasiPenjualan(request.params.jualBeliId, request.query.value);
-      const response = await this._response(h, 201, { editorJualBeliId } , 'Data lahan berhasil diubah');
+      await this._service.verifyTransactionPartnersIsUser(request.auth.credentials.id, `jual-beli` , request.params.jualBeliId)
+      const verifikasiPenjualId = await this._service.setVerifikasi('penjualan',request.params.jualBeliId, request.query.verify);
+      const response = await this._response(h, 201, {verifikasiPenjualId} , 'Data lahan berhasil diubah');
       return response;
     }
     catch (error) {
@@ -168,11 +173,12 @@ class Handler {
       return response;
     }
   }
-  async verifikasiPembelianHandler () {
+  async verifikasiPembelianHandler (request, h) {
     try {
-      //  verifikasi non_owner_user //await this._author.verifyUser(request.auth.credentials.id, `jual-beli` , request.params.jualBeliId)
-      const verifikasiJualBeliId = await this._service.setVerifikasiPembelian(request.params.jualBeliId, request.query.value);
-      const response = await this._response(h, 201, { verifikasiJualBeliId } , 'Data lahan berhasil diubah');
+      await this._service.verifyUser(request.auth.credentials.id, `jual-beli` , request.params.jualBeliId);
+
+      const verifikasiPembelianlId = await this._service.setVerifikasi('pembelian', request.params.jualBeliId, request.query.verify);
+      const response = await this._response(h, 201, {verifikasiPembelianlId} , 'Data lahan berhasil diubah');
       return response;
     }
     catch (error) {

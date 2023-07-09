@@ -7,25 +7,25 @@ const BuruhUserPayloadSchema = Joi.object({
   sandi: Joi.string().required(),
   tanggal_lahir: Joi.date().required(),
   jenis_kelamin: Joi.string().valid('laki-laki','perempuan').required(),
-  alamat: Joi.string().pattern(/^[a-zA-Z]{2}-\d{7}$/),
+  alamat: Joi.string().pattern(/^[a-zA-Z]{2}-\d{7}$/).allow(null),
 });
 const AccUserPayloadSchema = Joi.object({
   nomor_telpon: Joi.string().pattern(/^[0-9]{10,12}$/).required(),
   jenis_pengguna: Joi.string().valid('perorangan','UMKM/KLP.Tani','CV', 'PT').required(),
   nama: Joi.string().required(),
   sandi: Joi.string().required(),
-  alamat: Joi.string().pattern(/^[a-zA-Z]{2}-\d{7}$/),
+  alamat: Joi.string().pattern(/^[a-zA-Z]{2}-\d{7}$/).allow(null),
 });
 const UpdateBuruhUserPayloadSchema = Joi.object({
   nama: Joi.string().required(),
   tanggal_lahir: Joi.date().required(),
   jenis_kelamin: Joi.string().valid('laki-laki','perempuan').required(),
-  alamat: Joi.string().pattern(/^[a-zA-Z]{2}-\d{7}$/),
+  alamat: Joi.string().pattern(/^[a-zA-Z]{2}-\d{7}$/).allow(null),
 });
 const UpdateAccUserPayloadSchema = Joi.object({
   jenis_pengguna: Joi.string().valid('perorangan','UMKM/KLP.Tani','CV', 'PT').required(),
   nama: Joi.string().required(),
-  alamat: Joi.string().pattern(/^[a-zA-Z]{2}-\d{7}$/),
+  alamat: Joi.string().pattern(/^[a-zA-Z]{2}-\d{7}$/).allow(null),
 });
 const UpdatePasswordUserPayloadSchema = Joi.object({
   nomor_telpon: Joi.string().pattern(/^[0-9]{10,12}$/).required(),
@@ -63,23 +63,22 @@ const lamaranPayloadSchema = Joi.object({
   jenis_pekerjaan: Joi.string().valid('buruh_panen','buruh_penjemuran').required(),
   upah_harapan: Joi.number().required(),
   indikator_ukur: Joi.string().valid('berat/kg', 'volume/liter').required(),
-  catatan: Joi.string(),
-
+  catatan: Joi.string().required(),
 });
 const jobReqruimentPayloadSchema = Joi.object({
   jenis_pekerjaan: Joi.string().valid('buruh_panen','buruh_penjemuran').required(),
   upah_rp: Joi.number().required(),
   indikator_ukur: Joi.string().valid('berat/kg', 'volume/liter').required(),
-  catatan: Joi.string(),  
+  catatan: Joi.string().required(),  
 });
 const offerPayloadSchema = Joi.object({
   jenis_penawaran: Joi.string().valid('menjual', 'membeli').required(),
   jenis_komoditas: Joi.string().valid('kering', 'basah').required(),
-  max: Joi.number(),
-  min: Joi.number(),
+  max: Joi.number().allow(null),
+  min: Joi.number().allow(null),
   satuan: Joi.string().valid('berat/kg', 'volume/liter').required(),
   harga_rp: Joi.number().required(),
-  catatan: Joi.string(),  
+  catatan: Joi.string().required(),  
 });
 
 
@@ -91,13 +90,13 @@ const offerPayloadSchema = Joi.object({
 const LahanPayloadSchema = Joi.object({
   nama: Joi.string().required(),
   lokasi: Joi.string().pattern(/^[a-zA-Z]{2}-\d{7}$/).required(),
-  luas_m2: Joi.number(),
+  luas_m2: Joi.number().allow(null),
   status_hak_panen: Joi.string().valid('milik_sendiri','milik_tergadai','milik_dengan_pajak', 'bagi_hasil').required(),
 });
 const HasilPanenPayloadSchema = Joi.object({
   id_lahan : Joi.string().required(),
-  berat_pengukuran_kg: Joi.number(),
-  volume_pengukuran_kg: Joi.number(),
+  berat_pengukuran_kg: Joi.number().allow(null),
+  volume_pengukuran_kg: Joi.number().allow(null),
   waktu: Joi.string().required(),
   catatan: Joi.string().required(),
 }); 
@@ -105,18 +104,10 @@ const SetoranPayloadSchema = Joi.object({
   id_hasil_panen: Joi.string().required(),
   id_buruh: Joi.string().required(),
   volume_liter: Joi.number().required(),
-  berat_kg: Joi.number().required(),
+  berat_kg: Joi.number().allow(null).required(),
   upah_rp: Joi.number().required(),
   waktu: Joi.date().required(),
-  catatan: Joi.string(),
-});
-//kau pakai params langsung ambil dari nila yang di get ke front ed saja, klu pakai payload nanti tidak valid dan rawan error
-const LinkHasilSetoranPayloadSchema = Joi.object({
-
-});
-//validator Hasil_panen
-const LinkSetoranBuruhPayloadSchema = Joi.object({
-
+  catatan: Joi.string().required(),
 });
 
 
@@ -127,44 +118,16 @@ const LinkSetoranBuruhPayloadSchema = Joi.object({
 
 //validator jual_beli
 const PenjualanPayloadSchema = Joi.object({
-  id_pembeli : Joi.string().required(),
-  jenis_komditas_cengkeh : Joi.string().valid('').required(),
+  id_pembeli : Joi.string().allow('',null).required(),
+  jenis_komditas_cengkeh : Joi.string().valid('kering', 'basah').required(),
   berat_kg : Joi.number().required(),
   harga_rp : Joi.number().required(),
   waktu : Joi.date().required(),
   catatan : Joi.string().required(),
-
 });
 const PembelianPayloadSchema = Joi.object({
-  id_penjual : Joi.string().required(), 
-  jenis_komditas_cengkeh : Joi.string().valid('').required(),
-  berat_kg : Joi.number().required(),
-  harga_rp : Joi.number().required(),
-  waktu : Joi.date().required(),
-  catatan : Joi.string().required(),
-
-});
-const penjualanPanenQuerySchema = Joi.object({
-  id_pembeli : Joi.string().required(),
-  jenis_komditas_cengkeh : Joi.string().valid('').required(),
-  berat_kg : Joi.number().required(),
-  harga_rp : Joi.number().required(),
-  waktu : Joi.date().required(),
-  catatan : Joi.string().required(),
-
-});
-const pembelianPanenQuerySchema = Joi.object({
-  id_penjual : Joi.string().required(), 
-  jenis_komditas_cengkeh : Joi.string().valid('').required(),
-  berat_kg : Joi.number().required(),
-  harga_rp : Joi.number().required(),
-  waktu : Joi.date().required(),
-  catatan : Joi.string().required(),
-
-});
-const JualBeliPanenQuerySchema = Joi.object({
-  id_penjualorpembeli : Joi.string().required(), 
-  jenis_komditas_cengkeh : Joi.string().valid('').required(),
+  id_penjual : Joi.string().allow('',null).required(), 
+  jenis_komditas_cengkeh : Joi.string().valid('kering', 'basah').required(),
   berat_kg : Joi.number().required(),
   harga_rp : Joi.number().required(),
   waktu : Joi.date().required(),
@@ -210,7 +173,6 @@ module.exports = {
   UpdateBuruhUserPayloadSchema,
   UpdateAccUserPayloadSchema,
   UpdatePasswordUserPayloadSchema,
-
   CredentialParameterPayloadSchema,
 
   //auth
@@ -225,9 +187,6 @@ module.exports = {
   //Jual_beli 
   PenjualanPayloadSchema,
   PembelianPayloadSchema,
-  penjualanPanenQuerySchema,
-  pembelianPanenQuerySchema,
-  JualBeliPanenQuerySchema,
 
   //pengeringan 
   TimPengeringanPayloadSchema,

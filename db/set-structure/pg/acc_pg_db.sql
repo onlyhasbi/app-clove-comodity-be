@@ -183,7 +183,7 @@ create table link_pengeringan (
 create table jual_beli (
     id varchar(30) primary key,
     owner_user varchar(30) DEFAULT 'admin-1dvcfsr' not null,
-    non_owner_user varchar(30) not null,
+    non_owner_user varchar(30) null,
     owner_user_as pihak not null,
     editor editor not null,
     jenis_komditas_cengkeh komoditas not null,

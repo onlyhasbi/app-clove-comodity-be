@@ -127,7 +127,7 @@ const routes = (handler) => [
   },
   {
     method: 'PUT',
-    path: '/status-pembayaran-setoran/{setoranId}',  //+guery ?status={typedataboolean}
+    path: '/status-pembayaran-setoran/{setoranId}',  //+query ?status={typedataboolean}
     handler: handler.setStatusPembayaranSetoranHandler,
     options: {
         auth: 'ACC_jwt',
