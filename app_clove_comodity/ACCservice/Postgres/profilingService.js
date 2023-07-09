@@ -30,7 +30,7 @@ class profilingService {
   }
   async getKontak(tabel, user){
     const query = {
-      text: `SELECT id, jenis_kontak, kontak komm FROM ${tabel} WHERE owner_user = $1;`,
+      text: `SELECT id, jenis_kontak, kontak FROM ${tabel} WHERE owner_user = $1;`,
       values: [user],
     };
     const result = await this._pool.query(query);

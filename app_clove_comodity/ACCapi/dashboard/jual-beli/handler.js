@@ -175,7 +175,7 @@ class Handler {
   }
   async verifikasiPembelianHandler (request, h) {
     try {
-      await this._service.verifyUser(request.auth.credentials.id, `jual-beli` , request.params.jualBeliId);
+      await this._author.verifyUser(request.auth.credentials.id, `jual-beli` , request.params.jualBeliId);
 
       const verifikasiPembelianlId = await this._service.setVerifikasi('pembelian', request.params.jualBeliId, request.query.verify);
       const response = await this._response(h, 201, {verifikasiPembelianlId} , 'Data lahan berhasil diubah');
