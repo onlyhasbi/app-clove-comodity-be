@@ -1,15 +1,15 @@
 {
-    "version": 2,
-    "builds": [
-      {
-        "src": "app_clove_comodity/index.js",
-        "use": "@now/node"
-      }
-    ],
-    "routes": [
-      {
-        "src": "/(.*)",
-        "dest": "app_clove_comodity/index.js"
-      }
-    ]
-  }
+  "version": 2,
+  "builds": [
+    {
+      "src": "./",
+      "use": "@now/node"
+    }
+  ],
+  "routes": [
+    {
+      "src": "/(.*)",
+      "dest": "./app_clove_comodity/index.js"
+    }
+  ]
+}
