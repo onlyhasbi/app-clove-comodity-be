@@ -12,7 +12,17 @@ class Handler {
 
     autoBind(this);
   }
- 
+ async tes( h) {
+  try {
+    const lokasi = "gunung buki laut";
+    const response =  await this._response(h, {lokasi});
+    return response; 
+  } 
+  catch (error) {
+    const response = await responseCatch(error, h); 
+    return response;
+  }
+ }
   async getLocation(request, h) {
     try {
       const lokasi = await this._service.dataLokasi(request.params.id_location);

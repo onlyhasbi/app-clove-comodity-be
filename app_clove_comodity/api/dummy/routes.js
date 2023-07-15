@@ -1,4 +1,9 @@
 const routes = (handler) => [
+  {
+    method: 'GET',
+    path: '/',
+    handler: handler.tes,
+  },
     {
       method: 'GET',
       path: '/dummyLocation/{id_location}',
