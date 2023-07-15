@@ -4,7 +4,7 @@ require('dotenv').config();
 
 const plugin = require('./plugin');
 
-//async function init() {
+async function init() {
 
     const server = hapi.server({
         port: 3555,
@@ -41,13 +41,9 @@ const plugin = require('./plugin');
     await server.register(plugin);
 
     await server.start();
-    //console.log(`Server berjalan pada ${server.info.uri}`);
+    console.log(`Server berjalan pada ${server.info.uri}`);
 
-//}
+}
 
-//init();
-
-const app = server;
-
-module.exports = app;
+init();
 

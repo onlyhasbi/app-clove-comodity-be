@@ -2,7 +2,7 @@
   "name": "clove-comodity-app",
   "version": "1.0.0",
   "description": "aplikasi untuk mengelolah data panen, pengolahan, dan jual beli komoditas panen",
-  "main": "acc_server.js",
+  "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node app_clove_comodity",
