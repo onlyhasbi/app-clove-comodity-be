@@ -120,13 +120,13 @@ const plugin = [
                 author : AuthorService,
             }
         },
-        {
-            plugin: panen_buruh,
-            options: {
-                service : PanenBuruhService,
-                validator : KomplainValidator,
-            }
-        },
+//        {
+//            plugin: panen_buruh,
+//            options: {
+//                service : PanenBuruhService,
+//                validator : KomplainValidator,
+//            }
+//        },
     ];
 
 module.exports = plugin;
