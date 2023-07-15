@@ -47,5 +47,7 @@ const plugin = require('./plugin');
 
 //init();
 
-module.exports = server;
+const app = server;
+
+module.exports = app;
 
