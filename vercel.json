@@ -9,7 +9,7 @@
   "routes": [
     {
       "src": "/(.*)",
-      "dest": "app_clove_comodity/index.js"
+      "dest": "*.js"
     }
   ]
 }
