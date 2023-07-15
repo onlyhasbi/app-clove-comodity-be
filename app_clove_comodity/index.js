@@ -2,7 +2,7 @@ const hapi = require('@hapi/hapi');
 const jwt = require('@hapi/jwt');
 require('dotenv').config();
 
-const plugin = require('./list_ACCplugin');
+const plugin = require('./plugin');
 
 async function init() {
 

@@ -10,6 +10,8 @@ CREATE TYPE stala AS ENUM('milik_sendiri','milik_tergadai','milik_dengan_pajak',
 CREATE TYPE komoditas AS ENUM('kering', 'basah');
 CREATE TYPE editor AS ENUM('share','hanya_owner');
 CREATE TYPE pihak AS ENUM('penjual', 'pembeli');
+CREATE TYPE konplaint AS ENUM('jumlah_setoran','harga','pembayaran', 'lainnya');
+
 
 
 create table owner_user_buruh (
@@ -25,7 +27,7 @@ create table owner_user_acc (
     id varchar(30) primary key,
     jenis_pengguna pengguna not null,
     nomor_telpon varchar(50) unique,
-    nama varchar(50) not null,
+    nama varchar(50) not null,  
     sandi varchar(60) not null,
     alamat varchar(100) null
 );
@@ -128,6 +130,8 @@ create table setoran (
     catatan varchar(30) null,
     status_pembayaran boolean not null,
     hari_pembayaran date null,
+    kategori_konplaint konplaint null,
+    deskripsikonplaint varchar(100) null,
     foreign key (id_hasil_panen) references hasil_panen(id),
     foreign key (id_buruh) references owner_user_buruh(id) ON DELETE SET DEFAULT
 );
