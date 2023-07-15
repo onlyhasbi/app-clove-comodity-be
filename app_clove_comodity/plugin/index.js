@@ -53,73 +53,73 @@ const plugin = [
                 service : DummyService,
             }
         },
-        {
-            plugin: user_acc,
-            options: {
-                service : UsersService,
-                dummy : DummyService,
-                validator : UsersValidator,
-                authentic :AuthenticationService,
-            }
-        },
-        {
-            plugin: user_buruh,
-            options: {
-                service : UsersService,
-                dummy : DummyService,
-                validator : UsersValidator,
-                authentic : AuthenticationService,
-            }
-        },
-        {
-            plugin: auth,
-            options: {
-                service : AuthenticationService,
-                tokenManager : TokenManager,
-                validator : AuthValidator,
-            }
-        },
-        {
-            plugin: profiling_acc,
-            options: {
-                service: ProfilingService,
-                validator : profilingValidator,
-                author : AuthorService,
-            }
-        },
-        {
-            plugin: profiling_buruh,
-            options:{
-                service: ProfilingService,
-                validator : profilingValidator,
-                author : AuthorService,
+        // {
+        //     plugin: user_acc,
+        //     options: {
+        //         service : UsersService,
+        //         dummy : DummyService,
+        //         validator : UsersValidator,
+        //         authentic :AuthenticationService,
+        //     }
+        // },
+        // {
+        //     plugin: user_buruh,
+        //     options: {
+        //         service : UsersService,
+        //         dummy : DummyService,
+        //         validator : UsersValidator,
+        //         authentic : AuthenticationService,
+        //     }
+        // },
+        // {
+        //     plugin: auth,
+        //     options: {
+        //         service : AuthenticationService,
+        //         tokenManager : TokenManager,
+        //         validator : AuthValidator,
+        //     }
+        // },
+        // {
+        //     plugin: profiling_acc,
+        //     options: {
+        //         service: ProfilingService,
+        //         validator : profilingValidator,
+        //         author : AuthorService,
+        //     }
+        // },
+        // {
+        //     plugin: profiling_buruh,
+        //     options:{
+        //         service: ProfilingService,
+        //         validator : profilingValidator,
+        //         author : AuthorService,
                 
-            }
-        },
-        {
-            plugin: panen,
-            options: {
-                service : PanenService,
-                validator : panenValidator,
-                author : AuthorService,
-            }
-        },
-        {
-            plugin: pengeringan,
-            options: {
-                service : PengeringanService,
-                validator : pengeringanValidator,
-                author : AuthorService,
-            }
-        },
-        {
-            plugin: jual_beli,
-            options: {
-                service : JualBeliService,
-                validator : jualBeliValidator,
-                author : AuthorService,
-            }
-        },
+        //     }
+        // },
+        // {
+        //     plugin: panen,
+        //     options: {
+        //         service : PanenService,
+        //         validator : panenValidator,
+        //         author : AuthorService,
+        //     }
+        // },
+        // {
+        //     plugin: pengeringan,
+        //     options: {
+        //         service : PengeringanService,
+        //         validator : pengeringanValidator,
+        //         author : AuthorService,
+        //     }
+        // },
+        // {
+        //     plugin: jual_beli,
+        //     options: {
+        //         service : JualBeliService,
+        //         validator : jualBeliValidator,
+        //         author : AuthorService,
+        //     }
+        // },
 //        {
 //            plugin: panen_buruh,
 //            options: {
