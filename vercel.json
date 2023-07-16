@@ -3,13 +3,14 @@
   "builds": [
     {
       "src": "app_cove_comodity/index.js",
-      "use": "@now/node"
-    }
-  ],
-  "routes": [
-    {
-      "src": "/(.*)",
-      "dest": "/app_cove_comodity/index.js"
+      "use": "@now/node",
+      "environment": {
+        "HOST":"localhost",
+        "PORT":200,       
+        "ACCESS_TOKEN_KEY":"5a3d03a55b9a70b725f6f7caaf2b7cd68a006994afb3e19d8c89ac932d0a36dfd1bd9be0376455d62869ce61141ba8145fc8fae725cbff26b220d131d90a27dc",
+        "REFRESH_TOKEN_KEY":"4e53e37d2c1f1cbc381e65c8d0f0335a704e849ddb5e0da0314a825af8d1e422293acf70ad33ad51a9f7a350a0882107960e9baf680a2c2b16e696f91a045a6e",
+        "ACCESS_TOKEN_AGE":1800
+      }
     }
   ]
 }
