@@ -3,9 +3,12 @@
   "version": "1.0.0",
   "description": "aplikasi untuk mengelolah data panen, pengolahan, dan jual beli komoditas panen",
   "main": "index.js",
+  "angines": {
+    "node": "18.x"
+  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node -r dotenv/config app_clove_comodity/index.js",
+    "start": "node app_clove_comodity/index.js",
     "start-dev": " nodemon app_clove_comodity/index.js",
     "set-db": "node db/set-database/SetDB.js",
     "unset-db": "node db/set-database/UnsetDB.js",
