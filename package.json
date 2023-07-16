@@ -2,7 +2,7 @@
   "name": "clove-comodity-app",
   "version": "1.0.0",
   "description": "aplikasi untuk mengelolah data panen, pengolahan, dan jual beli komoditas panen",
-  "main": "index.js",
+  "main": "app_clove_comodity/index.js",
   "angines": {
     "node": "18.x"
   },
