@@ -3,7 +3,7 @@
   "builds": [
     {
       "src": "app_cove_comodity/index.js",
-      "use": "@vercel/node"
+      "use": "@now/node"
     }
   ],
   "routes": [
